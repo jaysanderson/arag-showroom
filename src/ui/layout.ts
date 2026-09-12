@@ -187,7 +187,13 @@ ${opts.body}
       </div>
       <div>
         <h2>Open source</h2>
-        <ul><li>Apache-2.0 licensed</li><li>Zero runtime dependencies</li><li>Self-hostable</li></ul>
+        <ul>
+          <li><a href="https://github.com/jaysanderson/arag-platform" rel="noopener">arag-platform</a></li>
+          <li><a href="https://github.com/jaysanderson/arag-document-processing" rel="noopener">arag-document-processing</a></li>
+          <li><a href="https://github.com/jaysanderson/arag-call-analysis" rel="noopener">arag-call-analysis</a></li>
+          <li><a href="https://github.com/jaysanderson/arag-voicebridge" rel="noopener">arag-voicebridge</a></li>
+          <li>Apache-2.0 · zero runtime dependencies · self-hostable</li>
+        </ul>
       </div>
     </div>
     <p class="sr-site-footer-legal">${esc(

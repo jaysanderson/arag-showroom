@@ -1528,6 +1528,33 @@
   padding-top: var(--sr-s3);
   margin-top: var(--sr-s3);
 }
+.sr-repo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--sr-s3);
+  margin-top: var(--sr-s6);
+}
+.sr-body a.sr-repo {
+  display: grid;
+  gap: var(--sr-s1);
+  padding: var(--sr-s4);
+  background: var(--arag-surface-raised);
+  border: 1px solid var(--sr-hairline);
+  border-radius: var(--arag-radius-lg);
+  text-decoration: none;
+  color: var(--sr-ink);
+}
+.sr-body a.sr-repo:hover {
+  border-color: var(--arag-brand-400);
+}
+.sr-repo strong {
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 0.92rem;
+}
+.sr-repo span {
+  color: var(--arag-text-muted);
+  font-size: 0.88rem;
+}
 .sr-pricing-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));

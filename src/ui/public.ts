@@ -344,6 +344,16 @@ ${
         ? `<ul class="sr-ticks sr-two-col">${home.openSource.points.map((p) => `<li>${esc(p)}</li>`).join("")}</ul>`
         : ""
     }
+    <div class="sr-repo-grid">
+      <a class="sr-repo" href="https://github.com/jaysanderson/arag-platform" rel="noopener"><strong>arag-platform</strong><span>The shared foundation: HTTP toolkit, ARAG client, mock server, jobs, UI kit, product template</span></a>
+      ${opts.products
+        .filter((p) => p.repoUrl)
+        .map(
+          (p) =>
+            `<a class="sr-repo" href="${esc(p.repoUrl ?? "")}" rel="noopener"><strong>${esc((p.repoUrl ?? "").split("/").pop() ?? p.name)}</strong><span>${esc(p.name)}</span></a>`,
+        )
+        .join("")}
+    </div>
   </div>
 </section>`
     : ""
@@ -556,7 +566,11 @@ ${
     <p class="sr-eyebrow">Proof</p>
     <h2>Answers you can check.</h2>
     <p class="sr-section-lede">Every answer is grounded in your own content and carries a citation back to the
-    source. The numbers below are measured on this product's own repository and test runs, not estimated.</p>
+    source. The numbers below are measured on this product's own repository and test runs, not estimated.${
+      p.repoUrl
+        ? ` The code is open: <a href="${esc(p.repoUrl)}" rel="noopener">${esc(p.repoUrl.replace("https://", ""))}</a>.`
+        : ""
+    }</p>
     ${p.trust.length ? `<ul class="sr-why sr-trust">${p.trust.map((t) => `<li>${esc(t)}</li>`).join("")}</ul>` : ""}
     ${p.proofHtml ? `<div class="md-body sr-wide-body sr-proof-table">${p.proofHtml}</div>` : ""}
   </div>
@@ -613,6 +627,7 @@ ${
     <div class="sr-cta-actions">
       <a class="arag-btn lg" href="/request-access?product=${esc(p.slug)}">Request access</a>
       <a class="arag-btn lg secondary" href="/login?next=${esc(encodeURIComponent(`/p/${p.slug}/docs`))}">Sign in</a>
+      ${p.repoUrl ? `<a class="arag-btn lg ghost" href="${esc(p.repoUrl)}" rel="noopener">Source on GitHub</a>` : ""}
     </div>
   </div>
 </section>`,

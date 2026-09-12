@@ -127,6 +127,7 @@ describe("the public site", () => {
       assert.match(res.text, /id="how"/, slug);
       assert.match(res.text, /id="proof"/, slug);
       assert.match(res.text, /id="cta"/, slug);
+      assert.match(res.text, /github\.com\/jaysanderson\/arag-/, slug);
       assert.match(res.text, /class="sr-icon"/, slug);
       assert.match(res.text, new RegExp(`/api/v1/products/${slug}/assets/showcase/out/`));
       assert.equal(res.text.includes("undefined"), false, `${slug} rendered an undefined value`);
