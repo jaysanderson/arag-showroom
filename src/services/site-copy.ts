@@ -116,6 +116,22 @@ export interface HomeCopy {
   openSource?: { licence?: string; body?: string; points?: string[] };
   faq?: QandA[];
   ctas?: Array<{ label: string; body: string }>;
+  pricing?: PricingCopy;
+}
+
+/** `home.json#pricing` — suggested on-sell price ranges for partners, shown on the home page. */
+export interface PricingCopy {
+  headline?: string;
+  body?: string;
+  principles?: string[];
+  products?: Array<{
+    slug?: string;
+    name?: string;
+    unit?: string;
+    tiers?: Array<{ name: string; price: string; body?: string }>;
+    anchors?: string;
+  }>;
+  caveat?: string;
 }
 
 /** `content/market.json` — sizing research, shown on the home page when present. */

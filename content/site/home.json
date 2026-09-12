@@ -185,5 +185,87 @@
       "label": "Read the Partner Pilot Playbook",
       "body": "marketing/PARTNER-PILOT-PLAYBOOK.md sets out the engagement models in more depth, a pilot plan per product, data needs, success criteria, white-label steps and checklists."
     }
-  ]
+  ],
+  "pricing": {
+    "headline": "Suggested on-sell pricing for partners",
+    "body": "The accelerators are Apache-2.0, so what a partner sells is the packaged product: a hosted or managed deployment, integration into the customer's systems, support and an SLA, on top of the customer's Progress Agentic RAG subscription. The ranges below are suggested USD list prices, anchored on published competitor pricing fetched on 12 September 2026. Partners set their own price; every range leaves room for a services margin.",
+    "principles": [
+      "Mid-market buys a hosted package with a monthly price and a short pilot. Enterprise buys self-hosted or dedicated, with single sign-on, an audit log, an SLA and an annual platform fee.",
+      "Every engagement starts as a fixed-fee pilot with a written go or no-go at the end, so the subscription conversation happens against measured results, not a demo.",
+      "The Progress Agentic RAG subscription is priced and licensed separately by Progress. The ranges here exclude it, and exclude third-party transcription, telephony or model costs, which are passed through at cost.",
+      "Implementation and integration services typically run 0.5 to 1.5 times first-year subscription for mid-market, and 1 to 2 times for enterprise. That is the partner's margin, alongside the subscription."
+    ],
+    "products": [
+      {
+        "slug": "document-processing",
+        "name": "Document Processing",
+        "unit": "Priced per page processed, with a platform fee at enterprise scale.",
+        "tiers": [
+          {
+            "name": "Pilot",
+            "price": "$15,000 to $25,000 fixed",
+            "body": "Six to eight weeks, one document type, up to 25,000 pages, an evidence audit and a written recommendation at the end."
+          },
+          {
+            "name": "Mid-market",
+            "price": "$1,500 to $3,000 per month",
+            "body": "Up to 25,000 pages a month included, then $0.04 to $0.06 per page. Unlimited extraction configs, verified-evidence exports, hosted by the partner."
+          },
+          {
+            "name": "Enterprise",
+            "price": "From $48,000 per year",
+            "body": "Volume tiers down to $0.02 per page above a million pages. Self-hosted or dedicated, single sign-on, audit log, custom schemas and a 99.9 % availability SLA."
+          }
+        ],
+        "anchors": "Sensible sells document bundles at $499 to $1,499 a month. Extend's Scale plan is $500 a month. Rossum starts at $18,000 a year. Reducto charges $20 per 1,000 pages extracted."
+      },
+      {
+        "slug": "call-analysis",
+        "name": "Call Analysis",
+        "unit": "Priced per agent seat per month, billed annually. Transcription passed through at cost.",
+        "tiers": [
+          {
+            "name": "Pilot",
+            "price": "$20,000 to $30,000 fixed",
+            "body": "Six to eight weeks, one team, 500 historical calls, a custom taxonomy and one QA scorecard, with a quality report at the end."
+          },
+          {
+            "name": "Mid-market",
+            "price": "$45 to $60 per agent per month",
+            "body": "Minimum 25 seats. Fair-use allowance of 300 call minutes per agent a month, unlimited questions over the call library, cited answers, hosted by the partner."
+          },
+          {
+            "name": "Enterprise",
+            "price": "$30 to $45 per agent per month",
+            "body": "From 250 seats, plus a platform fee of $25,000 to $50,000 a year. Self-hosted or dedicated, custom taxonomies and scorecard packs, single sign-on, audit log and SLA."
+          }
+        ],
+        "anchors": "Salesforce Einstein Conversation Insights is $50 per user a month. Google Quality AI is $50 per agent a month. Amazon Connect Contact Lens is $12 per agent a month plus $0.015 a minute. Genesys Cloud seats run $75 to $240 per user a month."
+      },
+      {
+        "slug": "voicebridge",
+        "name": "VoiceBridge",
+        "unit": "Priced per agent seat for real-time assistance, per minute for voice-agent mode.",
+        "tiers": [
+          {
+            "name": "Pilot",
+            "price": "$20,000 to $35,000 fixed",
+            "body": "Six to eight weeks, one team, a golden question set, and a latency and grounding report against the customer's own knowledge."
+          },
+          {
+            "name": "Mid-market",
+            "price": "$35 to $50 per agent per month",
+            "body": "Minimum 25 seats. Real-time listening and the grounded brief for up to 2,000 assisted minutes per agent a month, hosted by the partner."
+          },
+          {
+            "name": "Enterprise",
+            "price": "$25 to $40 per agent per month",
+            "body": "From 500 seats, plus a platform fee of $30,000 to $60,000 a year. Voice-agent mode at $0.12 to $0.20 per minute all-in, telephony passed through at cost. Self-hosted or dedicated, with compliance add-ons."
+          }
+        ],
+        "anchors": "Amazon Q in Connect is $40 per agent a month. Salesforce Agentforce lists $2 per conversation. ElevenLabs Agents is $0.08 a minute, Vapi $0.05 a minute plus $2,000 a month for HIPAA, Bland $0.12 to $0.14 a minute all-in."
+      }
+    ],
+    "caveat": "These are programme suggestions, not Progress list prices or a commitment on Progress Agentic RAG pricing. Competitor figures are as published on the fetch date; a few are from secondary sources and are marked as such in the research."
+  }
 }

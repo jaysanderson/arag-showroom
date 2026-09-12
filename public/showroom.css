@@ -1528,6 +1528,76 @@
   padding-top: var(--sr-s3);
   margin-top: var(--sr-s3);
 }
+.sr-pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--sr-s5);
+  margin-top: var(--sr-s6);
+}
+.sr-pricing {
+  background: var(--arag-surface-raised);
+  border: 1px solid var(--sr-hairline);
+  border-radius: var(--arag-radius-lg);
+  padding: var(--sr-s5);
+  border-top: 3px solid var(--sr-accent);
+  display: flex;
+  flex-direction: column;
+}
+.sr-pricing h3 {
+  margin: 0;
+}
+.sr-pricing-unit {
+  color: var(--arag-text-muted);
+  font-size: 0.92rem;
+  margin-top: var(--sr-s2);
+}
+.sr-pricing-tiers {
+  margin: var(--sr-s4) 0 0;
+  display: grid;
+  gap: var(--sr-s3);
+}
+.sr-pricing-tier {
+  border-top: 1px solid var(--sr-hairline);
+  padding-top: var(--sr-s3);
+}
+.sr-pricing-tier dt {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--sr-s3);
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+.sr-pricing-tier-name {
+  font-size: 0.78rem;
+  font-weight: 640;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--arag-text-muted);
+}
+.sr-pricing-price {
+  font-weight: 700;
+  color: var(--sr-ink);
+  letter-spacing: -0.01em;
+}
+.sr-pricing-tier dd {
+  margin: var(--sr-s1) 0 0;
+  font-size: 0.92rem;
+  color: var(--arag-text-muted);
+}
+.sr-pricing-anchors {
+  margin-top: auto;
+  padding-top: var(--sr-s4);
+  font-size: 0.85rem;
+  color: var(--arag-text-subtle);
+}
+.sr-pricing-principles {
+  margin-top: var(--sr-s6);
+}
+.sr-pricing-caveat {
+  margin-top: var(--sr-s5);
+  font-size: 0.88rem;
+  max-width: 80ch;
+}
 .sr-market-note {
   margin-top: var(--sr-s5);
   max-width: 80ch;

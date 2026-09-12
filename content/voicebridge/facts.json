@@ -1,8 +1,8 @@
 {
   "commits": 41,
   "endpoints": 37,
-  "tests": 228,
-  "testFiles": 15,
+  "tests": 245,
+  "testFiles": 16,
   "coverageLinesPct": 80,
   "runtimeDependencies": 0,
   "docPages": 48,

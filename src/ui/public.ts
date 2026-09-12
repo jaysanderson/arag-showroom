@@ -11,7 +11,7 @@
  */
 import { PARTNER_TYPE_LABELS, PARTNER_TYPES } from "../services/access-requests.ts";
 import type { Capability, ProductFacts } from "../services/catalogue.ts";
-import { type HomeCopy, type MarketCopy, type PartnerModel, toCapabilities } from "../services/site-copy.ts";
+import { type HomeCopy, type PartnerModel, type PricingCopy, toCapabilities } from "../services/site-copy.ts";
 import { icon, iconFor } from "./icons.ts";
 import {
   alert,
@@ -158,7 +158,6 @@ export function publicHomePage(opts: {
   brand?: BrandChrome;
   products: PublicProduct[];
   totals: { commits: number; endpoints: number; tests: number; docPages: number; products: number };
-  market: MarketCopy | null;
   home?: HomeCopy;
   /** The synced partner pilot playbook, when the workspace has one. */
   playbook?: { slug: string; title: string } | null;
@@ -311,7 +310,7 @@ ${
   </div>
 </section>
 
-${opts.market ? marketSection(opts.market) : ""}
+${home.pricing ? pricingSection(home.pricing, opts.products) : ""}
 
 <section class="sr-section sr-section-alt" id="roadmap">
   <div class="sr-shell">
@@ -411,48 +410,35 @@ function homeProductSection(p: PublicProduct, index: number): string {
 </article>`;
 }
 
-function marketSection(market: MarketCopy): string {
-  const framing = market.framing ?? {};
-  const rows = (market.products ?? []).map(
-    (p) =>
-      `<tr><th scope="row">${esc(p.name ?? p.slug ?? "")}</th><td>${esc(p.topDownTam ?? "—")}</td><td>${esc(
-        p.sam ?? "—",
-      )}</td><td>${esc(p.somYear3Base ?? "—")}</td></tr>`,
+/** Suggested on-sell pricing: one card per accelerator, with the published competitor anchors. */
+function pricingSection(pricing: PricingCopy, products: PublicProduct[]): string {
+  const accentFor = (slug: string | undefined) =>
+    products.find((p) => p.slug === slug || p.name === slug)?.accent ?? "var(--arag-brand-500)";
+  const cards = (pricing.products ?? []).map(
+    (p) => `<article class="sr-pricing" style="--sr-accent:${esc(accentFor(p.slug))}">
+        <h3>${esc(p.name ?? p.slug ?? "")}</h3>
+        ${p.unit ? `<p class="sr-pricing-unit">${esc(p.unit)}</p>` : ""}
+        <dl class="sr-pricing-tiers">${(p.tiers ?? [])
+          .map(
+            (t) =>
+              `<div class="sr-pricing-tier"><dt><span class="sr-pricing-tier-name">${esc(t.name)}</span><span class="sr-pricing-price">${esc(t.price)}</span></dt>${t.body ? `<dd>${esc(t.body)}</dd>` : ""}</div>`,
+          )
+          .join("")}</dl>
+        ${p.anchors ? `<p class="sr-pricing-anchors"><strong>Market anchors.</strong> ${esc(p.anchors)}</p>` : ""}
+      </article>`,
   );
-  return `<section class="sr-section" id="market">
+  return `<section class="sr-section" id="pricing">
   <div class="sr-shell">
-    <p class="sr-eyebrow">Market</p>
-    <h2>${esc(framing.headline ?? "Where this plays")}</h2>
-    ${framing.body ? `<p class="sr-section-lede">${esc(framing.body)}</p>` : ""}
-    ${framing.primaryMetric ? `<p class="sr-callout">${esc(framing.primaryMetric)}</p>` : ""}
+    <p class="sr-eyebrow">Suggested pricing</p>
+    <h2>${esc(pricing.headline ?? "Suggested on-sell pricing for partners")}</h2>
+    ${pricing.body ? `<p class="sr-section-lede">${esc(pricing.body)}</p>` : ""}
+    ${cards.length ? `<div class="sr-pricing-grid">${cards.join("")}</div>` : ""}
     ${
-      rows.length
-        ? `<div class="sr-table-wrap"><table class="arag-table">
-      <thead><tr><th scope="col">Accelerator</th><th scope="col">Top-down TAM</th><th scope="col">SAM</th><th scope="col">Year-3 SOM (base)</th></tr></thead>
-      <tbody>${rows.join("")}</tbody>
-    </table></div>`
+      pricing.principles?.length
+        ? `<ul class="sr-why sr-two-col sr-pricing-principles">${pricing.principles.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>`
         : ""
     }
-    ${
-      market.combined?.interpretation
-        ? `<p class="sr-market-note"><strong>Combined year-3 SOM (base): ${esc(
-            market.combined.somThreeYearBase ?? "—",
-          )}.</strong> ${esc(market.combined.interpretation)}</p>`
-        : ""
-    }
-    ${
-      market.progressContext?.partnersNetwork?.description
-        ? `<p class="sr-muted">Channel context: the Progress partner network is ${esc(
-            market.progressContext.partnersNetwork.description,
-          )} across the ${esc(market.progressContext.partnersNetwork.programName ?? "partner programme")}.</p>`
-        : ""
-    }
-    ${
-      market.caveats?.length
-        ? `<details class="sr-howitworks"><summary>How these numbers were arrived at, and what they cannot tell you</summary>
-      <ul class="sr-why">${market.caveats.map((c) => `<li>${esc(c)}</li>`).join("")}</ul></details>`
-        : ""
-    }
+    ${pricing.caveat ? `<p class="sr-muted sr-pricing-caveat">${esc(pricing.caveat)}</p>` : ""}
   </div>
 </section>`;
 }

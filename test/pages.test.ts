@@ -106,6 +106,11 @@ describe("the public site", () => {
     assert.match(res.text, /id="products"/);
     assert.match(res.text, /id="traction"/);
     assert.match(res.text, /id="roadmap"/);
+    // Suggested on-sell pricing replaces the market-sizing research on the partner-facing page.
+    assert.match(res.text, /id="pricing"/);
+    assert.match(res.text, /Suggested on-sell pricing/);
+    assert.doesNotMatch(res.text, /id="market"/);
+    assert.doesNotMatch(res.text, /Top-down TAM/);
     assert.match(res.text, /Request partner access/);
     assert.match(res.text, /href="\/partners"/);
     // Real, counted facts reach the traction strip.

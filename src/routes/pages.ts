@@ -353,7 +353,6 @@ export function registerPageRoutes(app: App, deps: Deps): void {
           viewer: chromeFor(user, "", deps.branding).viewer,
           products: deps.catalogue.list().map((p) => publicProductView(deps, p)),
           totals: deps.catalogue.totals(),
-          market: deps.catalogue.market(),
           home: deps.catalogue.home(),
           playbook: playbook(deps),
         }),
