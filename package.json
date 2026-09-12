@@ -1,0 +1,25 @@
+{
+  "name": "arag-showroom",
+  "version": "0.1.0",
+  "description": "Arag Showroom — built on Progress Agentic RAG (ARAG). API-first, zero runtime dependencies.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "private": true,
+  "engines": { "node": ">=22.18" },
+  "scripts": {
+    "dev": "node --watch src/index.ts",
+    "start": "node src/index.ts",
+    "test": "node --test --test-reporter=spec 'test/*.test.ts'",
+    "coverage": "node --test --experimental-test-coverage --test-coverage-include='src/**' --test-coverage-lines=80 'test/*.test.ts'",
+    "e2e": "playwright test",
+    "lint": "biome check .",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "docs": "node vendor/arag-platform/scripts/openapi-to-md.ts http://localhost:8080/api/v1/openapi.json docs/developer/api-reference.md"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.0.0",
+    "@playwright/test": "1.52.0",
+    "@types/node": "22.10.0",
+    "typescript": "5.9.2"
+  }
+}

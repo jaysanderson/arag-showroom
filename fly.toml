@@ -1,0 +1,49 @@
+# Fly.io deployment for the ARAG Showroom. The portal needs no ARAG credentials — it serves a
+# committed snapshot of the product repositories. Set secrets out of band (see docs/deploy.md):
+#   fly secrets set SHOWROOM_SESSION_SECRET=$(openssl rand -hex 32) \
+#     SHOWROOM_ADMIN_EMAIL=… SHOWROOM_ADMIN_PASSWORD=… \
+#     SHOWROOM_ADMIN_TOKEN_DOC_PROCESSING=… SHOWROOM_ADMIN_TOKEN_CALL_ANALYSIS=… \
+#     SHOWROOM_ADMIN_TOKEN_VOICEBRIDGE=…
+app = "arag-showroom"
+primary_region = "iad"   # co-locate with the ARAG zone (aws-us-east-2-1 ⇒ iad)
+
+[build]
+  dockerfile = "Dockerfile"
+
+[env]
+  NODE_ENV = "production"
+  PORT = "8080"
+  DATA_DIR = "/data"
+  LOG_LEVEL = "info"
+  # A documentation page pulls a stylesheet, a script and up to ~15 screenshots, so the per-IP
+  # budget is sized for a page view rather than for a single API call.
+  RATE_LIMIT_RPS = "20"
+  RATE_LIMIT_BURST = "80"
+  PUBLIC_URL = "https://arag-showroom.fly.dev"
+
+[[mounts]]
+  source = "data"
+  destination = "/data"
+  initial_size = "1gb"
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = "suspend"
+  auto_start_machines = true
+  min_machines_running = 1
+  [http_service.concurrency]
+    type = "requests"
+    soft_limit = 30
+    hard_limit = 50
+
+[[http_service.checks]]
+  interval = "15s"
+  timeout = "3s"
+  grace_period = "10s"
+  method = "GET"
+  path = "/healthz"
+
+[[vm]]
+  size = "shared-cpu-1x"
+  memory = "512mb"
