@@ -194,12 +194,30 @@
 .sr-brand strong {
   font-weight: 700;
 }
-.sr-brand-mark {
-  width: 1.1rem;
-  height: 1.1rem;
-  border-radius: 5px;
-  background: linear-gradient(135deg, var(--arag-brand-500), var(--arag-accent-500));
+.sr-brand-wordmark {
+  display: block;
+  line-height: 0;
   flex: none;
+}
+.sr-brand-wordmark img {
+  display: block;
+  height: 26px;
+  width: auto;
+}
+.sr-brand-divider {
+  width: 1px;
+  height: 22px;
+  background: var(--sr-hairline);
+  flex: none;
+  margin-inline: var(--sr-s1);
+}
+.sr-brand-programme {
+  font-weight: 560;
+  color: var(--sr-ink);
+  white-space: nowrap;
+}
+.sr-brand-footer .sr-brand-wordmark img {
+  height: 22px;
 }
 .sr-site-nav {
   display: flex;
@@ -1380,6 +1398,13 @@
   .sr-site-header-inner,
   .sr-header-inner {
     gap: var(--sr-s3);
+  }
+  .sr-brand-wordmark img {
+    height: 22px;
+  }
+  .sr-brand-divider,
+  .sr-brand-programme {
+    display: none;
   }
   .sr-hero-stats {
     grid-template-columns: repeat(2, minmax(0, 1fr));

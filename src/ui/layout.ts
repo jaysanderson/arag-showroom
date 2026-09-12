@@ -39,11 +39,25 @@ export const DEFAULT_BRAND: BrandChrome = {
   footerText: "",
 };
 
-/** Wordmark: a partner logo when one is configured, otherwise the product name as text. */
+/** Official Progress Agentic RAG wordmark (light and dark variants), shipped with the site. */
+const PROGRESS_WORDMARK = "/assets/brand/arag-logo.svg";
+const PROGRESS_WORDMARK_DARK = "/assets/brand/arag-logo-alt.svg";
+const PROGRAMME_LABEL = "Partner Accelerators";
+
+/**
+ * Wordmark: a partner logo when one is configured (white-label), otherwise the Progress Agentic RAG
+ * wordmark with the programme name beside it.
+ */
 export function brandMark(brand: BrandChrome): string {
-  return brand.logoUrl
-    ? `<img class="sr-brand-logo" src="${esc(brand.logoUrl)}" alt="${esc(brand.productName)}" height="24">`
-    : `<span class="sr-brand-mark" aria-hidden="true"></span><span>${esc(brand.productName)}</span>`;
+  if (brand.logoUrl) {
+    return `<img class="sr-brand-logo" src="${esc(brand.logoUrl)}" alt="${esc(brand.productName)}" height="24">`;
+  }
+  return (
+    `<picture class="sr-brand-wordmark"><source srcset="${PROGRESS_WORDMARK_DARK}" media="(prefers-color-scheme: dark)">` +
+    `<img src="${PROGRESS_WORDMARK}" alt="Progress Agentic RAG" width="224" height="26"></picture>` +
+    `<span class="sr-brand-divider" aria-hidden="true"></span>` +
+    `<span class="sr-brand-programme">${esc(PROGRAMME_LABEL)}</span>`
+  );
 }
 
 /** BRAND_* colours become CSS custom properties; empty values fall through to the UI kit. */
@@ -178,7 +192,7 @@ ${opts.body}
     </div>
     <p class="sr-site-footer-legal">${esc(
       brand.footerText ||
-        `Apache-2.0.${brand.poweredBy ? " Built on Progress Agentic RAG." : ""} No analytics, no trackers, no cookie banner: the only cookie is your sign-in session.`,
+        `Apache-2.0.${brand.poweredBy ? " Built on Progress Agentic RAG. Progress and Progress Agentic RAG are trademarks of Progress Software Corporation." : ""} No analytics, no trackers, no cookie banner: the only cookie is your sign-in session.`,
     )}</p>
   </div>
 </footer>
