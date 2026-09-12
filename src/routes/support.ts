@@ -42,6 +42,8 @@ export interface Deps {
   publicUrl: string;
   /** White-label branding for this deployment (BRAND_* env). */
   branding: Branding;
+  /** Directory holding the flagship launch videos (`<slug>.mp4` + `<slug>.jpg` poster), served under /assets/launch. */
+  launchDir: string;
 }
 
 // ───────────────────────────── session ─────────────────────────────

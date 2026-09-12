@@ -8,7 +8,8 @@
  * calls — never the API over HTTP — so the two front doors share one implementation of the rules.
  * Every POST carries a CSRF token bound to the session, on top of the SameSite=Lax cookie.
  */
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
+import { join } from "node:path";
 import type { App, Ctx } from "../../vendor/arag-platform/src/index.ts";
 import { HttpError } from "../../vendor/arag-platform/src/index.ts";
 import {
@@ -229,6 +230,13 @@ export function publicProductView(deps: Deps, product: Product): PublicProduct {
     heroShot: product.screenshots[0] ?? null,
     screenshots: product.screenshots,
     video: product.video,
+    // The flagship launch video, when one has been produced for this product: public/launch/<slug>.mp4.
+    launchVideo: existsSync(join(deps.launchDir, `${product.config.slug}.mp4`))
+      ? `/assets/launch/${product.config.slug}.mp4`
+      : null,
+    launchPoster: existsSync(join(deps.launchDir, `${product.config.slug}.jpg`))
+      ? `/assets/launch/${product.config.slug}.jpg`
+      : null,
     // The product page is a white-label asset shown to a partner's own customers, so a capability
     // about white-labelling or partner branding belongs on /partners, not here.
     capabilities: customerFacing(

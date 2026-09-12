@@ -93,6 +93,7 @@ export async function createShowroom(env: PlatformEnv, opts: CreateOptions = {})
     publicDemoLinks: isTruthy(raw.SHOWROOM_PUBLIC_DEMO_LINKS),
     publicUrl,
     branding,
+    launchDir: raw.SHOWROOM_LAUNCH_DIR ? resolve(raw.SHOWROOM_LAUNCH_DIR) : resolve(root, "public/launch"),
   };
 
   // First administrator, created only when the user store is empty. A rejected email or password is

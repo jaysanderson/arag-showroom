@@ -44,6 +44,9 @@ export interface PublicProduct {
   accent: string;
   repoUrl: string | null;
   heroShot: string | null;
+  /** Flagship launch video (MP4) and its poster, when produced. Takes the hero slot on the product page. */
+  launchVideo: string | null;
+  launchPoster: string | null;
   screenshots: string[];
   video: string | null;
   capabilities: Capability[];
@@ -497,7 +500,16 @@ export function publicProductPage(opts: {
         ${p.demoUrl ? `<a class="arag-btn lg secondary" href="${esc(p.demoUrl)}" target="_blank" rel="noopener noreferrer">See the live demo ↗</a>` : `<a class="arag-btn lg secondary" href="#how">See how it works</a>`}
       </div>
     </div>
-    ${heroShot ? `<div class="sr-product-hero-shot"><img src="${heroShot}" alt="${esc(p.name)} in use" width="1280" height="800" fetchpriority="high"></div>` : ""}
+    ${
+      p.launchVideo
+        ? `<div class="sr-product-hero-shot sr-launch"><video class="sr-launch-video" controls playsinline preload="metadata"${p.launchPoster ? ` poster="${esc(p.launchPoster)}"` : heroShot ? ` poster="${heroShot}"` : ""}>
+      <source src="${esc(p.launchVideo)}" type="video/mp4">
+      Your browser cannot play this video.
+    </video><p class="sr-launch-caption">${esc(p.name)} in 90 seconds</p></div>`
+        : heroShot
+          ? `<div class="sr-product-hero-shot"><img src="${heroShot}" alt="${esc(p.name)} in use" width="1280" height="800" fetchpriority="high"></div>`
+          : ""
+    }
   </div>
 </section>
 

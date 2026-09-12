@@ -700,6 +700,21 @@
     ), linear-gradient(180deg, var(--arag-surface-raised), var(--arag-surface));
   border-bottom: 1px solid var(--sr-hairline);
 }
+.sr-launch-video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #00123c;
+  border-radius: var(--arag-radius-lg);
+  border: 1px solid var(--sr-hairline);
+  box-shadow: 0 24px 60px -30px rgba(0, 18, 60, 0.55);
+}
+.sr-launch-caption {
+  margin-top: var(--sr-s2);
+  font-size: 0.82rem;
+  color: var(--arag-text-subtle);
+  text-align: right;
+}
 .sr-product-hero-grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);

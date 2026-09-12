@@ -3,8 +3,11 @@
  * that the gated pages enforce the same rules as the API. These run against the real content tree,
  * so a page that breaks on the actual product documentation fails here rather than in a browser.
  */
+
 import assert from "node:assert/strict";
-import { resolve } from "node:path";
+import { mkdtempSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join, resolve } from "node:path";
 import { after, before, describe, test } from "node:test";
 import { createShowroom, type Showroom } from "../src/server.ts";
 import { Logger, readEnv, testing } from "../vendor/arag-platform/src/index.ts";
@@ -17,6 +20,7 @@ const PRODUCT_TOKEN = "secret-product-admin-token-value";
 let showroom: Showroom;
 let c: testing.TestClient;
 let adminCookie = "";
+let launchDir = "";
 
 function cookieOf(res: testing.TestResponse): string {
   const found = (res.headers.getSetCookie?.() ?? []).find((v) => v.startsWith("showroom_session="));
@@ -61,6 +65,8 @@ before(async () => {
     NODE_ENV: "test",
     LOG_LEVEL: "error",
   });
+  launchDir = mkdtempSync(join(tmpdir(), "showroom-launch-"));
+  writeFileSync(join(launchDir, "doc-processing.mp4"), "stub");
   showroom = await createShowroom(env, {
     log: new Logger({ level: "error", write: () => undefined }),
     persist: false,
@@ -71,6 +77,7 @@ before(async () => {
       SHOWROOM_ADMIN_PASSWORD: ADMIN_PASSWORD,
       SHOWROOM_ADMIN_TOKEN_DOC_PROCESSING: PRODUCT_TOKEN,
       PUBLIC_URL: "https://showroom.test",
+      SHOWROOM_LAUNCH_DIR: launchDir,
     },
   });
   c = await testing.startTestServer(showroom.app);
@@ -115,6 +122,15 @@ describe("the public site", () => {
     assert.match(res.text, /href="\/partners"/);
     // Real, counted facts reach the traction strip.
     assert.match(res.text, /documented API endpoints/);
+  });
+
+  test("a flagship launch video takes the product hero when one exists", async () => {
+    // The test boot points SHOWROOM_LAUNCH_DIR at a temp dir holding a stub for one product only.
+    const withVideo = await c.get("/products/doc-processing");
+    assert.match(withVideo.text, /<video class="sr-launch-video"/);
+    assert.match(withVideo.text, /\/assets\/launch\/doc-processing\.mp4/);
+    const without = await c.get("/products/voicebridge");
+    assert.doesNotMatch(without.text, /sr-launch-video/);
   });
 
   test("each product page reads as a customer-facing landing page", async () => {
