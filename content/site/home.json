@@ -1,0 +1,189 @@
+{
+  "hero": {
+    "headline": "Reference products for the Progress Agentic RAG partner network",
+    "subhead": "Three open-source, production-quality accelerators — built on Progress Agentic RAG (ARAG) — that Progress's ISV and partner network can white-label, extend, or use as blueprints to build their own.",
+    "body": "This is a partner-accelerator programme, not a product launch. Document Processing, Call Analysis and VoiceBridge are worked examples of what a headless, self-hostable ARAG product looks like when it is built to a shared standard: OpenAPI 3.1 as an enforced contract, RFC 9457 errors, a real job model, and a citation contract that survives structured output. Each accelerator is Apache-2.0, runs against a deterministic mock with no ARAG credentials, and ships the enablement a partner needs to take it to market under their own name."
+  },
+  "customerPromise": "Every answer these products give can be checked. A value traces to the sentence it came from, a claim about a call traces to the second it was said, and a suggestion made mid-conversation traces to the source behind it — so the people using them can act on what they see instead of taking it on trust.",
+  "programme": {
+    "name": "Agentic RAG Partner Accelerators",
+    "forProgress": [
+      "A repeatable way to put Knowledge Boxes in front of ISV partners: each accelerator provisions and exercises a Knowledge Box on first run, so every deployment is a new provisioned KB, not a slide.",
+      "Three proven, documented use cases against ARAG — document extraction, conversation analytics, real-time agent-assist context — each with a live smoke-tested integration path a partner can copy rather than invent.",
+      "Reach through Progress's own partner network: over 3500 partners across eight tracks (Distributor, Value Added Reseller, Service Delivery Partner, Digital Agency, Managed Service Provider, Systems Integrator, Independent Software Vendor, Technology Alliance Partner) via the Progress Accelerate partner program, each a potential distribution channel for these accelerators.",
+      "A measurable lever on ARAG contract value: partners taking an accelerator to market is contract value and Knowledge Box provisioning influenced, not a separate revenue line Progress has to build or support."
+    ],
+    "forPartners": [
+      "A working product on day one: clone the repo, run `make dev` against the built-in mock ARAG server, and the full application runs with no ARAG account and no credentials.",
+      "A real path to a paying use case: white-label it under your own brand, extend it with your vertical's schemas and taxonomies, or use it as the reference implementation for something you build yourselves on `arag-platform`.",
+      "Enablement built for two audiences at once: a developer track to integrate and extend, and an architect track to size, deploy and review the design before a customer commitment.",
+      "Full source, Apache-2.0, with the platform standards (`STANDARDS.md`), the shared ARAG client, and a product template (`make new-product`) so a fourth accelerator costs a fraction of what the first three did."
+    ]
+  },
+  "platform": {
+    "title": "arag-platform: the shared foundation under all three accelerators",
+    "body": "Every accelerator is built on the same platform package rather than reinventing HTTP, auth, jobs or ARAG integration per product. That is what makes the programme repeatable: a fourth partner use case starts from a working template, not a blank repository.",
+    "capabilities": [
+      {
+        "title": "Shared ARAG client",
+        "body": "A single, tested REST client for Progress Agentic RAG used by all three accelerators, so ARAG's request/response shapes, retries and error handling are solved once."
+      },
+      {
+        "title": "Deterministic mock ARAG server",
+        "body": "A full, dependency-free mock of the ARAG API. Every accelerator runs its entire feature set — upload, ask, citations, jobs — against the mock with no ARAG account, which is how a partner evaluates the product before touching a real Knowledge Box."
+      },
+      {
+        "title": "Dependency-free HTTP toolkit",
+        "body": "A zero-runtime-dependency HTTP layer (Node 22.18+, TypeScript sources run directly) underlies every accelerator's API — no framework lock-in, no supply-chain surface beyond the Node runtime itself."
+      },
+      {
+        "title": "OpenAPI 3.1 as an enforced contract",
+        "body": "Every accelerator's API is described in OpenAPI 3.1 and the description is enforced by contract tests, not left to drift from the code. RFC 9457 problem+json is the error format across all three."
+      },
+      {
+        "title": "Job model and SSE",
+        "body": "A first-class async job resource with server-sent events for progress, shared across accelerators, so long-running ARAG operations (ingestion, extraction, analysis) have one consistent completion pattern."
+      },
+      {
+        "title": "JSON store and UI kit",
+        "body": "A lightweight JSON persistence layer for platform state, and a shared UI kit so the demo and admin surfaces of each accelerator look and behave consistently."
+      },
+      {
+        "title": "STANDARDS.md and the product template",
+        "body": "The engineering bar every accelerator is held to, plus `make new-product` to scaffold a new one against it — the concrete mechanism for \"build your own\"."
+      }
+    ],
+    "proof": "arag-platform v0.1.8: 44/44 tests passing (re-run 2026-09-12). The 95.9 % line-coverage figure on record was re-measured at v0.1.8: 95.85 % lines, 44 tests.md, 2026-09-12 11:40) and has not been re-measured since. A live platform smoke test against the sandbox Knowledge Box passed 18 of 19 steps, including upload to PROCESSED in 20 seconds, find, ask with citations, and answer_json_schema plus full_resource extraction returning exact invoice fields; one endpoint (/predict/remi) returned HTTP 500 on a short context and is documented as best-effort."
+  },
+  "products": [
+    {
+      "slug": "document-processing",
+      "name": "Document Processing",
+      "workingTitle": "arag-doc-processing",
+      "oneLiner": "Upload a document, get back a validated canonical record with per-field extraction, entities, a summary, and a live index you can keep asking questions of.",
+      "heroMoment": "A scanned invoice goes in; roughly 120 seconds later a validated canonical record comes out with 12 extracted fields, each traceable to its source. The extraction itself is a live smoke-tested result, not a mockup.",
+      "proof": {
+        "label": "Tests, coverage and end-to-end",
+        "value": "66/66 tests at 98.6 % lines, Playwright 10/10; live grounding score 0.92",
+        "source": "STATUS.md (2026-09-12 20:30, platform v0.1.8)"
+      }
+    },
+    {
+      "slug": "call-analysis",
+      "name": "Call Analysis",
+      "workingTitle": "call-analysis",
+      "oneLiner": "Ask a call recording a question and get a cited answer; click the citation and the recording scrubs to the exact second the statement was made.",
+      "heroMoment": "Click a citation on a generated answer and the audio player jumps straight to the second the underlying statement was spoken — an answer-to-audio-offset link that, per the market research, no other conversation-intelligence vendor ships as a documented product primitive.",
+      "proof": {
+        "label": "Tests, coverage and end-to-end",
+        "value": "205/205 tests at 95.8 % lines, Playwright 21/21",
+        "source": "STATUS.md (2026-09-12 21:00 and 21:40, platform v0.1.8)"
+      }
+    },
+    {
+      "slug": "voicebridge",
+      "name": "VoiceBridge",
+      "workingTitle": "arag-voice",
+      "oneLiner": "Listen to a live conversation and keep one cited brief continuously up to date — grounded context for a human, not a voice bot.",
+      "heroMoment": "A live conversation streams in over the Listen session API, and a single structured brief keeps rewriting itself as the conversation develops, each claim carrying a citation back to its source.",
+      "proof": {
+        "label": "Tests, coverage and end-to-end",
+        "value": "206/206 tests at 99.0 % lines, Playwright 22/22",
+        "source": "STATUS.md (2026-09-12 20:10 and 21:40, platform v0.1.8)"
+      }
+    }
+  ],
+  "partnerModels": [
+    {
+      "model": "White-label",
+      "body": "Deploy the accelerator as-is under your own brand, pointed at your own Knowledge Box. The fastest path to a live, named use case.",
+      "requires": "Your own ARAG Knowledge Box, your content, and your brand assets. Branding by configuration ships today (D-25), verified in source on 2026-09-12: BRAND_* environment variables (product name, tagline, logo URL, primary and accent colour, a \"Built on Progress Agentic RAG\" toggle, footer text, docs and support links) are read by arag-platform/src/config/branding.ts, served at GET /api/v1/branding, applied by the UI kit (applyBranding() / <arag-shell>), with brand assets dropped into DATA_DIR/branding/ and served from /branding/ so a rebrand needs no rebuild. Each repo ships docs/developer/white-label.md and docs/developer/build-your-own.md. Honest caveats: the OpenAPI document deliberately keeps its own title, because the API contract is not the brand; branding covers visual identity only and is not multi-tenancy; and the admin view of the effective branding that D-25 also calls for is not built yet. It is covered by the final verification runs on platform v0.1.8 (STATUS.md, 2026-09-12 20:10, 20:30, 21:00 and 21:40)."
+    },
+    {
+      "model": "Embed from an existing application",
+      "body": "Leave the accelerator headless and call it from the product you already sell: your application posts a document, recording or transcript chunk to /api/v1/..., receives structured, cited results, and renders them in its own UI. The fastest route for an established line-of-business application, because nothing about the existing product has to change except the screen that shows the answer and its evidence.",
+      "requires": "An HTTP client in your application stack, and somewhere in your UI to render a value, its confidence and its evidence. Completion signals today are SSE and polling; webhooks are the top platform roadmap item."
+    },
+    {
+      "model": "Extend",
+      "body": "Fork or vendor the accelerator and add a vertical: new extraction schemas, new labelsets and Data Augmentation agents, new brief fields, new endpoints.",
+      "requires": "Engineering time against the documented extension points in each repo's docs/developer/extension-points.md, and your own vertical knowledge (schemas, taxonomies, workflows) to add."
+    },
+    {
+      "model": "Build-your-own",
+      "body": "Take arag-platform — the shared ARAG client, the mock, the HTTP toolkit, the UI kit, STANDARDS.md and the product template — and build a different product on the same standards. The three accelerators are the worked examples of how.",
+      "requires": "A use case ARAG doesn't yet have an accelerator for, familiarity with STANDARDS.md, and `make new-product` to scaffold from the template."
+    }
+  ],
+  "enablement": {
+    "developerTrack": "A hands-on lab plus a knowledge check for engineers integrating or extending an accelerator. Real paths: <repo>/enablement/developer-track/LAB.md and <repo>/enablement/developer-track/knowledge-check.md.",
+    "architectTrack": "A workshop, sizing and deployment guidance, and a design-review checklist for whoever is accountable for putting an accelerator into a partner's environment. Real paths: <repo>/enablement/architect-track/WORKSHOP.md, <repo>/enablement/architect-track/sizing-deployment.md, <repo>/enablement/architect-track/design-review-checklist.md, and <repo>/enablement/architect-track/knowledge-check.md.",
+    "showcase": "A recorded walkthrough of each accelerator, with the script and storyboard behind it, plus a Playwright spec that reproduces the recording. Real paths: <repo>/showcase/SCRIPT.md, <repo>/showcase/STORYBOARD.md, <repo>/showcase/record.spec.ts, and <repo>/showcase/out/*.png (and a showcase video for Call Analysis and VoiceBridge).",
+    "docs": "Full source under Apache-2.0, with developer, architecture, business and product-marketing documentation in every repo: docs/developer/, docs/architecture/, docs/business/, docs/product-marketing/.",
+    "deploy": "Each accelerator ships a Dockerfile and a fly.toml, and `make dev` runs the whole product against the mock ARAG server with no credentials required."
+  },
+  "verifiability": {
+    "title": "Verifiability, not accuracy, is the wedge",
+    "body": "None of the three accelerators will win a raw accuracy contest against the best-funded specialist in its category. What none of those specialists publish, in any of the three categories, is a citation contract: a stable object naming the exact source, span and offset behind a generated answer, that the user can open and check. That is the wedge these accelerators are built around, and Progress Agentic RAG's retrieval-time security filtering — access control applied during retrieval, not as a post-filter, which no document-AI, conversation-intelligence or agent-assist vendor documents an equivalent of — is the under-exploited asset that makes it defensible.",
+    "evidence": [
+      "A live test against the sandbox Knowledge Box confirmed that requesting answer_json_schema together with citations is rejected outright with HTTP 500 — the two ARAG capabilities do not simply compose.",
+      "Asking with a schema alone, and no citations flag, still works: the response carries a retrieval item with paragraph-level citations that include character offsets in the form <resource>/f/<field>/<start>-<end>.",
+      "Adding an evidence: string[] property to the schema, asking for verbatim quotes supporting each extracted value, returns exact quotes lifted from the source document — for example an invoice's own text for its invoice number and its total due.",
+      "This is the basis of the verified-evidence contract (DECISIONS D-24): request per-field evidence quotes, verify each one against the extracted text by exact then normalised match, map verified quotes to their retrieval paragraph offsets, and expose evidence: [{field, quote, verified, paragraph, start, end}] plus a per-record groundingScore. It shipped in Document Processing and was measured live on the real Knowledge Box at a grounding score of 0.92 — 10 quotes matched exactly, 1 after normalisation, 0 unverified (STATUS.md, 2026-09-12 20:30). The pattern is documented for Call Analysis and VoiceBridge to adopt at GA, not yet shipped there."
+    ]
+  },
+  "openSource": {
+    "licence": "Apache-2.0",
+    "body": "Every accelerator, and the platform underneath them, is Apache-2.0 with zero runtime dependencies — Node 22.18 or later runs the TypeScript sources directly, with no framework and no build-time dependency chain to audit. Each one runs its full feature set against a deterministic mock ARAG server with no credentials, so a partner can evaluate the whole product before ever touching a real Knowledge Box.",
+    "points": [
+      "Apache-2.0 licensing across the platform and all three accelerators, chosen deliberately to leave the commercial door open rather than forcing it, unlike a copyleft licence designed to push users to a paid cloud.",
+      "Zero runtime dependencies: Node 22.18+ runs the TypeScript sources directly.",
+      "The full application runs with `make dev` against the built-in mock ARAG server — no ARAG account, no credentials, no network dependency to try it.",
+      "The honest gap: as of this research, no published container image, no docker-compose.yml, and no Helm chart exist in any of the four repos (platform plus three accelerators). \"Open source\" is not yet a claim a partner can test with a single `docker run` from the README — that packaging work has not shipped."
+    ]
+  },
+  "faq": [
+    {
+      "q": "What does it cost me to try one of these?",
+      "a": "Nothing to try it: clone the repo, run `make dev`, and the full product runs against the built-in mock ARAG server with no ARAG account and no credentials. Running it against a real Knowledge Box means your own ARAG account and its usage costs, which this programme has no visibility into or control over."
+    },
+    {
+      "q": "Do I need an ARAG account to evaluate the product?",
+      "a": "No. The deterministic mock ARAG server reproduces the full feature set — upload, ask, citations, jobs — so you can evaluate the whole product before deciding whether to point it at a real Knowledge Box."
+    },
+    {
+      "q": "Can I rebrand it under my own name?",
+      "a": "Branding by configuration ships today (D-25), verified in source on 2026-09-12: BRAND_* environment variables (product name, tagline, logo URL, primary and accent colour, a \"Built on Progress Agentic RAG\" toggle, footer text, docs and support links) are read by arag-platform/src/config/branding.ts, served at GET /api/v1/branding, applied by the UI kit (applyBranding() / <arag-shell>), with brand assets dropped into DATA_DIR/branding/ and served from /branding/ so a rebrand needs no rebuild. Each repo ships docs/developer/white-label.md and docs/developer/build-your-own.md. Honest caveats: the OpenAPI document deliberately keeps its own title, because the API contract is not the brand; branding covers visual identity only and is not multi-tenancy; and the admin view of the effective branding that D-25 also calls for is not built yet. It is covered by the final verification runs on platform v0.1.8 (STATUS.md, 2026-09-12 20:10, 20:30, 21:00 and 21:40)."
+    },
+    {
+      "q": "What happens to my customers' data?",
+      "a": "The accelerators themselves store only what the product needs to function (job state, configuration, generated records) via a lightweight JSON store; the underlying content lives in the Knowledge Box you point the accelerator at, which is your ARAG account, not Progress's or this programme's. There is no telemetry, analytics or third-party data flow built into any accelerator."
+    },
+    {
+      "q": "Can I self-host?",
+      "a": "Yes for the accelerator itself — each one ships a Dockerfile and a fly.toml and has zero runtime dependencies beyond Node 22.18+. Be aware this is a partial answer: the accelerator depends on Progress Agentic RAG as a hosted service, so \"self-host\" covers the accelerator, not the ARAG backend it calls. There is also no published container image, compose file or Helm chart yet, so packaging for your own infrastructure currently means building from source."
+    },
+    {
+      "q": "What is Progress's role in this programme?",
+      "a": "Progress is the vendor of Agentic RAG, the primary audience for this programme, and the source of the partner network and Progress Accelerate partner program (over 3500 partners across eight tracks) through which an accelerator reaches partners. Progress does not operate, support or warrant any individual accelerator deployment — that is between a partner and their customer."
+    },
+    {
+      "q": "What if I want a different use case than the three you've built?",
+      "a": "Use the build-your-own model: `arag-platform` gives you the shared ARAG client, the mock, the HTTP toolkit, the UI kit, STANDARDS.md and a `make new-product` scaffold. The three existing accelerators are the worked examples of what a product built to that standard looks like."
+    },
+    {
+      "q": "How do I get started evaluating this for a specific customer or pilot?",
+      "a": "Start with the engagement models above to decide which fits (white-label, extend, or build-your-own), then follow the Partner Pilot Playbook (marketing/PARTNER-PILOT-PLAYBOOK.md) for a structured pilot plan."
+    }
+  ],
+  "ctas": [
+    {
+      "label": "Choose an engagement model",
+      "body": "Review white-label, extend and build-your-own above and decide which fits your customer and your team's capacity."
+    },
+    {
+      "label": "Read the Partner Pilot Playbook",
+      "body": "marketing/PARTNER-PILOT-PLAYBOOK.md sets out the engagement models in more depth, a pilot plan per product, data needs, success criteria, white-label steps and checklists."
+    }
+  ]
+}

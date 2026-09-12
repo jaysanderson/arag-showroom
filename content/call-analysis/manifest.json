@@ -1,0 +1,29 @@
+{
+  "slug": "call-analysis",
+  "title": "Call Analysis",
+  "recommendedName": "AfterCall",
+  "oneLiner": "Call Analysis turns every recorded contact-centre call into a labeled, searchable, and citable record — transcribed, classified, and scored automatically the moment it lands, with no analyst tagging a single call by hand.",
+  "demoUrl": "https://call-analysis-arag.fly.dev",
+  "adminUrl": "https://call-analysis-arag.fly.dev/admin",
+  "repo": "call-analysis",
+  "commit": "51dbc556f732",
+  "syncedAt": "2026-09-12T04:45:27.268Z",
+  "files": 58,
+  "screenshots": [
+    "showcase/out/01-dashboard.png",
+    "showcase/out/02-charts.png",
+    "showcase/out/03-drilldown.png",
+    "showcase/out/04-calls-facet.png",
+    "showcase/out/05-calls-search.png",
+    "showcase/out/06-call-detail.png",
+    "showcase/out/07-asking.png",
+    "showcase/out/08-answer.png",
+    "showcase/out/09-citation-scrub.png",
+    "showcase/out/10-how-it-works.png",
+    "showcase/out/11-admin-overview.png",
+    "showcase/out/12-admin-health.png",
+    "showcase/out/13-admin-agents.png",
+    "showcase/out/14-api-docs.png"
+  ],
+  "video": "showcase/out/video.webm"
+}

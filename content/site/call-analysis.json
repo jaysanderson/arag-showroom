@@ -1,0 +1,326 @@
+{
+  "name": "Call Analysis",
+  "workingTitle": "AfterCall (proposed; legal clearance outstanding, D-15)",
+  "oneLiner": "Call Analysis turns every recorded contact-centre call into a labelled, searchable, citable record — transcribed, classified and scored automatically the moment it lands.",
+  "elevator": "Call Analysis is a partner-accelerator reference product built entirely on Progress Agentic RAG (ARAG). Upload a recording or a transcript and ARAG transcribes it into timestamped paragraphs; two data-augmentation labeler agents classify the call at the call level and the paragraph level; a two-operation ask agent writes a narrative analysis and a flat metrics record; the app aggregates every call into a live dashboard and lets a reviewer ask any single call a question, answered only from that call's own transcript, with a citation that scrubs the recording to the exact second the answer came from. Apache-2.0, self-hostable, no per-minute meter, and evaluable with no ARAG credentials via an in-process mock.",
+  "heroMoment": "Ask a call a question — 'Was the member satisfied?' — and click the citation marker on the answer. The recording scrubs to the exact second the cited statement was made, and the source transcript line highlights in place, so 'show me where' is answered by clicking, not re-listening.",
+  "customer": {
+    "headline": "Know what happened on every call",
+    "subheadline": "Most organisations review a tiny sample of their recorded calls and guess at the rest. This gives every call the treatment a reviewer would give one — summarised, categorised, scored and searchable — with a citation you can click to hear the moment for yourself.",
+    "outcomes": [
+      "Coverage goes from a sample to everything. Every recorded call is categorised and summarised automatically, so patterns are measured across the whole queue rather than inferred from the few that were listened to.",
+      "Finding the moment takes seconds. Search or filter to the calls that matter, then jump straight to the labelled moment — a complaint, an escalation, a disclosure — instead of scrubbing through an hour of audio.",
+      "Every claim is checkable. Ask a call a question and the answer arrives with a citation; click it and the recording moves to the second the statement was made, with the transcript line highlighted.",
+      "Disputes get shorter. When a decision, a complaint or a compliance question turns on what was actually said, the evidence is a click away rather than an afternoon of listening."
+    ],
+    "heroMoment": "Ask a call \"did the customer accept the offer, and when?\" The answer comes back with a citation. Click it, and the recording jumps to that exact second while the transcript line lights up. No scrubbing, no taking anyone's word for it.",
+    "capabilities": [
+      {
+        "title": "Every call, categorised",
+        "body": "Reason for contact, outcome, sentiment, line of business and flags such as a complaint raised or an issue resolved first time — applied to every call as it arrives, with no one tagging anything by hand."
+      },
+      {
+        "title": "A written summary and scorecard",
+        "body": "A short executive summary, how the agent handled it, notable quotes, risks and follow-up actions — the write-up a reviewer would produce after listening to the whole call."
+      },
+      {
+        "title": "A transcript broken into moments",
+        "body": "Not one block of text, but labelled moments that line up with the recording: where the complaint started, where the escalation happened, where the required disclosure was given."
+      },
+      {
+        "title": "Questions answered from one call",
+        "body": "Ask about a specific call and get an answer drawn only from that call's own transcript, with citations — never a general-knowledge guess, and never an answer borrowed from a different conversation."
+      },
+      {
+        "title": "A view across the whole queue",
+        "body": "First-contact resolution, complaint rate, sentiment, compliance and acceptance rates, broken down by reason, outcome and line of business — and every figure drills down to the calls behind it."
+      },
+      {
+        "title": "Your categories, not ours",
+        "body": "The shipped categories are a worked example. Replace them with the vocabulary your organisation actually uses and every call is labelled against yours from then on."
+      }
+    ],
+    "howItWorks": [
+      "A recording or transcript arrives — from your recording system, your case management, or an upload.",
+      "It is transcribed into a timeline where every sentence knows the second it was said.",
+      "Categories, a summary, a scorecard and a set of measurements are produced automatically and added to the dashboard.",
+      "You search, filter, drill in, or ask a single call a question — and every answer carries a citation you can click and hear."
+    ],
+    "trust": [
+      "Answers come from the call, not from a model's imagination. A question the recording genuinely does not answer gets an honest decline rather than a confident guess.",
+      "Citations that play. A citation is not a footnote — it is a position in the recording, so \"show me where\" takes one click.",
+      "The system flags its own weak answers. Where a response is poorly supported by the transcript, that is surfaced rather than hidden behind a confident tone.",
+      "Recordings can stay in your own environment, in your own country, or entirely offline — the usual requirement wherever calls contain personal, health or financial information.",
+      "Access to content is enforced when it is retrieved, not filtered out afterwards, so material a user is not entitled to never reaches an answer.",
+      "It is open source: your team can read exactly how a label, a score or a summary was produced."
+    ],
+    "faq": [
+      {
+        "q": "Do we have to change our phone system?",
+        "a": "No. It does not make or record calls. It takes the recordings or transcripts you already have, from whatever produced them."
+      },
+      {
+        "q": "Is this live coaching during a call?",
+        "a": "No — this reads calls after they end. Live, in-call assistance is a separate product in the same family."
+      },
+      {
+        "q": "Will it work for our type of conversation?",
+        "a": "The categories shipped with it are an example, not a fixed list. Replace them with your own — whether your calls are about claims, accounts, deliveries, casework or renewals — and every call is labelled against yours."
+      },
+      {
+        "q": "Can we trust the summaries?",
+        "a": "Check them. Every answer carries a citation you can click and hear, the system tells you when its own answer is weakly supported, and the whole thing is open source. Our advice is to review the first fifty summaries against the recordings before relying on any of it."
+      },
+      {
+        "q": "What about personal or sensitive information in calls?",
+        "a": "Be direct with us about this. Automatic redaction of personal data is not built in yet, so today it is handled by where the system runs and who can reach it — usually your own environment, your own country, with access controlled in front of it. If redaction is a hard requirement, that changes the plan."
+      },
+      {
+        "q": "Can our own software show this?",
+        "a": "Yes. Everything on the screens is available through a documented interface, so your case management or agent desktop can show the summary, the labels and the clickable citation without anyone opening a second application."
+      },
+      {
+        "q": "How many calls can it handle?",
+        "a": "It is built for a department's volume rather than a national network out of the box, and scaling is a known, scoped piece of work rather than a redesign. Tell us your monthly volume early and it can be sized properly."
+      },
+      {
+        "q": "What does it not do?",
+        "a": "It does not route calls, discipline anyone or decide an outcome. It reads what happened and shows you the evidence; people decide what to do about it."
+      }
+    ],
+    "cta": {
+      "label": "Try it on a week of your own calls",
+      "body": "Bring the queue nobody has time to review — that is where the difference shows fastest."
+    }
+  },
+  "personas": [
+    "Contact-centre operations leader — owns queue-level performance, needs trend lines (resolution, complaint, cross-sell) across the whole queue instead of a 1-2% manual sample.",
+    "QA / compliance manager — needs proof a required disclosure was read and an audit trail that traces a finding to the exact moment in a call, not a re-listen from the start.",
+    "CX / insights analyst — needs consistent, comparable call-driver data across a whole queue, filterable by segment, without a manual spreadsheet-coding project.",
+    "Platform engineer / partner architect — needs a documented API surface, real auth and rate-limit behaviour, and a way to evaluate the whole product before provisioning a live Knowledge Box."
+  ],
+  "capabilities": [
+    {
+      "title": "Automatic transcription with timestamps",
+      "body": "A recording (or a directly uploaded transcript) becomes an ARAG resource; ARAG transcribes audio into paragraphs carrying start/end seconds, so every downstream label and citation is already anchored to a moment in the recording."
+    },
+    {
+      "title": "Two-level classification",
+      "body": "A resource-level labeler applies five call-level labelsets (call reason, outcome, sentiment, line of business, disposition flags); a paragraph-level labeler tags 11 call-moment labels such as Compliance Disclosure, Escalation and Complaint."
+    },
+    {
+      "title": "Narrative analysis and flat metrics",
+      "body": "A two-operation ask agent writes a structured call_analysis field (executive summary, agent scorecard, complaint and cross-sell detail, notable quotes, action items, risk flags) and a flat call_metrics JSON object the dashboard aggregates."
+    },
+    {
+      "title": "Grounded, scoped chat with a scrubbing citation",
+      "body": "POST /api/v1/calls/{id}/ask streams an NDJSON answer scoped to one call's transcript with citations enabled; each citation resolves to <rid>/f/media/<start>-<end>, a playable audio offset, so clicking it scrubs the player."
+    },
+    {
+      "title": "Honest confidence via REMi",
+      "body": "Once a chat answer completes, the server scores it against the retrieved context with ARAG's /predict/remi and appends the score as a quality item in the stream; a refusal is never badged as confident."
+    },
+    {
+      "title": "Queue-wide dashboard",
+      "body": "GET /api/v1/dashboard aggregates every analysed call's metrics into first-call-resolution, complaint, cross-sell and escalation rates and category breakdowns, with drill-through from any chart bar into the filtered call list."
+    },
+    {
+      "title": "Full-text and semantic search",
+      "body": "GET /api/v1/calls?q= is backed by ARAG's /find across every call's transcript, so 'every call where a member mentioned a competitor' is a search, not a coding project."
+    },
+    {
+      "title": "White-label branding via configuration",
+      "body": "lib/branding.ts reads product name, tagline, logo, colours, a powered-by toggle and footer/docs/support links from BRAND_* environment variables and serves them at GET /api/v1/branding — ahead of the shared platform's own equivalent, targeted for arag-platform v0.1.6."
+    }
+  ],
+  "howItWorks": [
+    "Ingest: a recording (MP3/MP4) or a transcript is uploaded onto an ARAG resource; ARAG transcribes audio into timestamped paragraphs.",
+    "Augment: a resource-level labeler agent and a paragraph-level labeler agent classify the call and its moments; a two-operation ask agent writes call_analysis (narrative) and call_metrics (flat JSON).",
+    "Serve: services/ turns ARAG resources into view models behind a 60-second single-flight TTL cache, so a dashboard render costs one upstream fetch per call per window.",
+    "Aggregate: the dashboard endpoint reduces every call's metrics into queue-wide rates and category breakdowns with drill-through to the filtered call list.",
+    "Ask: a per-call question calls /ask scoped with resource_filters and citations:true; each citation key maps to a transcript paragraph offset that is also a media time offset.",
+    "Score: once the answer stream ends, /predict/remi scores the answer against the retrieved context and the result is appended as a quality item — the confidence badge shown in the UI."
+  ],
+  "whyItWins": [
+    "Citations resolve to an audio timestamp, not just a text span — unique in the market per research/call-analysis-market.md; competing ASR/CI vendors document a citation pattern, not a guaranteed contract.",
+    "REMi self-scoring is an honest confidence signal: no surveyed competitor self-assesses the confidence of its own generated call analysis.",
+    "The taxonomy is customer-authored and applied at ingest at two granularities (call and paragraph), versus Genesys's phrase-list topic spotting or AssemblyAI's fixed IAB taxonomy.",
+    "ARAG applies security.groups during retrieval itself, not as a post-filter on results (research takeaway #3) — no equivalent found among document-AI, conversation-intelligence or agent-assist vendors surveyed.",
+    "Apache-2.0, self-hostable, no per-minute meter — Deepgram gates self-hosting behind an Enterprise contract; CallMiner and Observe.AI carry seat minimums and undisclosed pricing.",
+    "API-first by construction: the demo UI is a client of the same documented /api/v1 any integration would call, with nothing UI-only."
+  ],
+  "useCases": [
+    {
+      "title": "Complaint detection and drill-down",
+      "body": "The Complaint Raised disposition flag and the Complaint paragraph moment surface every complaint call; the complaint field (present, category, severity, quote) lets a manager triage without opening every call."
+    },
+    {
+      "title": "Cross-sell coaching",
+      "body": "Cross-sell Offered/Accepted flags combine with the Cross-sell Pitch and Objection paragraph moments so a coach can pull up exactly where an offer was made and where it stalled, across a whole queue."
+    },
+    {
+      "title": "Compliance disclosure spot checks",
+      "body": "The Compliance Disclosure paragraph label marks the exact transcript block where a required script or recording notice was read (or should have been); a reviewer filters to Compliance Risk calls and jumps straight to the moment."
+    },
+    {
+      "title": "Find every call where X was said",
+      "body": "GET /api/v1/calls?q= is backed by ARAG's /find, full-text and semantic search across every call's transcript, not a keyword match on titles or metadata."
+    },
+    {
+      "title": "Grounded Q&A with a scrubbing citation",
+      "body": "POST /api/v1/calls/{id}/ask streams an answer scoped to just that call, with citations that resolve to a transcript paragraph and its timestamp — clicking one scrubs the player to the exact second."
+    },
+    {
+      "title": "Dashboard reporting without manual tagging",
+      "body": "The entire dashboard — call reason, outcome, sentiment, line of business, complaints by category — is built from labels and metrics the agents generate at ingest time, with no analyst coding calls before the numbers exist."
+    }
+  ],
+  "partnerModels": [
+    {
+      "model": "White-label",
+      "body": "Deploy the accelerator as-is under the partner's brand, pointed at the partner's Knowledge Box. Call Analysis already implements branding-by-configuration (BRAND_* environment variables covering product name, tagline, logo, colours, the powered-by toggle, and footer/docs/support links, served at GET /api/v1/branding) — ahead of most partner-brief guidance, though it is a product-local implementation that will collapse into the shared platform's own branding module (targeted arag-platform v0.1.6) rather than a stable cross-product contract today."
+    },
+    {
+      "model": "Embed from an existing application",
+      "body": "Your existing application posts a recording or transcript to POST /api/v1/calls, then reads labels, scores, metrics and cited answers back over the API and renders them in its own screens — including the citation, which resolves to a playable audio offset. The accelerator stays headless and never faces the end user. Requires an HTTP client in your stack and somewhere in your UI to render a value, its confidence and its evidence. Completion signals today are SSE and polling; webhooks are a roadmap item."
+    },
+    {
+      "model": "Extend",
+      "body": "Fork or vendor the accelerator and add a vertical: new labelsets and data-augmentation agents (lib/domain/taxonomy.ts), new metrics fields, new endpoints (spec-first in lib/openapi.ts, then a handler, then a service, then tests), or transcript ingestion from an external ASR via the existing transcript upload field. Extension points are documented in docs/developer/extension-points.md."
+    },
+    {
+      "model": "Build-your-own",
+      "body": "Take arag-platform (STANDARDS.md, the ARAG client, the mock ARAG server, the HTTP toolkit, the UI kit and the product template via make new-product) and build a different product on the same standards. Call Analysis is one of three worked examples of the pattern."
+    }
+  ],
+  "enablement": {
+    "developerTrack": {
+      "description": "Guided lab and knowledge check covering the API, the service layer and adding an endpoint.",
+      "path": "call-analysis/enablement/developer-track/LAB.md"
+    },
+    "architectTrack": {
+      "description": "Workshop, sizing/deployment guidance and a design-review checklist for evaluating or deploying the product.",
+      "path": "call-analysis/enablement/architect-track/WORKSHOP.md"
+    },
+    "showcase": {
+      "description": "Recorded walkthrough script, storyboard and Playwright recording spec plus rendered PNGs and a 2:23 video.",
+      "path": "call-analysis/showcase/SCRIPT.md"
+    },
+    "docs": {
+      "description": "Full documentation index: developer quickstart, architecture, security model, business walkthroughs, product marketing and extension points.",
+      "path": "call-analysis/docs/README.md"
+    }
+  },
+  "roadmap": [
+    {
+      "phase": "Now (MVP, verified 2026-09-12)",
+      "items": [
+        "Transcription, two-level classification, narrative analysis and flat metrics, all generated at ingest",
+        "Grounded per-call chat with citations resolving to a media timestamp, plus REMi confidence scoring",
+        "Queue-wide dashboard, full-text/semantic search, and a documented OpenAPI 3.1 /api/v1",
+        "White-label branding via BRAND_* environment variables",
+        "No-credentials demo mode (ARAG_MOCK=1) seeding a mock Knowledge Box with real call transcripts"
+      ]
+    },
+    {
+      "phase": "Near-term (closes the biggest bar gaps)",
+      "items": [
+        "Publish the citation contract as a first-class, versioned API object",
+        "QA scorecards as schema-driven DA ask operations with per-question evidence and scores",
+        "PII/PCI redaction in transcript and audio",
+        "Webhooks with signed payloads and idempotent replay",
+        "A read-only MCP server over the v1 API returning citations"
+      ]
+    },
+    {
+      "phase": "Later",
+      "items": [
+        "Pluggable ASR ingest accepting an externally produced transcript with word timings and speakers",
+        "Talk-time, ratio, interruption and silence metrics computed from the timeline rather than LLM-guessed",
+        "Retention/deletion APIs: TTL policy, bulk purge, deletion audit log",
+        "Cross-call analytics: label/score aggregation with drill-down to cited calls"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "How is a chat answer actually grounded, and can I verify it myself?",
+      "a": "Every /ask call is scoped with resource_filters to one call's transcript and citations:true. Each citation key resolves to <rid>/f/media/<start>-<end> — a transcript paragraph offset that is also a playable audio offset — so clicking a citation scrubs the recording to the exact second the cited statement was made. A REMi answer-quality score is appended once the stream ends; a refusal is never shown as confident."
+    },
+    {
+      "q": "Can we run this without an ARAG account first?",
+      "a": "Yes. With no ARAG_API_KEY set, make install && make dev starts an in-process mock ARAG server, seeds it with real (synthetic) call transcripts, pre-creates the labelsets, and runs the product's own labeler and ask agents against the mock box before the first request is served — the dashboard, search, chat and admin panel are all populated on first load."
+    },
+    {
+      "q": "Can we self-host it, and does it meter usage per minute?",
+      "a": "Yes — Apache-2.0, Docker and fly.toml are provided, and there is no per-minute or per-seat charge from this product. A partner pays only their own ARAG bill for the Knowledge Box it runs against."
+    },
+    {
+      "q": "Is it multi-tenant?",
+      "a": "No. The MVP is single-tenant: one deployment serves one Knowledge Box, and there is no per-user authorization — any caller holding a valid API key or the admin token can read every call in that Knowledge Box. The response cache and rate limiter are per-process state."
+    },
+    {
+      "q": "Does it do real-time or in-call monitoring?",
+      "a": "No. This is a post-call analysis product: a call is analysed once it has been recorded and transcribed. There is no live transcription, whisper-coaching, or streaming call feed, and it is not a telephony platform or CCaaS."
+    },
+    {
+      "q": "Is transcription accuracy something you compete on?",
+      "a": "No. Transcription is inherited entirely from ARAG; this product runs no ASR of its own, publishes no word-error-rate benchmark, and does not offer model choice for transcription. The defensible ground is verifiability of what is generated afterwards, not transcription quality."
+    },
+    {
+      "q": "Can we white-label it under our own brand today?",
+      "a": "Yes, further along than the general partner guidance suggests: lib/branding.ts already reads product name, tagline, logo, colours, the powered-by toggle and footer/docs links from BRAND_* environment variables and serves them at GET /api/v1/branding, unit-tested. It is a product-local implementation that will later collapse into a shared-platform branding module, so treat today's contract as product-specific rather than guaranteed identical across the three accelerators."
+    },
+    {
+      "q": "How mature is the test coverage and has it been checked against a live Knowledge Box?",
+      "a": "205/205 tests passing with 95.8% line coverage on lib/ and services/, Playwright 21/21 end-to-end, docker build and fly config validation both OK, 111 doc links resolving, and a live read-only smoke test against a real Knowledge Box returning 24 calls with 2 citations on an ask call (STATUS.md, 2026-09-12 21:00 and 21:40, platform v0.1.8)."
+    }
+  ],
+  "proof": [
+    {
+      "label": "Unit/integration/contract tests",
+      "value": "205/205 passing",
+      "source": "STATUS.md (2026-09-12 21:00 and 21:40, platform v0.1.8)"
+    },
+    {
+      "label": "Line coverage (lib/ + services/)",
+      "value": "95.8%",
+      "source": "STATUS.md (2026-09-12 21:00 and 21:40, platform v0.1.8)"
+    },
+    {
+      "label": "Playwright end-to-end",
+      "value": "21/21 passing",
+      "source": "STATUS.md (2026-09-12 21:00 and 21:40, platform v0.1.8)"
+    },
+    {
+      "label": "Showcase video length",
+      "value": "2:23",
+      "source": "STATUS.md (2026-09-12 18:40)"
+    },
+    {
+      "label": "Docker build / Fly config validation",
+      "value": "both OK",
+      "source": "STATUS.md (2026-09-12 21:00 and 21:40, platform v0.1.8)"
+    },
+    {
+      "label": "Live read-only smoke test",
+      "value": "OK — 24 calls, 2 citations on ask",
+      "source": "STATUS.md (2026-09-12 21:00 and 21:40, platform v0.1.8)"
+    },
+    {
+      "label": "Doc links resolving",
+      "value": "111",
+      "source": "STATUS.md (2026-09-12 21:00 and 21:40, platform v0.1.8)"
+    },
+    {
+      "label": "API surface",
+      "value": "20 paths under /api/v1: calls, dashboard, labelsets, jobs, branding, session, admin",
+      "source": "call-analysis/lib/openapi.ts (counted 2026-09-12)"
+    },
+    {
+      "label": "Taxonomy",
+      "value": "5 call-level labelsets + 1 paragraph-level labelset, 2 labeler agents + 1 two-operation ask agent",
+      "source": "call-analysis/lib/domain/taxonomy.ts"
+    }
+  ]
+}

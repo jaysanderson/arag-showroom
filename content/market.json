@@ -1,0 +1,109 @@
+{
+  "framing": {
+    "headline": "The metric that matters is ARAG contract value influenced, not standalone product ARR",
+    "body": "Across all three accelerators, the same conclusion holds independently: as standalone businesses these are feature-sized markets. Combined three-year SOM base case is roughly $1.9M ARR across all three products — real, but feature-sized, not company-sized. We are at the cheap end of every market we are in, and the monetisable unit is not usage.",
+    "primaryMetric": "Measure success in ARAG ACV (annual contract value) influenced and Knowledge Boxes provisioned, not in product ARR. The VoiceBridge report states the conclusion that applies to all three: measure success in ARAG ACV influenced, not in product ARR."
+  },
+  "caveats": [
+    "The market-size estimates in every category are definitionally broken, not empirically settled. IDP estimates span 8.5x depending on scope ($1.7bn Everest for IDP products alone versus $14.66bn MarketsandMarkets for \"Document AI\" including ECM); conversation intelligence shows a 42% spread between two analyst houses using the same market name (Mordor $4.01bn vs Fortune Business Insights $5.70bn for 2026); voice AI spans two orders of magnitude depending on whether \"conversational AI\" is defined to include chat (MarketsandMarkets $13.2bn including chat vs Grand View's $2.5-3.5bn for voice agents alone). In every case our bottom-up unit-economics check landed at or below the low end of the top-down range, so we plan on the bottom-up numbers.",
+    "Every figure in the underlying research carries a fetch date of 12 September 2026 and pricing in this category is volatile. Re-check any figure before it reaches a customer-facing deck.",
+    "Several vendor pages were unretrievable at research fetch time and are marked as such rather than filled in: Azure's marketing pricing page renders \"$-\" client-side (the Azure Retail Prices API was used instead), AWS Bedrock Data Automation per-page rates, Chunkr's client-rendered pricing, NICE's copilot product page (404), both Talkdesk copilot URLs (404), Google Agent Assist pricing, and the primary ARAG security page (403/404, with a secondary source cited and flagged in its place).",
+    "Private-company revenue figures (Gong, Cresta, Observe.AI, ElevenLabs, Sierra, Decagon) are secondary and unverifiable; they are labelled as such in the underlying research and none of them carries a sizing conclusion on its own.",
+    "The single biggest hole across all three sizing exercises: ARAG/Nuclia customer count is not publicly broken out anywhere. Progress has not disclosed how many customers or how much ARR Nuclia/ARAG represents, and every SAM/SOM line that depends on \"reachable Progress/ARAG accounts\" is therefore an assumption, not a sourced figure, pending internal Progress data."
+  ],
+  "progressContext": {
+    "partnersNetwork": {
+      "description": "over 3500 partners",
+      "programName": "Progress Accelerate partner program",
+      "tracks": [
+        "Distributor",
+        "Value Added Reseller",
+        "Service Delivery Partner",
+        "Digital Agency",
+        "Managed Service Provider",
+        "Systems Integrator",
+        "Independent Software Vendor",
+        "Technology Alliance Partner"
+      ],
+      "source": "https://www.progress.com/partners (fetched 2026-09-12)"
+    },
+    "financials": {
+      "fy2025Q4Revenue": {
+        "value": "$253M, +18% YoY",
+        "source": "Progress Q4 2025 earnings release (SEC 8-K exhibit 99.1)"
+      },
+      "arr": {
+        "value": "$852M at FY2025 Q4 end, +2% YoY constant currency; Q2 2026 update: $868M",
+        "source": "Progress Q4 2025 and Q2 2026 earnings releases (SEC 8-K exhibit 99.1)"
+      },
+      "netRetention": {
+        "value": "100%",
+        "source": "Progress Q4 2025 earnings release (SEC 8-K exhibit 99.1)"
+      },
+      "fy2026Guidance": {
+        "value": "$986M-$1,002M revenue",
+        "source": "Progress Q4 2025 earnings release (SEC 8-K exhibit 99.1)"
+      },
+      "nucliaAcquisition": {
+        "value": "Nuclia (Agentic RAG) acquired by Progress on 30 June 2025; consideration called immaterial by Progress",
+        "source": "research/call-analysis-market.md, citing https://investors.progress.com/news-releases/news-release-details/progress-software-acquires-nuclia-innovator-agentic-rag-ai"
+      },
+      "notPublic": "ARAG/Nuclia customer count, ARAG's ARR contribution to the $852M/$868M total, and per-product-line partner counts are not publicly disclosed by Progress."
+    }
+  },
+  "products": [
+    {
+      "slug": "document-processing",
+      "name": "Document Processing",
+      "topDownTam": "$1.7bn (Everest Group, IDP products only, 2025, search-derived behind a paywall) to $14.66bn (MarketsandMarkets, \"Document AI\" including ECM, 2025) — an 8.5x spread explained by scope, not disagreement about the underlying market",
+      "cagr": "~33% (IDP-focused analyst houses: Grand View, Precedence, Global Market Insights) vs 13.5% (MarketsandMarkets, whose broader ECM-inclusive definition drags the average down) — evidence the two are measuring different things",
+      "bottomUpCheck": "30-180bn pages/year x $0.005-0.020/page blended realised price = $0.15-3.6bn/year, central estimate ~$0.75bn in 2026",
+      "verdictOnSpread": "The bottom-up figure corroborates Everest's order of magnitude (~$1.7bn for IDP products) and flatly contradicts MarketsandMarkets, which would require a blended price of $0.195/page - twenty times Azure Layout's published $0.010/page rate. Rossum's $40,000/year for 100,000 pages ($0.40/page, ~40x Azure) explains essentially all of the 8.5x spread on its own: suite pricing vs API pricing for the same pages.",
+      "sam": "~$10-30M/year, dominated by the Progress channel and the regulated self-host segment",
+      "somYear3Base": "~$0.75M ARR",
+      "somYear3Low": "~$0.08M ARR",
+      "somYear3High": "~$5.5M ARR",
+      "biggestHole": "Nuclia/ARAG customer count is not publicly broken out - needs internal Progress data to replace the assumption that 0.2-1% of the API-layer TAM is reachable via the Progress channel",
+      "source": "research/document-processing-market.md"
+    },
+    {
+      "slug": "call-analysis",
+      "name": "Call Analysis",
+      "topDownTam": "~$4-6bn (Mordor Intelligence $4.01bn (2026) vs Fortune Business Insights $5.70bn (2026), a 42% spread for the same market name, \"speech analytics\")",
+      "cagr": "13-16% (top-down range), reaching an estimated $8-12bn by 2030-31",
+      "bottomUpCheck": "Seats x attach rate x spend: 14m seats x 22% attach x $400/seat/year = ~$1.2bn (range $0.3-4.6bn). A minutes-based construction (945bn conversation minutes/year x share processed x price/minute) independently lands at $1.89bn at its central case, agreeing closely with the seats-based estimate.",
+      "verdictOnSpread": "The software-only conversation-intelligence category is roughly $1-3bn; the $4-6bn top-down figures are services-inclusive. Two public incumbents (NICE $328M AI ARR, Verint $354M AI ARR) together disclose only about $0.68bn of AI-adjacent ARR against a claimed $4-6bn category, consistent with most of the category being services or bundled CCaaS revenue rather than a standalone software line.",
+      "sam": "~$20-120M/year of monetisable spend (support subscriptions, hosted instances, OEM embedding), against a $1-3bn software-only category",
+      "somYear3Base": "~$0.85M run-rate (three-year cumulative revenue, base case, ~$1.2M)",
+      "somYear3Low": "~$0.1M run-rate",
+      "somYear3High": "~$5M run-rate",
+      "biggestHole": "The no-SaaS seat share (assumed 1-3% of contact-centre seats) is unsourced, and it is not established that a $10-35k OSS annual-contract-value tier exists in this category at all - no vendor publishes a support-subscription price for an open-source conversation-intelligence product because no such product currently exists",
+      "source": "research/call-analysis-market.md"
+    },
+    {
+      "slug": "voicebridge",
+      "name": "VoiceBridge",
+      "topDownTam": "Voice agents ~$2.5-3.5bn (2025-26, Grand View Research, secondary/search-derived, growing 25-39% CAGR); agent-assist ~$4-5bn (2025-26, Mordor Intelligence and public-filing cross-check, growing ~21% CAGR). Agent-assist is the primary market for VoiceBridge per the D-20 re-prioritisation to the Listen/live-brief use case.",
+      "cagr": "25-39% (voice agents) / ~21% (agent-assist)",
+      "bottomUpCheck": "Voice agents: inverting analyst figures against Gartner's automation forecast gives ~$3bn - Gartner's stated 10% automation-by-2026 forecast is not realised in the arithmetic; the honest read is automation is still near Gartner's 2022-measured 1.6% baseline. Agent-assist: seats x attach x spend gives $0.67-6.0bn (14-20M seats x 10-25% attach x $360-1,200/seat/year).",
+      "verdictOnSpread": "Agent-assist is larger and better-behaved than voice agents on every consistent reading, independently supporting the D-20 decision to prioritise the real-time listening / agent-assist use case over a voice-agent tool endpoint.",
+      "sam": "~$14-360M/year at an assumed $200-600/seat/year component price (below a full copilot price, since VoiceBridge is the context layer, not the UI)",
+      "somYear3Base": "~$0.3M ARR (three-year exit run-rate)",
+      "somYear3Low": "~$12-60k ARR",
+      "somYear3High": "~$5.6M ARR",
+      "biggestHole": "The 14-20M contact-centre seat count rests on a single 2020 Synergy Research figure (29M agents at end-2019, cloud penetration under 20%); the copilot attach rate (10-25%) and the $360-1,200/seat/year spend range are both stated assumptions with no published comparable, not sourced figures",
+      "source": "research/voicebridge-market.md"
+    }
+  ],
+  "combined": {
+    "somThreeYearBase": "~$1.9M ARR",
+    "interpretation": "Every one of the three research documents reaches the same conclusion independently: as standalone businesses these are feature-sized markets, not company-sized ones. As attaches that help ARAG win regulated, grounded, self-hosted deals it would otherwise lose, they are well worth building - but the plan and the reporting should be built on ARAG contract value and Knowledge Box provisioning influenced, not on these ARR figures.",
+    "source": "research/README.md"
+  },
+  "sources": [
+    { "label": "Research index and cross-product summary", "path": "research/README.md" },
+    { "label": "Intelligent Document Processing / Document AI market research", "path": "research/document-processing-market.md" },
+    { "label": "Conversation intelligence / call analytics market research", "path": "research/call-analysis-market.md" },
+    { "label": "VoiceBridge (voice agents and agent-assist) market research", "path": "research/voicebridge-market.md" }
+  ]
+}

@@ -1,0 +1,318 @@
+{
+  "name": "GroundLine",
+  "workingTitle": "VoiceBridge",
+  "oneLiner": "GroundLine listens to a live conversation, from any source, and keeps one evolving, cited brief in front of whoever is handling it — who the caller is, what they want, and what to say next.",
+  "elevator": "GroundLine's hero capability is real-time listening, not voice deflection: a listen session ingests transcript chunks from any source — realtime speech-to-text, a telephony webhook, a meeting bot, or someone typing — and returns one continuously refined, structured brief grounded in a Progress Agentic RAG (ARAG) Knowledge Box, with every factual claim carrying a citation. The same grounded pipeline is also available as a follow-on: answering a caller directly when nobody is available, and handing off by a deterministic rule rather than a guess when the knowledge base cannot support an answer.",
+  "heroMoment": "a live conversation streams in as transcript chunks and one brief on screen keeps rewriting itself — topic, who the caller is, what they want, what to say next — with every factual claim carrying a citation, and a failed refresh leaving the last good brief in place rather than blanking it.",
+  "customer": {
+    "headline": "The right answer, while you are still talking",
+    "subheadline": "Anyone handling a live conversation has to know what is true right now — not after the call. This listens as the conversation moves and keeps one short, evolving brief on screen: who you are speaking to, what they want, and what to say next, with a source behind every fact.",
+    "outcomes": [
+      "Less time on hold. The answer appears while the conversation continues, instead of the person putting the caller on hold to go and look it up.",
+      "New people get useful sooner. Someone who does not yet know the knowledge base by heart reads what is suggested rather than having to know what to search for.",
+      "Fewer confidently wrong answers. Suggested answers are drawn only from your approved content, and a field is left empty rather than filled with something invented.",
+      "Handovers stop starting from scratch. Whoever picks up an escalation inherits the brief and the sources gathered so far, and the session's record is there for review afterwards."
+    ],
+    "heroMoment": "A conversation is underway. On one side of the screen, a single brief keeps rewriting itself as the conversation moves — the topic, who the other person appears to be, what they are trying to achieve, the points that matter, what to ask next and what to say — with sources listed underneath. If a refresh fails, the last good brief simply stays put rather than going blank mid-sentence.",
+    "capabilities": [
+      {
+        "title": "One brief, not a stream of alerts",
+        "body": "A single panel that is refined as the conversation develops, rather than a pile of notifications. The person reads one thing, in one place, and it stays current."
+      },
+      {
+        "title": "Grounded suggestions",
+        "body": "Suggested answers and recommendations come from your own approved content. Where your content does not cover something, the brief says nothing rather than filling the gap."
+      },
+      {
+        "title": "Sources that build up",
+        "body": "The sources drawn on during the call accumulate underneath the brief, so by the end there is a list of exactly what informed the conversation."
+      },
+      {
+        "title": "Works with the conversation you already have",
+        "body": "It takes the words of the conversation from whatever you already use — a phone system, a meeting tool, a speech service, or someone typing — rather than requiring a new platform."
+      },
+      {
+        "title": "Only the right person sees the right thing",
+        "body": "A session can be limited to what this particular customer or caller is entitled to, so restricted content never appears in the brief."
+      },
+      {
+        "title": "A record for afterwards",
+        "body": "The brief, its sources and how it developed are kept when the conversation ends — useful for a summary, a handover or a review."
+      }
+    ],
+    "howItWorks": [
+      "A conversation starts, and the words arrive as they are spoken — from your phone system, your meeting tool, a speech service, or typed by hand.",
+      "As enough new conversation accumulates, your own approved content is searched for what is relevant right now.",
+      "The brief on screen is refined rather than replaced: topic, who you are speaking to, what they want, the points that matter, what to ask, what to say.",
+      "Sources gather underneath as the conversation goes on, and everything is kept when it ends."
+    ],
+    "trust": [
+      "It never speaks. Nothing is injected into the call — it puts information on a screen and leaves the conversation to the people having it.",
+      "Facts come from your content. The brief is built from your own approved material, and is written to leave a field blank rather than invent something.",
+      "Sources are always visible, so anything on screen can be checked before it is said out loud.",
+      "It fails quietly, not loudly. A slow or failed refresh leaves the previous brief in place rather than flashing an error at someone mid-conversation.",
+      "Each session can be limited to what that caller is entitled to see, enforced when content is retrieved rather than filtered out afterwards.",
+      "It can run inside your own environment, in your own country, or fully offline — and it is open source, so your team can read how every suggestion was produced."
+    ],
+    "faq": [
+      {
+        "q": "Is it fast enough to keep up?",
+        "a": "Yes, for this job, and we would rather be precise than impressive: the brief typically refreshes in around three seconds. Because it sits alongside a conversation that is still happening — rather than making a caller wait in silence — a person speaking for eight to fifteen seconds a turn leaves comfortable room. The same three seconds would be far too slow for an automated voice that answers the caller directly, which is why that is a secondary capability here and not the main event."
+      },
+      {
+        "q": "Do we need a particular phone system or speech provider?",
+        "a": "No. It takes the words of the conversation from whatever you already have — a contact-centre platform, a meeting tool, a speech-to-text service, or a person typing. It does not provide telephony or transcription itself, which is deliberate: you keep the vendors you already trust."
+      },
+      {
+        "q": "Does it listen to the customer without them knowing?",
+        "a": "That is your decision and your disclosure to make, in line with the rules that apply to you. Technically it is the same conversation your systems already have; it adds no audio and says nothing."
+      },
+      {
+        "q": "Will it tell someone something wrong?",
+        "a": "It draws only on the content you have approved, leaves gaps empty rather than filling them, and lists its sources so the person can check before speaking. It is a prompt for a person, never an instruction, and the person remains responsible for what they say."
+      },
+      {
+        "q": "Can it also answer callers when nobody is available?",
+        "a": "It can, and it hands over to a person by a fixed rule whenever your content cannot support an answer. But it is honest to say that the faster, specialised voice platforms do that job better; the value here is supporting the person on the call."
+      },
+      {
+        "q": "Can it appear inside the software our people already use?",
+        "a": "Yes. It has no opinion about where the brief is displayed — your agent desktop, case system or meeting tool can render it in its own interface."
+      },
+      {
+        "q": "What about sensitive information in the conversation?",
+        "a": "Automatic redaction of personal data is not built in yet, so today it is managed by where the system runs and who can reach it — usually your own environment, in your own country, with access controlled around it. Say early if redaction is a hard requirement."
+      },
+      {
+        "q": "What does it not do?",
+        "a": "It does not record, score, coach or grade anyone, it does not measure talk time, and it does not connect to your CRM. It produces one grounded brief and nothing else."
+      }
+    ],
+    "cta": {
+      "label": "Watch it follow one of your conversations",
+      "body": "Paste in a real transcript and see what the brief would have shown at each turn."
+    }
+  },
+  "personas": [
+    {
+      "title": "Contact-centre supervisor / enablement lead",
+      "body": "Wants agents — especially new ones — to say the right thing on a live call without memorising the knowledge base, and to see afterwards what the call actually covered. Objects: \"why is a self-updating brief better than a search bar my agents already have?\""
+    },
+    {
+      "title": "Sales engineer running discovery calls",
+      "body": "Wants to track what a prospect has said, what they're really trying to solve, and what to ask or offer next, without breaking eye contact with the call to search for a spec sheet. Objects: \"does it keep up with the conversation, or is it one turn behind?\""
+    },
+    {
+      "title": "AI platform lead",
+      "body": "Wants to add a live-conversation copilot to an existing telephony/CRM/meeting stack without taking on a new STT vendor dependency or a bespoke integration per channel. Objects: \"is the session API really independent of how the transcript arrives?\""
+    },
+    {
+      "title": "Compliance reviewer",
+      "body": "Needs to sign off a system that suggests things to a person on a live call, with evidence every factual claim traces to approved content and that the system degrades honestly when it doesn't know. Objects: \"show me a suggested answer can always be traced to a citation.\""
+    }
+  ],
+  "capabilities": [
+    {
+      "title": "Listen sessions from any transport",
+      "body": "Open a session with POST /api/v1/listen/sessions, then append transcript chunks from realtime STT, a telephony webhook, a meeting bot, or someone typing. No client is coupled to one transcription vendor."
+    },
+    {
+      "title": "Server-side throttling and de-duplication",
+      "body": "A refresh fires only on a genuinely new window of conversation — a minimum word count, a minimum gap since the last refresh, and a similarity check — so a chatty client cannot turn every word into an LLM call."
+    },
+    {
+      "title": "One evolving, structured brief",
+      "body": "Every refresh receives the previous brief and the running transcript and is instructed to refine it, not restart: topic, caller_profile, their_goal, stage, summary, key_points, suggested_questions, suggested_answers, recommended_products, via ARAG's answer_json_schema."
+    },
+    {
+      "title": "Streamed over SSE, never blanked",
+      "body": "Clients read brief, transcript and status events over Server-Sent Events. A refresh failure never blanks the brief — the previous version stays on screen exactly as it was."
+    },
+    {
+      "title": "Citations accumulated across the call",
+      "body": "Sources seen in any refresh are deduped by title and URL and kept at their best score, capped at twelve, so the citation list reflects everything relevant said so far."
+    },
+    {
+      "title": "Self-serve deflection (follow-on)",
+      "body": "The same grounded pipeline answers a caller directly over POST /api/v1/voice-answer when nobody is available, using a deterministic HANDOFF: sentinel and a per-prospect golden-set gate before any deployment is trusted to answer alone."
+    }
+  ],
+  "howItWorks": [
+    "Open a listen session for a prospect: POST /api/v1/listen/sessions.",
+    "Append transcript chunks from any source via POST .../transcript — realtime STT, a telephony webhook, a meeting bot, or typed text.",
+    "The server throttles refreshes (rolling word window, minimum gap, similarity check) instead of firing on every append.",
+    "A scoped ARAG retrieval runs, filtered at retrieval time by session-scoped security.groups when entitlements apply.",
+    "One evolving structured brief comes back via answer_json_schema, refined from the previous version rather than restarted.",
+    "Clients read the brief, transcript and session status over SSE (brief | transcript | status events) or by polling.",
+    "Citations accumulate across the whole call, deduped by title and URL, capped at twelve.",
+    "For the deflection follow-on, POST /api/v1/voice-answer runs a nine-step pipeline and hands off via the deterministic HANDOFF: sentinel, gated by a per-prospect golden set."
+  ],
+  "whyItWins": [
+    "Only Google CCAI Agent Assist exposes a documented streaming, bring-your-own-telephony assist API a non-CCaaS customer can build on — and Google's is audio-first, grounded on Google's own knowledge bases (research/voicebridge-market.md, section b2).",
+    "Every other agent-assist incumbent (Cresta, Balto, Observe.AI, Amazon Q in Connect, Genesys, NICE, Talkdesk, Dialpad) is bolted to a CCaaS, a CRM, or sold as an integration project with no public developer surface.",
+    "Transport-agnostic transcript ingest: any STT vendor, any telephony webhook, any meeting bot, or typed text, through one session API.",
+    "Per-caller entitlement-filtered retrieval via session-scoped security.groups applied during retrieval, not as a post-filter — research takeaway #3; no agent-assist incumbent documents an equivalent.",
+    "A published citation contract, not a proprietary desktop card with no schema behind it.",
+    "Structured, schema-shaped UI-card output (answer_json_schema) instead of a prose blob a UI has to parse.",
+    "Self-host on Apache-2.0 with zero runtime dependencies — no assist incumbent in the research offers this."
+  ],
+  "useCases": [
+    {
+      "title": "Live sales discovery copilot",
+      "body": "An evolving read of who the prospect is, their goal, the stage of the call, and grounded talking points and product fits as a discovery call moves — the shipped demo's own sample conversation is built around this case."
+    },
+    {
+      "title": "Support agent assist",
+      "body": "A person handling a live support call gets suggested, cited answers drawn only from the Knowledge Box, so a newer agent doesn't have to choose between guessing and putting the caller on hold."
+    },
+    {
+      "title": "Onboarding new agents",
+      "body": "The brief acts as a continuously updating handrail for someone who doesn't yet know the knowledge base by heart — they read what's suggested rather than knowing what to search for."
+    },
+    {
+      "title": "Escalation prep",
+      "body": "Whoever picks up an escalated call inherits the session's current brief and accumulated citations instead of starting cold."
+    },
+    {
+      "title": "After-call summary from the session record",
+      "body": "Ending a session keeps its brief, full citation list and stats for review; every brief version ever shown, with timestamp and latency, is available afterwards in the admin panel."
+    },
+    {
+      "title": "Self-serve deflection",
+      "body": "The same grounded-answer pipeline, without a human on the call, answers a caller directly over POST /api/v1/voice-answer and hands off by a deterministic rule when the knowledge base can't support an answer."
+    }
+  ],
+  "partnerModels": [
+    {
+      "model": "White-label",
+      "body": "Deploy the accelerator as-is under the partner's brand, pointed at the partner's Knowledge Box — the fastest path to a live use case. Branding by configuration ships today (D-25), verified in source on 2026-09-12: BRAND_* environment variables (product name, tagline, logo URL, primary and accent colour, a \"Built on Progress Agentic RAG\" toggle, footer text, docs and support links) are read by arag-platform/src/config/branding.ts, served at GET /api/v1/branding, applied by the UI kit (applyBranding() / <arag-shell>), with brand assets dropped into DATA_DIR/branding/ and served from /branding/ so a rebrand needs no rebuild. Each repo ships docs/developer/white-label.md and docs/developer/build-your-own.md. Honest caveats: the OpenAPI document deliberately keeps its own title, because the API contract is not the brand; branding covers visual identity only and is not multi-tenancy; and the admin view of the effective branding that D-25 also calls for is not built yet. It is covered by the final verification runs on platform v0.1.8 (STATUS.md, 2026-09-12 20:10, 20:30, 21:00 and 21:40). VoiceBridge goes further than the other two: the per-prospect registry (greeting, voice, handoff line, Knowledge Box, model, reranker) carries per-prospect brand overlays layered on the deployment's branding, so one deployment can serve several branded targets."
+    },
+    {
+      "model": "Embed from an existing application",
+      "body": "Your existing application opens a listen session, streams transcript chunks from whatever it already has, subscribes to the SSE brief events, and renders the cards and their citations inside its own interface. The accelerator stays headless and never faces the end user. Requires an HTTP client in your stack and somewhere in your UI to render a value, its confidence and its evidence. Completion signals today are SSE and polling; webhooks are a roadmap item."
+    },
+    {
+      "model": "Extend",
+      "body": "Fork or vendor the accelerator and add a vertical: new throttle policies, new brief schema fields, new transcript sources, new trigger conditions, or another voice platform on the deflection path. Extension points are documented at docs/developer/extension-points.md and are deliberately small, pure seams (decideRefresh(), checkTurn(), the Collection<T> store interface)."
+    },
+    {
+      "model": "Build-your-own",
+      "body": "Take arag-platform (STANDARDS.md, the ARAG client, the mock server, the HTTP toolkit, the UI kit and the product template via make new-product) and build a different live-context product on the same standards. GroundLine is the worked example for a listen-session/evolving-brief architecture."
+    }
+  ],
+  "enablement": {
+    "developerTrack": "Hands-on lab covering the listen-session API, throttling policy and the deflection pipeline — arag-voice/enablement/developer-track/LAB.md (plus knowledge-check.md)",
+    "architectTrack": "Sizing, deployment topology, and a design-review checklist for the single-machine session store and multi-tenant registry — arag-voice/enablement/architect-track/WORKSHOP.md (plus sizing-deployment.md, design-review-checklist.md, knowledge-check.md)",
+    "showcase": "Narrated walkthrough script, storyboard and a recorded Playwright spec; 14 PNGs verified on disk plus a video, re-recorded around the Listen tab as the default view — arag-voice/showcase/SCRIPT.md, STORYBOARD.md, record.spec.ts, out/",
+    "docs": "Business overview, when-to-use guidance, console and admin walkthroughs, developer quickstart, API reference, extension points, and architecture (data flow, security model, scaling, limits) — arag-voice/docs/README.md"
+  },
+  "roadmap": [
+    {
+      "phase": "Foundation (S effort)",
+      "items": [
+        "Adapters and conformance tests for Vapi, Retell and LiveKit on the tool path",
+        "OpenTelemetry tracing plus brief.updated / handoff.signalled / session.closed webhooks",
+        "PII redaction on ingest and a documented retention contract",
+        "Proper self-host packaging: container image, Helm chart, air-gapped configuration"
+      ]
+    },
+    {
+      "phase": "Differentiation (M effort)",
+      "items": [
+        "Transport-agnostic Listen ingest hardened as a first-class supported surface, not just ElevenLabs Scribe",
+        "Event-triggered incremental brief patches replacing the 1.5 s poll-and-replace loop",
+        "Solve the citations-vs-answer_json_schema collision and publish the citation contract",
+        "Session-scoped entitlement filtering as a documented, first-class parameter with a worked regulated-industry example",
+        "A suggestion-quality evaluation harness scoring precision/recall/timeliness of live brief cards, not just golden answer/handoff checks",
+        "Replace the regex input guard and move the prospect registry to a multi-tenant store with RBAC and an audit log"
+      ]
+    },
+    {
+      "phase": "Scale (L effort)",
+      "items": [
+        "Attack the 3.3 s round trip: surface ARAG's NDJSON first token early, return a fast provisional card and patch it, cache per-session retrieval, pre-compute with Data Augmentation agents at ingest"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is 3.3 seconds fast enough?",
+      "a": "Honestly, it depends which path. Per-turn deflection latency measures p50 3.3 s / p95 5.6 s, which is 13x-66x the envelope voice platforms design their tool calls to (Vapi ~50 ms, Retell <100 ms, ElevenLabs ~250 ms) — disqualifying for that path, and it cannot be streamed away, only papered over with a host's filler speech. In the listening path the same number is adequate because nobody is waiting for it: a human speaking 8-15 seconds per turn gives a 2-4 second budget (research/voicebridge-market.md, section c3)."
+    },
+    {
+      "q": "Which speech-to-text or telephony platform do I need?",
+      "a": "None specifically. A listen session ingests transcript chunks from any source — a realtime STT stream, a telephony webhook, a meeting bot, or typed text — through one session API. GroundLine does not do speech-to-text, diarisation or telephony itself; something upstream has to produce the transcript."
+    },
+    {
+      "q": "Can we self-host it?",
+      "a": "Yes. Apache-2.0, zero runtime dependencies, Node 22.18+ runs the TypeScript sources directly with no build step, and it deploys via Docker or Fly or fully self-hosted. No agent-assist incumbent in the research offers self-host — it is one of GroundLine's strongest differentiators, though container/Helm/air-gapped packaging is still on the roadmap."
+    },
+    {
+      "q": "What does it not do?",
+      "a": "No speech-to-text, diarisation or telephony. No coaching, scoring, sentiment or talk-time analytics, and no CRM or dialer integration — it is the brief and nothing else. It is not a Knowledge Box (retrieval quality is ARAG's job), not a durable horizontally-scaled session store today, and there is no automated quality gate for the live brief itself — only for the deflection pipeline."
+    },
+    {
+      "q": "How is a caller's entitlement to see certain content enforced?",
+      "a": "Retrieval is filtered by session-scoped security.groups applied by ARAG during retrieval, not as a post-filter on results already returned. No agent-assist incumbent in the research documents an equivalent (research takeaway #3), which is why it is being made a documented, first-class session parameter on the roadmap."
+    },
+    {
+      "q": "How long does onboarding a new prospect/customer take?",
+      "a": "Registry, provisioning and a golden set are the whole ritual — an admin API call or a few clicks, no redeploy, no code change (docs/developer/extension-points.md). If a prospect ever needs a code change, that is treated as a defect in the abstraction, not a one-off to work around."
+    },
+    {
+      "q": "Is the product name final?",
+      "a": "No. GroundLine is the recommended name in docs/product-marketing/positioning.md; VoiceBridge is the working title being retired because it describes an architecture (bridging two systems) the hero feature no longer has. Per D-15, the repo, binary and Fly app keep the name arag-voice-bridge regardless of which name is chosen, and legal trademark clearance for GroundLine is outstanding."
+    },
+    {
+      "q": "How proven is this today?",
+      "a": "206/206 tests passing at 99.0% line coverage, Playwright 22/22, docker build and fly config validation both OK on platform v0.1.8 (STATUS.md, 2026-09-12 20:10 and 21:40); deflection smoke 3/3 at p50 2.9 s; and a live listening session against the real Knowledge Box in which the brief reached version 3 with 12 source chips and a last refresh of 4.7 s (2026-09-12 20:40). The showcase walkthrough has 14 PNGs verified on disk plus a recorded video."
+    }
+  ],
+  "proof": [
+    {
+      "label": "Unit/integration/contract tests",
+      "value": "206/206 passing",
+      "source": "STATUS.md (2026-09-12 20:10 and 21:40, platform v0.1.8)"
+    },
+    {
+      "label": "Line coverage",
+      "value": "99.0%",
+      "source": "STATUS.md (2026-09-12 20:10 and 21:40, platform v0.1.8)"
+    },
+    {
+      "label": "Playwright end-to-end",
+      "value": "22/22 passing",
+      "source": "STATUS.md (2026-09-12 20:10 and 21:40, platform v0.1.8)"
+    },
+    {
+      "label": "Docker build / Fly config validation",
+      "value": "both OK",
+      "source": "STATUS.md (2026-09-12 20:10 and 21:40, platform v0.1.8)"
+    },
+    {
+      "label": "Live smoke (deflection path)",
+      "value": "3/3 golden questions, p50 2.9 s",
+      "source": "STATUS.md (2026-09-12 20:10 and 21:40, platform v0.1.8)"
+    },
+    {
+      "label": "Live listening session on the real Knowledge Box",
+      "value": "brief reached version 3 — topic, goal, profile, 5 key points, suggested questions and answers, 2 recommendations, 12 source chips; last refresh 4.7 s",
+      "source": "STATUS.md (2026-09-12 20:40)"
+    },
+    {
+      "label": "Per-turn latency, small live sample",
+      "value": "p50 3.3 s / p95 5.6 s — adequate in the listening path, disqualifying in a voice-agent tool path",
+      "source": "arag-voice/AUDIT.md; research/voicebridge-market.md section (c3)"
+    },
+    {
+      "label": "API surface",
+      "value": "32 paths under /api/v1, including the listen session API",
+      "source": "arag-voice/src/openapi.ts (counted 2026-09-12)"
+    },
+    {
+      "label": "Showcase assets on disk",
+      "value": "14 PNGs plus a recorded video, verified present",
+      "source": "arag-voice/showcase/out/"
+    }
+  ]
+}

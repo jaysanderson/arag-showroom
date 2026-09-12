@@ -1,0 +1,29 @@
+{
+  "slug": "voicebridge",
+  "title": "VoiceBridge",
+  "recommendedName": "GroundLine",
+  "oneLiner": "VoiceBridge listens to a live conversation — from any source, on any call it's connected to — and keeps one evolving, cited brief in front of whoever needs it: who the other person is, what they want, and what to say next, grounded in a Progress Agentic RAG (ARAG) Knowledge Box and updated as the conversation moves. When a human is available, they get the brief. When nobody is, the same grounding can answer the caller directly — and, either way, anything the knowledge base can't support is handed off by a deterministic rule rather than a guess.",
+  "demoUrl": "https://arag-voice-bridge.fly.dev",
+  "adminUrl": "https://arag-voice-bridge.fly.dev/admin/",
+  "repo": "arag-voice",
+  "commit": "27e31458ec1c",
+  "syncedAt": "2026-09-12T04:45:27.404Z",
+  "files": 63,
+  "screenshots": [
+    "showcase/out/01-console-loaded.png",
+    "showcase/out/02-brief-midcall.png",
+    "showcase/out/03-brief-evolved.png",
+    "showcase/out/04-transcript.png",
+    "showcase/out/05-listen-stats.png",
+    "showcase/out/06-ask-grounded.png",
+    "showcase/out/07-citations-latency.png",
+    "showcase/out/08-ask-handoff.png",
+    "showcase/out/09-golden-not-run.png",
+    "showcase/out/10-golden-gate-open.png",
+    "showcase/out/11-admin-signin.png",
+    "showcase/out/12-admin-listen-sessions.png",
+    "showcase/out/13-turn-log-redacted.png",
+    "showcase/out/14-closing.png"
+  ],
+  "video": "showcase/out/video.webm"
+}

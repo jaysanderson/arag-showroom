@@ -1,0 +1,315 @@
+{
+  "name": "Document Processing",
+  "workingTitle": "Fieldwork (proposed; legal clearance outstanding, D-15)",
+  "oneLiner": "Drop in a document — a PDF, a photo of a form, a scanned invoice — and get back a validated, structured record in under a minute, through one API call.",
+  "elevator": "Document Processing is a partner-accelerator reference product built entirely on Progress Agentic RAG (ARAG). Upload a document and it becomes an ARAG resource; a multi-agent pipeline classifies it against eleven built-in schemas (or a custom one), extracts typed fields grounded in the whole document, surfaces entities, writes a summary, and runs deterministic validation before returning a canonical record. Every extraction schema, built-in or custom, is provisioned as a stored ARAG search configuration, so the model, the grounding strategy and the JSON schema live in the Knowledge Box rather than scattered across client code. The document stays queryable afterwards: ask it a direct question and get a grounded answer. Apache-2.0, self-hostable, zero runtime dependencies, and evaluable with no ARAG credentials via an in-process mock.",
+  "heroMoment": "A scanned invoice goes in. About 120 seconds later — roughly 109 of them ARAG's own visual processing — a validated canonical record comes back: 12 extracted fields with per-field confidence, named entities, a plain-language summary, and any validation issues (a subtotal that doesn't reconcile, a missing required field) surfaced explicitly rather than hidden. That figure is a live smoke-test result against the real Knowledge Box, not a mockup (STATUS.md, 2026-09-12 18:25).",
+  "customer": {
+    "headline": "Read every document the first time",
+    "subheadline": "Paperwork arrives as pictures of data — invoices, claim forms, statements, permits, delivery notes, applications. This turns them into checked, structured records your systems can use, and shows you exactly where every value came from.",
+    "outcomes": [
+      "People stop keying documents. They check the handful of values the system has flagged, instead of retyping every field of every document.",
+      "Every value is traceable. Each extracted field can carry the verbatim sentence it came from, checked against the document text — so a reviewer, an auditor or a regulator can see the evidence rather than take it on trust.",
+      "Nothing is silently guessed. A missing required field, a total that does not match its subtotal and tax, a date that will not parse — each is raised as an issue rather than quietly filled in.",
+      "New document types stop being a project. Describe the fields you want once and every future document of that type is read the same way; on a live Knowledge Box, a scanned invoice returned 12 fields with entities and a summary in about two minutes."
+    ],
+    "heroMoment": "Drop in a photograph of an invoice. Watch it be read, classified and checked on screen. What comes back is not a wall of text — it is a record: supplier, number, dates, tax, total, line items, each with a confidence score and the sentence from the page that supports it.",
+    "capabilities": [
+      {
+        "title": "Reads what you actually need",
+        "body": "Eleven common document types are ready to use — invoices, receipts, purchase orders, contracts, CVs, claim forms, pre-authorisations, bank statements, generic forms and reports. Anything else is a short description away: list the fields you want and it reads those."
+      },
+      {
+        "title": "Checks its own work",
+        "body": "Amounts are re-added, dates are normalised, required fields are confirmed present. Where something does not add up, you get an explicit issue you can route to a person — not a plausible-looking number."
+      },
+      {
+        "title": "Shows you the evidence",
+        "body": "Every field can carry the exact quote from the document behind it, matched against the document's own text and located to a position in the page. If you cannot see where a value came from, you should not have to accept it."
+      },
+      {
+        "title": "Answers questions about the document",
+        "body": "Ask a contract what the notice period is, or an application what the requested amount was, and get an answer drawn from that document rather than from a model's general knowledge."
+      },
+      {
+        "title": "Hands the record to your systems",
+        "body": "JSON, XML or CSV from the same record, through a documented interface — so the output lands in the ledger, the claims system, the case file or the applicant tracker rather than in someone's inbox."
+      }
+    ],
+    "howItWorks": [
+      "You send a document — a PDF, a photo taken on a phone, a scan — or your existing software sends it for you.",
+      "It is read in full, including layout and tables, and identified: this is an invoice, this is a claim form, this is a statement.",
+      "The fields for that kind of document are pulled out, normalised, arithmetically checked and scored, each with the quote from the page that supports it.",
+      "You get back a single record — fields, entities, a plain summary and any issues — plus the ability to ask the document questions."
+    ],
+    "trust": [
+      "Answers come from your document, not from the internet. The system is told to read what is in front of it, and to leave a field empty rather than invent something to fill it.",
+      "Evidence you can open. Each value can be traced to the exact wording that supports it, verified against the document text — the difference between a system that asserts and a system that shows.",
+      "Problems surface instead of hiding. Missing fields and failed arithmetic checks are raised for a person; the system does not quietly round the awkward cases away.",
+      "Your documents stay where you put them. It can run inside your own environment, in your own country, or fully disconnected from the public internet — which is what finance, healthcare, insurance, logistics and public-sector teams usually need.",
+      "Who can see what is enforced when content is retrieved, not filtered out afterwards — so material a user is not entitled to never reaches an answer in the first place.",
+      "It is open source, so your technical team can read exactly how every field was produced."
+    ],
+    "faq": [
+      {
+        "q": "What kinds of documents does it handle?",
+        "a": "Anything that arrives as paper or PDF: supplier invoices and purchase orders, claim forms and remittance advices, contracts, bank and card statements, applications and permits, delivery and consignment notes, CVs, and the long tail of forms that are used twice a year and have never been worth automating."
+      },
+      {
+        "q": "How accurate is it, and how would we know?",
+        "a": "That depends on your documents, which is why we do not publish a single number. The honest way to find out is to run twenty of your own documents — including the bad scans — and compare against what a person would have typed. The evidence quotes make that comparison quick, because you can see what the system read rather than guessing why it disagreed."
+      },
+      {
+        "q": "What happens when it is not sure?",
+        "a": "It says so. Each field carries a confidence score, and validation problems are raised as explicit issues. The usual pattern is to accept high-confidence fields automatically and route the rest to a person, so effort goes where it is actually needed."
+      },
+      {
+        "q": "Does it work with handwriting and poor-quality scans?",
+        "a": "It reads images and scans as images, so it copes with layout, tables and imperfect quality far better than plain text recognition. Consistently poor sources are still worth testing before you commit — run your worst examples first, not your best."
+      },
+      {
+        "q": "Is there a screen for someone to correct a field?",
+        "a": "Not today. Issues and confidence scores are available so your own system can build that review step, and a review queue is on the roadmap. If a click-the-box correction screen is essential from day one, say so early."
+      },
+      {
+        "q": "Where does our data go?",
+        "a": "Wherever you decide. It can run in your own environment, in a specific country, or entirely offline. Documents are held only as long as your retention policy says, and deleting a record removes it from the underlying knowledge store too."
+      },
+      {
+        "q": "Can it work inside the software we already use?",
+        "a": "Yes — that is the common pattern. Your existing application sends the document and displays the result in its own screens; most users never see a separate product."
+      },
+      {
+        "q": "What does it not do?",
+        "a": "It does not approve anything, pay anything or decide anything. It reads, structures, checks and evidences — a person or your own rules make the decision."
+      }
+    ],
+    "cta": {
+      "label": "See it read one of your documents",
+      "body": "The quickest way to judge it is a document you already argue about — bring a difficult one."
+    }
+  },
+  "personas": [
+    "AP / Finance Operations Manager — measured on cost per invoice, days payable outstanding and exception rate; wants a new vendor invoice layout read correctly the first time, not another six-week template-tuning cycle.",
+    "Claims / Health-Scheme Operations Lead — measured on claims turnaround, first-pass yield and audit accuracy; wants claim number, member number, diagnosis code and amount claimed structured and validated before a person opens the form.",
+    "Platform / Integration Engineer at an ISV or systems integrator — measured on integration time and ongoing maintenance burden; wants a versioned REST API with an OpenAPI spec and a contract test suite, not a prompt to babysit.",
+    "Procurement / Contracts Manager — measured on contract review turnaround and vendor onboarding speed; wants to ask a contract \"what's the termination notice period?\" and get a grounded answer instead of re-reading twelve pages."
+  ],
+  "capabilities": [
+    {
+      "title": "Classification across eleven built-in types, or a custom schema",
+      "body": "Invoice, receipt, purchase order, contract, résumé, medical claim, pre-authorisation, bank statement, form, report and generic are built in; POST /api/v1/extraction-configs defines an unlimited number of custom schemas, each provisioned as a stored ARAG search configuration."
+    },
+    {
+      "title": "Schema-driven field extraction",
+      "body": "answer_json_schema forces the model to return exactly the declared fields, grounded with full_resource (the whole document in context, not a retrieved snippet), each field carrying a confidence score and the original raw value before normalisation."
+    },
+    {
+      "title": "Entities and a plain-language summary",
+      "body": "People, organisations, dates, amounts and locations are surfaced automatically, alongside a topic-tagged summary — no per-field definition required ahead of time."
+    },
+    {
+      "title": "Deterministic validation",
+      "body": "validateNormalize runs an arithmetic check (subtotal + tax ≈ total) and flags missing required fields as explicit issues rather than a silent guess."
+    },
+    {
+      "title": "Export to JSON, XML or CSV",
+      "body": "The same canonical record serialises to whichever format the next system needs, verified against the running server."
+    },
+    {
+      "title": "Grounded per-document Q&A",
+      "body": "POST /api/v1/documents/{id}/ask answers a direct question from that document's own text, not the model's general knowledge."
+    },
+    {
+      "title": "A verified-evidence contract (D-24), shipping now",
+      "body": "Every extraction schema requests per-field evidence quotes; each is verified against the document's own extracted text (exact, then normalised match) and mapped to a paragraph offset, exposed as evidence: [{field, quote, verified, paragraph, start, end}] plus a per-record groundingScore."
+    }
+  ],
+  "howItWorks": [
+    "Ingest: a document (PDF, image or text) uploads onto an ARAG Knowledge Box resource.",
+    "Classify: an agent picks the document type (skipped if a specific config is forced via ?config=).",
+    "Extract: the matching schema's stored ARAG search configuration runs answer_json_schema with full_resource grounding, returning typed fields plus evidence quotes.",
+    "Enrich: separate agents surface named entities and write a plain-language summary.",
+    "Validate: a deterministic, non-model stage normalises values and checks internal consistency, producing explicit issues rather than a silent guess.",
+    "Serve: the canonical record is exportable as JSON, XML or CSV, and the document stays queryable via a grounded per-document ask endpoint."
+  ],
+  "whyItWins": [
+    "A verified-evidence contract (D-24): confirmed live on the sandbox Knowledge Box that answer_json_schema plus citations is rejected outright, but requesting verbatim evidence quotes in the schema and verifying them against the extracted text composes the two — shipping in this product, documented for the other two accelerators.",
+    "ARAG applies security.groups during retrieval itself, not as a post-filter on results (research takeaway #3) — no document-AI, conversation-intelligence or agent-assist vendor surveyed documents an equivalent at the retrieval layer.",
+    "Retrieval-native extraction: a processed document yields a JSON record and leaves a live, queryable index behind, rather than discarding the source once fields are pulled — structurally hard for extract-and-forget competitors like Reducto or Extend to copy.",
+    "Apache-2.0, self-hostable, zero runtime dependencies — a materially lower adoption barrier than Chunkr's AGPL-3.0 or Unstructured's library-plus-paywalled-platform split.",
+    "API-first by construction: everything in the demo and admin panel is also a documented /api/v1 endpoint behind an OpenAPI 3.1 contract with contract tests, not a UI-only capability.",
+    "The underlying mechanics already let each stored search configuration pin its own generative model and reranker; exposing that as a per-request choice is a scoped, well-understood next step (research recommendation #8), not a redesign."
+  ],
+  "useCases": [
+    {
+      "title": "Invoices / accounts-payable automation",
+      "body": "POST /api/v1/documents?config=auto classifies an invoice, extracts vendor, invoice number, dates, subtotal/tax/total and line items, and validateNormalize checks the arithmetic before it reaches the ledger — manual keying drops to a review of flagged exceptions only."
+    },
+    {
+      "title": "Purchase orders and three-way matching",
+      "body": "PO number, supplier, total and line items come out in the same canonical shape as the invoice record, so a caller can compare the two programmatically instead of a manual look-up."
+    },
+    {
+      "title": "Medical claims and pre-authorisations",
+      "body": "Dedicated medical_claim and preauthorisation schemas extract claim number, member number, diagnosis/procedure codes and amounts directly, with confidence per field and issues surfaced before adjudication rather than discovered later."
+    },
+    {
+      "title": "Bank statement summarisation",
+      "body": "The bank_statement schema returns account holder, statement period, opening/closing balance and a transaction list, exportable as CSV straight into a reconciliation spreadsheet."
+    },
+    {
+      "title": "Contract abstraction",
+      "body": "The contract schema extracts parties, term, governing law, value and termination provisions, and POST /documents/{id}/ask answers follow-up questions such as the notice period, grounded in the actual text."
+    },
+    {
+      "title": "The long tail of one-off forms",
+      "body": "POST /api/v1/extraction-configs lets an operator describe a form's fields once; it persists as a config and provisions a stored ARAG search configuration immediately, so every future document of that type is extracted the same way."
+    }
+  ],
+  "partnerModels": [
+    {
+      "model": "White-label",
+      "body": "Deploy the accelerator as-is under the partner's brand, pointed at the partner's Knowledge Box — the fastest path to a live use case. Branding-by-configuration is a required D-25 product change, not a shipped feature the brief can confirm: a BRAND_* environment-variable mechanism and a GET /api/v1/branding endpoint appeared in this repo mid-cycle but is undocumented and unverified end-to-end. Until it is confirmed, rebranding reliably means editing the demo/admin HTML directly and the shared UI kit's CSS tokens (vendor/arag-platform/ui/arag-ui.css)."
+    },
+    {
+      "model": "Embed from an existing application",
+      "body": "Your existing application posts a document to POST /api/v1/documents, polls or subscribes to the job's SSE events, and renders the canonical record — fields, per-field confidence and evidence — inside its own screens. The accelerator stays headless and never faces the end user. Requires an HTTP client in your stack and somewhere in your UI to render a value, its confidence and its evidence. Completion signals today are SSE and polling; webhooks are a roadmap item."
+    },
+    {
+      "model": "Extend",
+      "body": "Fork or vendor the accelerator and add a vertical: new extraction schemas (src/services/schemas.ts), new export formats, new pipeline stages, or new endpoints (spec-first in src/openapi.ts, then a route, then a service, then tests). Extension points are documented in docs/developer/extension-points.md."
+    },
+    {
+      "model": "Build-your-own",
+      "body": "Take arag-platform (STANDARDS.md, the ARAG client, the mock ARAG server, the HTTP toolkit, the UI kit and the product template via make new-product) and build a different product on the same standards. Document Processing is one of three worked examples of the pattern."
+    }
+  ],
+  "enablement": {
+    "developerTrack": {
+      "description": "Guided lab and knowledge check covering the API, adding a document type, a custom extraction config, an export format and a test.",
+      "path": "arag-doc-processing/enablement/developer-track/LAB.md"
+    },
+    "architectTrack": {
+      "description": "Workshop, sizing/deployment guidance and a design-review checklist for evaluating or deploying the product.",
+      "path": "arag-doc-processing/enablement/architect-track/WORKSHOP.md"
+    },
+    "showcase": {
+      "description": "Recorded walkthrough script, storyboard and Playwright recording spec, plus 12 rendered PNGs.",
+      "path": "arag-doc-processing/showcase/SCRIPT.md"
+    },
+    "docs": {
+      "description": "Full documentation index: developer quickstart and API reference, architecture and ARAG mechanics, business walkthroughs, product marketing and extension points.",
+      "path": "arag-doc-processing/docs/README.md"
+    }
+  },
+  "roadmap": [
+    {
+      "phase": "Near term",
+      "items": [
+        "Per-field provenance and confidence carried through JSON/XML/CSV export, built from REMi groundedness, a validation flag and retrieval score, documented rather than hidden behind one number",
+        "Expose generative model and reranker choice as a per-request or per-config API parameter, not just a deployment-wide environment variable",
+        "Webhooks with signed payloads, idempotent replay, plus batch document submission alongside the existing SSE job stream"
+      ]
+    },
+    {
+      "phase": "GA",
+      "items": [
+        "Publish an accuracy benchmark (OmniDocBench and/or a field-level extraction eval) with the harness in-repo, including where it loses",
+        "Classification-driven splitting of multi-document files into subdocuments[] with page ranges, type and confidence",
+        "An MCP server and SDK/connector examples (extract_document, ask_document, list_configs)"
+      ]
+    },
+    {
+      "phase": "Post-GA",
+      "items": [
+        "A minimal, separately-deployable human-in-the-loop review queue, kept out of the core binary to protect the headless story",
+        "Retention controls (per-request TTL/purge policy) and field-level PII redaction on export",
+        "An own-parse-output endpoint (layout-preserving markdown, element types, reading order) so the product can be benchmarked on what it actually returns",
+        "In-product evaluation sets: labelled examples per extraction config with per-field precision/recall and a diff against the previous config version",
+        "Self-host packaging: a GHCR image, a docker-compose file and a Helm chart"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "How is an extraction actually grounded, and can I verify it myself?",
+      "a": "Every extraction uses full_resource grounding (the whole document in context, not a retrieved snippet) via answer_json_schema. Live-confirmed on the sandbox Knowledge Box: schema-plus-citations is rejected, but adding an evidence: string[] property to the schema returns accurate verbatim quotes; the product then verifies each quote against the document's own extracted text (exact, then normalised match), maps it to a paragraph offset, and exposes evidence: [{field, quote, verified, paragraph, start, end}] plus a per-record groundingScore. This shipped in the final build (D-24) and was measured live on the real Knowledge Box: a grounding score of 0.92, with 10 evidence quotes matching exactly, 1 after normalisation and 0 unverified (STATUS.md, 2026-09-12 20:30)."
+    },
+    {
+      "q": "Can we try it without an ARAG account first?",
+      "a": "Yes. make install && make dev starts the service against an in-process mock Knowledge Box (ARAG_MOCK=1 is the default whenever .env has no real credentials) — no ARAG account, no LLM spend. This was verified directly: the demo, /api/v1/schemas and /api/v1/documents all respond within seconds of make dev starting."
+    },
+    {
+      "q": "Can we self-host it?",
+      "a": "Yes — Apache-2.0, a Dockerfile (node:22-slim, non-root, no build step) and a fly.toml are provided, and the service has zero runtime dependencies. Persistence today is DATA_DIR JSON stores (D-10), with a documented swap to Postgres/Redis at GA."
+    },
+    {
+      "q": "What does it not do?",
+      "a": "No human-in-the-loop review-and-correct UI, no fine-tuning or model-training tooling, no table-cell bounding boxes or layout coordinates, and a single in-process job runner rather than a distributed queue. It is also not an OCR engine — parsing is delegated to ARAG's configured extract strategy and generative model, deliberately pluggable rather than something this product trains itself."
+    },
+    {
+      "q": "Are we locking ourselves into Progress Agentic RAG?",
+      "a": "Yes, deliberately. full_resource grounding, stored search configurations and the searchable-gate timing are ARAG-specific behaviours learned the hard way, not a generic LLM wrapper. If you're already investing in ARAG as a knowledge platform that's a feature; if you need a backend-agnostic tool, this isn't it."
+    },
+    {
+      "q": "Can we rebrand it under our own name today?",
+      "a": "Branding by configuration ships today (D-25), verified in source on 2026-09-12: BRAND_* environment variables (product name, tagline, logo URL, primary and accent colour, a \"Built on Progress Agentic RAG\" toggle, footer text, docs and support links) are read by arag-platform/src/config/branding.ts, served at GET /api/v1/branding, applied by the UI kit (applyBranding() / <arag-shell>), with brand assets dropped into DATA_DIR/branding/ and served from /branding/ so a rebrand needs no rebuild. Each repo ships docs/developer/white-label.md and docs/developer/build-your-own.md. Honest caveats: the OpenAPI document deliberately keeps its own title, because the API contract is not the brand; branding covers visual identity only and is not multi-tenancy; and the admin view of the effective branding that D-25 also calls for is not built yet. It is covered by the final verification runs on platform v0.1.8 (STATUS.md, 2026-09-12 20:10, 20:30, 21:00 and 21:40). Beyond that, the demo, the admin panel, the UI kit CSS tokens and the published docs are all restyleable."
+    },
+    {
+      "q": "What is the product actually going to be called?",
+      "a": "In code, the repo and the running UI it is Document Processing (arag-doc-processing). Per D-15, naming doesn't block the MVP; the product-marketing recommendation is Fieldwork, a strong direction rather than a final legal clearance — trademark counsel has not yet cleared it."
+    },
+    {
+      "q": "Will this handle our production volume?",
+      "a": "The job runner is a single in-process worker, appropriate for departmental volumes and pilots, not high-throughput production scale. Scaling to a queue-backed worker pool is a known, scoped piece of work rather than a redesign, since jobs are already a first-class API resource."
+    }
+  ],
+  "proof": [
+    {
+      "label": "Unit/integration/contract tests",
+      "value": "66/66 passing",
+      "source": "STATUS.md (2026-09-12 20:30, platform v0.1.8)"
+    },
+    {
+      "label": "Line coverage",
+      "value": "98.6%",
+      "source": "STATUS.md (2026-09-12 20:30, platform v0.1.8)"
+    },
+    {
+      "label": "Playwright end-to-end",
+      "value": "10/10 passing",
+      "source": "STATUS.md (2026-09-12 20:30, platform v0.1.8)"
+    },
+    {
+      "label": "Docker build / Fly config validation",
+      "value": "both OK",
+      "source": "STATUS.md (2026-09-12 20:30, platform v0.1.8)"
+    },
+    {
+      "label": "Doc links resolving",
+      "value": "221",
+      "source": "STATUS.md (2026-09-12 20:30, platform v0.1.8)"
+    },
+    {
+      "label": "Live grounding score on the real Knowledge Box",
+      "value": "0.92 — 10 evidence quotes matched exactly, 1 after normalisation, 0 unverified",
+      "source": "STATUS.md (2026-09-12 20:30, platform v0.1.8)"
+    },
+    {
+      "label": "Live extraction run on the real Knowledge Box",
+      "value": "12 fields from a scanned invoice, plus entities and a summary, end to end in about 120 seconds (about 109 of them ARAG visual processing)",
+      "source": "STATUS.md (2026-09-12 18:25)"
+    },
+    {
+      "label": "Built-in extraction schemas",
+      "value": "11, plus unlimited custom configs, each provisioned as a stored ARAG search configuration (dip_<schema>)",
+      "source": "arag-doc-processing/docs/product-marketing/positioning.md"
+    },
+    {
+      "label": "API surface",
+      "value": "20 paths under /api/v1: documents, jobs, extraction-configs, schemas, branding, session, admin",
+      "source": "arag-doc-processing/src/openapi.ts (counted 2026-09-12)"
+    }
+  ]
+}

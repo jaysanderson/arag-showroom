@@ -1,0 +1,27 @@
+{
+  "slug": "doc-processing",
+  "title": "Document Processing",
+  "recommendedName": "Fieldwork",
+  "oneLiner": "Drop in a document — a PDF, a photo of a form, a scanned invoice — and get back a validated, structured record in under a minute, through one API call.",
+  "demoUrl": "https://arag-doc-processing.fly.dev",
+  "adminUrl": "https://arag-doc-processing.fly.dev/admin/",
+  "repo": "arag-doc-processing",
+  "commit": "9073264d4580",
+  "syncedAt": "2026-09-12T04:45:27.114Z",
+  "files": 58,
+  "screenshots": [
+    "showcase/out/01-home.png",
+    "showcase/out/02-pipeline-and-record.png",
+    "showcase/out/03-exports.png",
+    "showcase/out/04-ask-answer.png",
+    "showcase/out/05-image-sample.png",
+    "showcase/out/06-config-manager.png",
+    "showcase/out/07-config-fields.png",
+    "showcase/out/08-config-provisioned.png",
+    "showcase/out/09-admin-overview.png",
+    "showcase/out/10-admin-configs.png",
+    "showcase/out/11-admin-jobs.png",
+    "showcase/out/12-api-docs.png"
+  ],
+  "video": "showcase/out/video.webm"
+}
