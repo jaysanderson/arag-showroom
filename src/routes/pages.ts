@@ -273,7 +273,9 @@ export function publicProductView(deps: Deps, product: Product): PublicProduct {
         renderFragment(slug, "docs/business/faq.md", stripTitle(faq)),
     proofHtml: renderMarkdown(proofToMarkdown(customer.proof ?? copy.proof)).html,
     partnerModels: copy.partnerModels ?? [],
-    enablementHtml: copy.enablement ? renderMarkdown(enablementToMarkdown(copy.enablement)).html : "",
+    enablementHtml: copy.enablement
+      ? renderMarkdown(firstSections(enablementToMarkdown(copy.enablement), 700)).html
+      : "",
     demoUrl: deps.publicDemoLinks ? deps.catalogue.demoUrl(product) : null,
     hasMermaid: Boolean(mermaid),
     whiteLabelHtml: renderFragment(slug, "docs/developer/white-label.md", firstSections(whiteLabel)),
@@ -292,14 +294,18 @@ function stripTitle(markdown: string): string {
   return markdown.replace(/^#\s+.+\n+/, "");
 }
 
-/** The opening of a long developer document — enough for a public teaser, never the whole guide. */
-function firstSections(markdown: string, maxChars = 1400): string {
+/**
+ * The opening of a long developer document — a teaser on a card, never the whole guide. These
+ * excerpts sit in a grid beside each other on /partners, so they have to be short enough that the
+ * cards stay comparable; the full text is one link away inside the portal.
+ */
+function firstSections(markdown: string, maxChars = 620): string {
   if (!markdown) return "";
   const body = stripTitle(markdown);
   if (body.length <= maxChars) return body;
   const cut = body.slice(0, maxChars);
   const lastBreak = Math.max(cut.lastIndexOf("\n\n"), cut.lastIndexOf("\n- "));
-  return cut.slice(0, lastBreak > 400 ? lastBreak : maxChars);
+  return cut.slice(0, lastBreak > maxChars * 0.4 ? lastBreak : maxChars);
 }
 
 /** Drop cards that talk to a partner about reselling rather than to a customer about the product. */
