@@ -3,6 +3,7 @@
  * temporary, non-persisted store, driven over real HTTP. Every success response is validated
  * against the schema the OpenAPI document declares for it, so the spec cannot drift from the code.
  */
+import { readdirSync } from "node:fs";
 import assert from "node:assert/strict";
 import { resolve } from "node:path";
 import { after, before, describe, test } from "node:test";
@@ -543,7 +544,12 @@ describe("role-based access to products and content", () => {
 
 describe("assets", () => {
   test("showcase stills and recordings are public, because the public product pages embed them", async () => {
-    const png = await c.get("/api/v1/products/doc-processing/assets/showcase/out/01-home.png");
+    // The still's name follows the product's own recording; take the first one the sync brought over.
+    const first = readdirSync(new URL("../content/doc-processing/showcase/out", import.meta.url))
+      .filter((f) => f.endsWith(".png"))
+      .sort()[0];
+    assert.ok(first, "the synced content has at least one showcase still");
+    const png = await c.get(`/api/v1/products/doc-processing/assets/showcase/out/${first}`);
     assert.equal(png.status, 200);
     assert.equal(png.headers.get("content-type"), "image/png");
   });
