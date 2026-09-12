@@ -1,0 +1,194 @@
+{
+  "$comment": "Showroom product catalogue. `repo` is relative to the repo root and is only read by scripts/sync-content.ts (never at runtime). Live URLs may be overridden per deployment with the listed env vars. `capabilities`, `availableNow` and `roadmap` are curated for the public product pages: `availableNow` tracks the MVP scope in the workspace PLAN.md §4 and `roadmap` tracks each product's own docs/architecture/limits.md — re-check both after a content sync. `outcomes` is the customer-facing 'what you get' band on the public product page, used until the marketing lead supplies a `customer.outcomes` block in content/site/<product>.json.",
+  "products": [
+    {
+      "slug": "doc-processing",
+      "workingTitle": "Document Processing",
+      "repo": "../arag-doc-processing",
+      "accent": "#4b4bf7",
+      "summary": "Turn PDFs, scans and photographed forms into validated, structured records through one API call.",
+      "demoUrl": "https://arag-doc-processing.fly.dev",
+      "adminUrl": "https://arag-doc-processing.fly.dev/admin/",
+      "demoUrlEnv": "SHOWROOM_DEMO_URL_DOC_PROCESSING",
+      "adminUrlEnv": "SHOWROOM_ADMIN_URL_DOC_PROCESSING",
+      "adminTokenEnv": "SHOWROOM_ADMIN_TOKEN_DOC_PROCESSING",
+      "docsUrl": "https://arag-doc-processing.fly.dev/api/v1/docs",
+      "repoUrl": "https://github.com/progress/arag-doc-processing",
+      "capabilities": [
+        {
+          "title": "One call in, a canonical record out",
+          "body": "POST a PDF, an image of a form or a scanned statement and get back typed fields with confidence scores, named entities, a summary and validation issues."
+        },
+        {
+          "title": "Eleven built-in document types",
+          "body": "Invoices, claims, contracts, statements, purchase orders and more ship as schemas; anything else is a custom extraction config away."
+        },
+        {
+          "title": "Watch the pipeline run",
+          "body": "Every upload becomes a job with a live event stream: process, classify, extract, entities, summarise, validate, standardise."
+        },
+        {
+          "title": "Export or interrogate",
+          "body": "Export a record as JSON, XML or CSV, or ask the document a question and get a grounded, cited answer."
+        }
+      ],
+      "availableNow": [
+        "Versioned `/api/v1` with an OpenAPI 3.1 contract, Redoc and Swagger UI",
+        "Upload by multipart or raw body, with asynchronous jobs and SSE progress events",
+        "Eleven built-in schemas plus custom extraction configurations provisioned into ARAG",
+        "Exports in JSON, XML and CSV, plus grounded question answering over a single document",
+        "Admin panel: configuration, Knowledge Box connection test, usage, jobs and logs"
+      ],
+      "roadmap": [
+        "Multi-tenant isolation — the MVP is a single Knowledge Box with one service account",
+        "Bulk/batch upload and a review queue for low-confidence fields",
+        "Scheduled retention purges (today the TTL cleanup is an admin action)",
+        "A wider set of built-in document types and locale-specific validation rules"
+      ],
+      "outcomes": [
+        {
+          "title": "Fewer hours spent keying data",
+          "body": "Documents that arrive as pictures of data — PDFs, photographed forms, scanned statements — come back as typed fields your systems can read, without anyone retyping them."
+        },
+        {
+          "title": "Know which fields to check",
+          "body": "Every field carries a confidence score and the original raw value, and arithmetic that does not reconcile is flagged as an explicit issue rather than passed through as a silent guess."
+        },
+        {
+          "title": "A new document layout is not a project",
+          "body": "There are no per-vendor templates to tune. Eleven common document types are built in, and anything else is a schema you describe once."
+        },
+        {
+          "title": "Data that lands where you need it",
+          "body": "Export the same record as JSON, XML or CSV, or ask the document a direct question and get an answer grounded in its own text."
+        }
+      ]
+    },
+    {
+      "slug": "call-analysis",
+      "workingTitle": "Call Analysis",
+      "repo": "../call-analysis",
+      "accent": "#00b563",
+      "summary": "Every recorded contact-centre call becomes a labeled, searchable, citable record — with no analyst tagging a single call by hand.",
+      "demoUrl": "https://call-analysis-arag.fly.dev",
+      "adminUrl": "https://call-analysis-arag.fly.dev/admin",
+      "demoUrlEnv": "SHOWROOM_DEMO_URL_CALL_ANALYSIS",
+      "adminUrlEnv": "SHOWROOM_ADMIN_URL_CALL_ANALYSIS",
+      "adminTokenEnv": "SHOWROOM_ADMIN_TOKEN_CALL_ANALYSIS",
+      "docsUrl": "https://call-analysis-arag.fly.dev/api/v1/docs",
+      "repoUrl": "https://github.com/progress/call-analysis",
+      "capabilities": [
+        {
+          "title": "Automatic labelling, no analyst tagging",
+          "body": "Call reason, outcome, sentiment, line of business and disposition flags are applied by data-augmentation agents the moment a recording lands."
+        },
+        {
+          "title": "Moments inside the transcript",
+          "body": "Individual paragraphs are labelled too — compliance disclosure, escalation, cross-sell — so a reviewer can scrub straight to the moment that matters."
+        },
+        {
+          "title": "Ask one call a question",
+          "body": "The chat is scoped to a single call's transcript, and every citation clicks through to the exact paragraph and scrubs the recording to it."
+        },
+        {
+          "title": "A dashboard over the whole queue",
+          "body": "Volumes, sentiment, complaint and cross-sell rates, and agent scorecards aggregated from structured fields rather than sampled by hand."
+        }
+      ],
+      "availableNow": [
+        "Versioned `/api/v1` with an OpenAPI 3.1 contract, Redoc and Swagger UI",
+        "Call list with search and facets, per-call detail with a synchronised transcript and player",
+        "Grounded per-call question answering with clickable, timestamped citations",
+        "Queue-wide dashboard aggregated from the agents' structured output",
+        "Admin panel: agent/task status, idempotent provisioning, cache inspection, health and logs"
+      ],
+      "roadmap": [
+        "Real-time and in-call use — the MVP analyses a call after it has been recorded",
+        "Per-user authorisation; today any holder of a valid key can read every call in the Knowledge Box",
+        "Multi-tenant deployment across more than one Knowledge Box",
+        "Coaching workflows built on the scorecard output"
+      ],
+      "outcomes": [
+        {
+          "title": "Every call reviewed, not a 2% sample",
+          "body": "Each recording is transcribed, classified and scored the moment it lands, so quality assurance stops being a sampling exercise."
+        },
+        {
+          "title": "Jump straight to the moment",
+          "body": "Individual passages are labelled too, so a reviewer clicks a moment — a disclosure, an escalation, a complaint — and the recording scrubs to that second."
+        },
+        {
+          "title": "Ask a call a question",
+          "body": "Answers come only from that call's own transcript, and every citation clicks through to the exact passage it came from."
+        },
+        {
+          "title": "See the whole queue at once",
+          "body": "Volumes, sentiment, complaint and resolution rates aggregate from structured fields rather than from what anyone had time to listen to."
+        }
+      ]
+    },
+    {
+      "slug": "voicebridge",
+      "workingTitle": "VoiceBridge",
+      "repo": "../arag-voice",
+      "accent": "#00216b",
+      "summary": "The discipline layer between a voice agent and a Knowledge Box: every spoken answer grounded, cited, or handed to a human by rule.",
+      "demoUrl": "https://arag-voice-bridge.fly.dev",
+      "adminUrl": "https://arag-voice-bridge.fly.dev/admin/",
+      "demoUrlEnv": "SHOWROOM_DEMO_URL_VOICEBRIDGE",
+      "adminUrlEnv": "SHOWROOM_ADMIN_URL_VOICEBRIDGE",
+      "adminTokenEnv": "SHOWROOM_ADMIN_TOKEN_VOICEBRIDGE",
+      "docsUrl": "https://arag-voice-bridge.fly.dev/api/v1/docs",
+      "repoUrl": "https://github.com/progress/arag-voice",
+      "capabilities": [
+        {
+          "title": "Real-time listening",
+          "body": "Feed a live conversation transcript in and a grounded, cited brief streams back as the call evolves — topic, goal, stage, suggested questions and answers."
+        },
+        {
+          "title": "Handoff by rule, not by vibe",
+          "body": "When retrieval does not cover the question the caller hears the configured handoff line. The check is deterministic, not a judgement the model makes about itself."
+        },
+        {
+          "title": "Nothing spoken that should not be",
+          "body": "Citations are structured data shown on screen; URLs, markdown and citation markers are stripped from anything destined for speech."
+        },
+        {
+          "title": "Provable before it goes live",
+          "body": "A golden-question corpus gates a prospect's configuration: the demo does not open until the grounding and handoff checks pass."
+        }
+      ],
+      "availableNow": [
+        "Versioned `/api/v1` with an OpenAPI 3.1 contract, Redoc and Swagger UI",
+        "Headless listen sessions: transcript chunk ingestion and an SSE stream of evolving briefs",
+        "Grounded voice answers with deterministic handoff and structured citations",
+        "Prospect registry with stored ARAG search configurations and per-prospect health checks",
+        "Golden-evaluation runs, turn-log inspection and metrics in the admin panel"
+      ],
+      "roadmap": [
+        "Self-serve voice deflection as the follow-on to agent-assist",
+        "Per-agent authentication on the core answer endpoint (today it is one shared service token)",
+        "Production-grade safety guards; the MVP's input/output guards are demo-grade",
+        "A verified LiveAvatar integration and a durable store to replace the single-writer JSON files"
+      ],
+      "outcomes": [
+        {
+          "title": "The right answer, while the call is still happening",
+          "body": "A live conversation streams in and an evolving, cited brief keeps up: who the other person is, what they want, and what to say next."
+        },
+        {
+          "title": "Never the wrong answer, confidently",
+          "body": "When your own content does not cover the question, the system hands off by a deterministic rule instead of guessing — and the rule is testable."
+        },
+        {
+          "title": "Evidence on screen, not in the ear",
+          "body": "Citations are structured data your team can see and check; nothing spoken ever contains a URL or a citation marker."
+        },
+        {
+          "title": "Proved before it goes live",
+          "body": "A fixed set of questions it must answer and questions it must refuse runs through the real pipeline before anyone trusts it."
+        }
+      ]
+    }
+  ]
+}
