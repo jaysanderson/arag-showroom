@@ -13,7 +13,7 @@
       "adminUrlEnv": "SHOWROOM_ADMIN_URL_DOC_PROCESSING",
       "adminTokenEnv": "SHOWROOM_ADMIN_TOKEN_DOC_PROCESSING",
       "docsUrl": "https://arag-doc-processing.fly.dev/api/v1/docs",
-      "repoUrl": "https://github.com/progress/arag-doc-processing",
+      "repoUrl": "https://github.com/jaysanderson/arag-document-processing",
       "capabilities": [
         {
           "title": "One call in, a canonical record out",
@@ -33,11 +33,12 @@
         }
       ],
       "availableNow": [
-        "Versioned `/api/v1` with an OpenAPI 3.1 contract, Redoc and Swagger UI",
-        "Upload by multipart or raw body, with asynchronous jobs and SSE progress events",
-        "Eleven built-in schemas plus custom extraction configurations provisioned into ARAG",
-        "Exports in JSON, XML and CSV, plus grounded question answering over a single document",
-        "Admin panel: configuration, Knowledge Box connection test, usage, jobs and logs"
+        "Versioned `/api/v1` with an OpenAPI 3.1 contract (26 paths), Redoc and Swagger UI",
+        "Documents workspace: searchable queue over extracted values, filters, bulk export and delete, live job status",
+        "Document record with verified evidence: every field's quote marked inside the real extracted text, grounding score, review flags",
+        "Eleven built-in schemas plus a field builder for custom extraction configurations provisioned into ARAG",
+        "Exports in JSON, XML and CSV, grounded question answering per document, first-run onboarding with sample documents",
+        "Operator admin in the same shell: connection, configs, jobs, logs, usage, branding, security, previewed purge"
       ],
       "roadmap": [
         "Multi-tenant isolation — the MVP is a single Knowledge Box with one service account",
@@ -76,7 +77,7 @@
       "adminUrlEnv": "SHOWROOM_ADMIN_URL_CALL_ANALYSIS",
       "adminTokenEnv": "SHOWROOM_ADMIN_TOKEN_CALL_ANALYSIS",
       "docsUrl": "https://call-analysis-arag.fly.dev/api/v1/docs",
-      "repoUrl": "https://github.com/progress/call-analysis",
+      "repoUrl": "https://github.com/jaysanderson/arag-call-analysis",
       "capabilities": [
         {
           "title": "Automatic labelling, no analyst tagging",
@@ -96,11 +97,12 @@
         }
       ],
       "availableNow": [
-        "Versioned `/api/v1` with an OpenAPI 3.1 contract, Redoc and Swagger UI",
-        "Call list with search and facets, per-call detail with a synchronised transcript and player",
-        "Grounded per-call question answering with clickable, timestamped citations",
-        "Queue-wide dashboard aggregated from the agents' structured output",
-        "Admin panel: agent/task status, idempotent provisioning, cache inspection, health and logs"
+        "Versioned `/api/v1` with an OpenAPI 3.1 contract (28 paths), Redoc and Swagger UI",
+        "Calls table with search, facets, sort, pagination and bulk export, re-analysis and delete, plus a visual browse mode",
+        "Call workspace: player with a clickable moments track, searchable transcript, analysis scorecard, cited answers, share links and exports",
+        "Dashboard with drill-through tiles and per-agent and per-queue breakdowns",
+        "Upload flow with live pipeline progress and ingest history, agents and taxonomy view, settings with white-label preview",
+        "Operator admin in the same shell: connection, taxonomy and agents, jobs, logs, usage, branding, security"
       ],
       "roadmap": [
         "Real-time and in-call use — the MVP analyses a call after it has been recorded",
@@ -139,7 +141,7 @@
       "adminUrlEnv": "SHOWROOM_ADMIN_URL_VOICEBRIDGE",
       "adminTokenEnv": "SHOWROOM_ADMIN_TOKEN_VOICEBRIDGE",
       "docsUrl": "https://arag-voice-bridge.fly.dev/api/v1/docs",
-      "repoUrl": "https://github.com/progress/arag-voice",
+      "repoUrl": "https://github.com/jaysanderson/arag-voicebridge",
       "capabilities": [
         {
           "title": "Real-time listening",
@@ -159,11 +161,12 @@
         }
       ],
       "availableNow": [
-        "Versioned `/api/v1` with an OpenAPI 3.1 contract, Redoc and Swagger UI",
-        "Headless listen sessions: transcript chunk ingestion and an SSE stream of evolving briefs",
-        "Grounded voice answers with deterministic handoff and structured citations",
-        "Prospect registry with stored ARAG search configurations and per-prospect health checks",
-        "Golden-evaluation runs, turn-log inspection and metrics in the admin panel"
+        "Versioned `/api/v1` with an OpenAPI 3.1 contract (39 paths), Redoc and Swagger UI",
+        "Live workspace: start listening from microphone (ElevenLabs Scribe), a telephony webhook or typed text, with the grounded brief rewriting itself as the call moves",
+        "Conversations history searchable by what was said, with brief evolution, transcript, sources, latency and export",
+        "Voice-agent channel on ElevenLabs Conversational AI with a paste-ready tool definition, optional spoken whisper cue",
+        "Knowledge view with golden-set evaluation and run history; prospect registry with per-prospect branding and provisioning",
+        "Quality metrics (latency percentiles, handoff rate, citation coverage, guard trips) and an operator admin in the same shell"
       ],
       "roadmap": [
         "Self-serve voice deflection as the follow-on to agent-assist",

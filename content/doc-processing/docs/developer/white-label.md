@@ -2,16 +2,16 @@
 
 A partner can rebrand a deployment of Document Processing **by configuration alone** — no
 fork, no rebuild, no code change. Set `BRAND_*` environment variables, drop a logo into a
-directory, restart. Both the demo (`/`) and the admin panel (`/admin/`) read the effective
-branding from `GET /api/v1/branding` before they paint.
+directory, restart. Both the operator app (`/`) and the admin app (`/admin/`) read the
+effective branding from `GET /api/v1/branding` before they paint.
 
 ## The branding keys
 
 | Variable | Default | What it changes |
 |---|---|---|
-| `BRAND_PRODUCT_NAME` | `Document Processing` | Header wordmark, page titles |
-| `BRAND_TAGLINE` | `Documents in, validated records out` | Small line beside the name |
-| `BRAND_LOGO_URL` | *(none — wordmark only)* | Logo image in the header |
+| `BRAND_PRODUCT_NAME` | `Document Processing` | The name at the top of the sidebar, and page titles |
+| `BRAND_TAGLINE` | `Documents in, validated records out` | Small line under the name |
+| `BRAND_LOGO_URL` | *(none — the name alone)* | Your mark above the name at the top of the sidebar, and on the admin sign-in card. The Progress Agentic RAG wordmark stays in the top band (see `BRAND_POWERED_BY`) |
 | `BRAND_PRIMARY_COLOR` | platform brand colour | `--arag-brand-500/600/700` CSS variables |
 | `BRAND_ACCENT_COLOR` | platform accent | `--arag-accent-400/500` |
 | `BRAND_POWERED_BY` | `1` | `0` hides the "Built on Progress Agentic RAG" band and footer credit |
@@ -74,8 +74,10 @@ $ curl -sS http://localhost:8080/api/v1/branding
  "footerText":"","docsUrl":"/api/v1/docs","supportUrl":""}
 ```
 
-The admin panel's **Configuration** tab shows the same values with the variable that sets
-each one, so an operator can see what is in force without shell access.
+The admin app's **Branding** screen (`/admin/#/branding`) shows the same values with the
+variable that sets each one, plus a live preview — and the same information, without an
+admin token, is on the operator app's **Settings → Branding** tab — so an operator can see
+what is in force without shell access.
 
 ## What branding does *not* change
 

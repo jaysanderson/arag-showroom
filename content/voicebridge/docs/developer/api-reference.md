@@ -46,18 +46,49 @@ Auth: ApiKey or Bearer
 
 ### `GET /api/v1/listen/sessions`
 
-**Recent listen sessions**
+**Search, filter and page past listen sessions** — Backs the Conversations list. `q` searches the prospect, the brief (topic, summary, goal, profile), the accumulated source titles and the transcript itself, so an operator can find a call by what was said in it rather than by its id.
 
 Parameters:
 
 | Name | In | Type | Required | Description |
 |---|---|---|---|---|
 | `prospect` | query | string |  |  |
+| `status` | query | string |  |  |
+| `q` | query | string |  | Free text over prospect, brief, source titles and transcript |
+| `from` | query | string |  | Only sessions started at or after this instant |
+| `to` | query | string |  | Only sessions started at or before this instant |
+| `sort` | query | string |  |  |
+| `order` | query | string |  |  |
 | `limit` | query | integer |  |  |
+| `offset` | query | integer |  |  |
 
 Responses:
 
 - `200` OK — `application/json` object
+- `400` Validation failed — `application/problem+json` [Problem](#problem)
+- `401` Authentication required — `application/problem+json` [Problem](#problem)
+- `403` Forbidden — `application/problem+json` [Problem](#problem)
+- `404` Not found — `application/problem+json` [Problem](#problem)
+- `429` Rate limited — `application/problem+json` [Problem](#problem)
+- `502` Upstream (ARAG) error — `application/problem+json` [Problem](#problem)
+
+Auth: ApiKey or Bearer
+
+
+### `GET /api/v1/listen/sessions/{id}/export`
+
+**Export the whole record of one call** — Returns every brief version with its timestamp and latency, the full transcript, the accumulated citations and the session stats — as JSON, or as Markdown for a handover note.
+
+Parameters:
+
+| Name | In | Type | Required | Description |
+|---|---|---|---|---|
+| `id` | path | string | yes |  |
+| `format` | query | string |  |  |
+
+Responses:
+
+- `200` The session record — `application/json` [ListenSessionExport](#listensessionexport)
 - `400` Validation failed — `application/problem+json` [Problem](#problem)
 - `401` Authentication required — `application/problem+json` [Problem](#problem)
 - `403` Forbidden — `application/problem+json` [Problem](#problem)
@@ -134,6 +165,30 @@ Request body (`application/json`): object
 Responses:
 
 - `202` Accepted — `application/json` object
+- `400` Validation failed — `application/problem+json` [Problem](#problem)
+- `401` Authentication required — `application/problem+json` [Problem](#problem)
+- `403` Forbidden — `application/problem+json` [Problem](#problem)
+- `404` Not found — `application/problem+json` [Problem](#problem)
+- `409` The session has ended — `application/problem+json` [Problem](#problem)
+- `429` Rate limited — `application/problem+json` [Problem](#problem)
+- `502` Upstream (ARAG) error — `application/problem+json` [Problem](#problem)
+
+Auth: ApiKey or Bearer
+
+
+### `POST /api/v1/listen/sessions/{id}/refresh`
+
+**Ask for one more brief refresh now** — The deliberate retry behind a stale brief. Without it the only way to provoke a refresh is to append transcript, which would fabricate conversation that was never said. The throttle's minimum gap still applies, and a refresh that finds nothing leaves the previous brief exactly where it is.
+
+Parameters:
+
+| Name | In | Type | Required | Description |
+|---|---|---|---|---|
+| `id` | path | string | yes |  |
+
+Responses:
+
+- `200` The session after the refresh — `application/json` [ListenSession](#listensession)
 - `400` Validation failed — `application/problem+json` [Problem](#problem)
 - `401` Authentication required — `application/problem+json` [Problem](#problem)
 - `403` Forbidden — `application/problem+json` [Problem](#problem)
@@ -312,6 +367,57 @@ Auth: ApiKey or Bearer
 
 ## realtime
 
+### `POST /api/v1/speech`
+
+**Speak a line of the brief aloud (ElevenLabs text-to-speech)** — The optional spoken brief: Live can read the grounded brief, or the single line the handler could say next, into their own ear. Nothing is ever injected into the call — this returns audio to the browser that asked for it, and it is off by default.
+
+Synthesis happens server-side so the ElevenLabs key never reaches a browser. Returns 503 when the deployment has no key, which is how the toggle knows to stay hidden.
+
+Request body (`application/json`): object
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `text` | string | yes |  |
+| `voice_id` | string |  | Overrides the configured voice |
+| `prospect` | string |  | Use this prospect's configured voice |
+
+Responses:
+
+- `200` The spoken line — `audio/mpeg` string
+- `400` Validation failed — `application/problem+json` [Problem](#problem)
+- `401` Authentication required — `application/problem+json` [Problem](#problem)
+- `403` Forbidden — `application/problem+json` [Problem](#problem)
+- `404` Not found — `application/problem+json` [Problem](#problem)
+- `429` Rate limited — `application/problem+json` [Problem](#problem)
+- `502` Upstream (ARAG) error — `application/problem+json` [Problem](#problem)
+- `503` ElevenLabs is not configured on this deployment; the toggle stays hidden — `application/problem+json` [Problem](#problem)
+
+Auth: ApiKey or Bearer
+
+
+### `GET /api/v1/voice-agent`
+
+**The ElevenLabs agent configuration for a prospect** — VoiceBridge is not a voice platform. The agent lives in ElevenLabs Conversational AI and calls `POST /api/v1/voice-answer` as a custom server tool, so every spoken answer still comes from the Knowledge Box. This returns exactly what has to be pasted into the ElevenLabs dashboard — tool definition and router prompt — derived from the registry.
+
+Parameters:
+
+| Name | In | Type | Required | Description |
+|---|---|---|---|---|
+| `prospect` | query | string | yes |  |
+
+Responses:
+
+- `200` OK — `application/json` [VoiceAgentConfig](#voiceagentconfig)
+- `400` Validation failed — `application/problem+json` [Problem](#problem)
+- `401` Authentication required — `application/problem+json` [Problem](#problem)
+- `403` Forbidden — `application/problem+json` [Problem](#problem)
+- `404` Not found — `application/problem+json` [Problem](#problem)
+- `429` Rate limited — `application/problem+json` [Problem](#problem)
+- `502` Upstream (ARAG) error — `application/problem+json` [Problem](#problem)
+
+Auth: ApiKey or Bearer
+
+
 ### `POST /api/v1/scribe-token`
 
 **Mint a single-use ElevenLabs Scribe realtime token** — Requires a same-origin session (`POST /api/v1/session`), an API key or the admin token, and is rate-limited separately: the token spends ElevenLabs quota. The browser never holds the ElevenLabs API key.
@@ -378,6 +484,84 @@ Responses:
 Auth: ApiKey or Bearer
 
 
+### `GET /api/v1/turns`
+
+**The turn log behind the Quality view** — Recent turns, newest first, filterable by outcome so an operator can go straight to the turns that handed off or tripped a safety guard. Question text is stored only for turns that passed the input guard: a guard trip records the reason and nothing else.
+
+Never anonymous, even when `API_KEYS` is unset: a same-origin session (`POST /api/v1/session`, which the workspace calls at boot), an API key or the admin token is required, because the questions people asked are not public.
+
+Parameters:
+
+| Name | In | Type | Required | Description |
+|---|---|---|---|---|
+| `prospect` | query | string |  |  |
+| `outcome` | query | string |  |  |
+| `source` | query | string |  |  |
+| `reason` | query | string |  |  |
+| `limit` | query | integer |  |  |
+| `offset` | query | integer |  |  |
+
+Responses:
+
+- `200` OK — `application/json` object
+- `400` Validation failed — `application/problem+json` [Problem](#problem)
+- `401` Authentication required — `application/problem+json` [Problem](#problem)
+- `403` Forbidden — `application/problem+json` [Problem](#problem)
+- `404` Not found — `application/problem+json` [Problem](#problem)
+- `429` Rate limited — `application/problem+json` [Problem](#problem)
+- `502` Upstream (ARAG) error — `application/problem+json` [Problem](#problem)
+
+Auth: ApiKey or Bearer
+
+
+### `GET /api/v1/knowledge`
+
+**What a prospect is grounded in, and whether its golden gate is open** — Backs the Knowledge view: the Knowledge Box a prospect answers from (id partially masked — the full id is admin-only), its connectivity, the models in play, the golden set, and the most recent golden run.
+
+Parameters:
+
+| Name | In | Type | Required | Description |
+|---|---|---|---|---|
+| `prospect` | query | string | yes |  |
+
+Responses:
+
+- `200` OK — `application/json` [KnowledgeStatus](#knowledgestatus)
+- `400` Validation failed — `application/problem+json` [Problem](#problem)
+- `401` Authentication required — `application/problem+json` [Problem](#problem)
+- `403` Forbidden — `application/problem+json` [Problem](#problem)
+- `404` Not found — `application/problem+json` [Problem](#problem)
+- `429` Rate limited — `application/problem+json` [Problem](#problem)
+- `502` Upstream (ARAG) error — `application/problem+json` [Problem](#problem)
+
+Auth: ApiKey or Bearer
+
+
+### `GET /api/v1/golden-evals`
+
+**Golden-run history**
+
+Parameters:
+
+| Name | In | Type | Required | Description |
+|---|---|---|---|---|
+| `prospect` | query | string |  |  |
+| `limit` | query | integer |  |  |
+| `offset` | query | integer |  |  |
+
+Responses:
+
+- `200` OK — `application/json` object
+- `400` Validation failed — `application/problem+json` [Problem](#problem)
+- `401` Authentication required — `application/problem+json` [Problem](#problem)
+- `403` Forbidden — `application/problem+json` [Problem](#problem)
+- `404` Not found — `application/problem+json` [Problem](#problem)
+- `429` Rate limited — `application/problem+json` [Problem](#problem)
+- `502` Upstream (ARAG) error — `application/problem+json` [Problem](#problem)
+
+Auth: ApiKey or Bearer
+
+
 ### `POST /api/v1/golden-evals`
 
 **Run a prospect's golden set (async job)** — Runs every golden question through the in-process pipeline and stores the result. Returns 202 with a job; poll `/api/v1/jobs/{id}` or stream `/api/v1/jobs/{id}/events`.
@@ -422,6 +606,58 @@ Responses:
 - `502` Upstream (ARAG) error — `application/problem+json` [Problem](#problem)
 
 Auth: ApiKey or Bearer
+
+## system
+
+### `GET /api/v1/integrations`
+
+**Which optional integrations this deployment has configured** — Booleans and non-secret detail only — never a credential. Backs the Settings view so a partner can see at a glance why the microphone or the avatar pane is unavailable.
+
+Responses:
+
+- `200` OK — `application/json` object
+- `400` Validation failed — `application/problem+json` [Problem](#problem)
+- `401` Authentication required — `application/problem+json` [Problem](#problem)
+- `403` Forbidden — `application/problem+json` [Problem](#problem)
+- `404` Not found — `application/problem+json` [Problem](#problem)
+- `429` Rate limited — `application/problem+json` [Problem](#problem)
+- `502` Upstream (ARAG) error — `application/problem+json` [Problem](#problem)
+
+Auth: ApiKey or Bearer
+
+
+### `GET /api/v1/branding`
+
+**White-label branding for this deployment** — Public: the console and the admin panel apply it at boot (name, logo, colours, footer, and whether the Progress credit is shown). Partners set `BRAND_*` in the environment; per-prospect overrides are returned with each prospect.
+
+Responses:
+
+- `200` OK — `application/json` [Branding](#branding)
+- `400` Validation failed — `application/problem+json` [Problem](#problem)
+- `401` Authentication required — `application/problem+json` [Problem](#problem)
+- `403` Forbidden — `application/problem+json` [Problem](#problem)
+- `404` Not found — `application/problem+json` [Problem](#problem)
+- `429` Rate limited — `application/problem+json` [Problem](#problem)
+- `502` Upstream (ARAG) error — `application/problem+json` [Problem](#problem)
+
+Auth: public
+
+
+### `POST /api/v1/session`
+
+**Issue a same-origin session cookie for the demo UI**
+
+Responses:
+
+- `200` OK — `application/json` object
+- `400` Validation failed — `application/problem+json` [Problem](#problem)
+- `401` Authentication required — `application/problem+json` [Problem](#problem)
+- `403` Forbidden — `application/problem+json` [Problem](#problem)
+- `404` Not found — `application/problem+json` [Problem](#problem)
+- `429` Rate limited — `application/problem+json` [Problem](#problem)
+- `502` Upstream (ARAG) error — `application/problem+json` [Problem](#problem)
+
+Auth: public
 
 ## jobs
 
@@ -516,24 +752,6 @@ Responses:
 - `502` Upstream (ARAG) error — `application/problem+json` [Problem](#problem)
 
 Auth: ApiKey or Bearer
-
-## system
-
-### `POST /api/v1/session`
-
-**Issue a same-origin session cookie for the demo UI**
-
-Responses:
-
-- `200` OK — `application/json` object
-- `400` Validation failed — `application/problem+json` [Problem](#problem)
-- `401` Authentication required — `application/problem+json` [Problem](#problem)
-- `403` Forbidden — `application/problem+json` [Problem](#problem)
-- `404` Not found — `application/problem+json` [Problem](#problem)
-- `429` Rate limited — `application/problem+json` [Problem](#problem)
-- `502` Upstream (ARAG) error — `application/problem+json` [Problem](#problem)
-
-Auth: public
 
 ## admin
 
@@ -918,6 +1136,20 @@ RFC 9457 problem details
 | `level` | string | yes |  |
 | `msg` | string | yes |  |
 
+### Branding
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `productName` | string | yes |  |
+| `tagline` | string |  |  |
+| `logoUrl` | string |  |  |
+| `primaryColor` | string |  |  |
+| `accentColor` | string |  |  |
+| `poweredBy` | boolean | yes |  |
+| `footerText` | string |  |  |
+| `docsUrl` | string |  |  |
+| `supportUrl` | string |  |  |
+
 ### Citation
 
 | Field | Type | Required | Description |
@@ -976,6 +1208,93 @@ RFC 9457 problem details
 | `stats` | [ListenStats](#listenstats) | yes |  |
 | `transcript` | array of [TranscriptEntry](#transcriptentry) |  |  |
 | `transcriptTotal` | integer |  |  |
+
+### BriefSnapshot
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `version` | integer | yes |  |
+| `at` | string | yes |  |
+| `brief` | object,null | yes |  |
+| `latencyMs` | integer |  |  |
+
+### ListenSessionExport
+
+The complete record of one call: every brief version, the whole transcript, sources
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `id` | string | yes |  |
+| `createdAt` | string |  |  |
+| `updatedAt` | string |  |  |
+| `endedAt` | string |  |  |
+| `prospect` | string | yes |  |
+| `locale` | string |  |  |
+| `generative_model` | string |  |  |
+| `metadata` | object |  |  |
+| `status` | string (`live`, `ended`) | yes |  |
+| `durationSec` | integer |  |  |
+| `brief` | object,null | yes |  |
+| `briefVersion` | integer |  |  |
+| `briefHistory` | array of [BriefSnapshot](#briefsnapshot) | yes |  |
+| `citations` | array of [Citation](#citation) | yes |  |
+| `stats` | [ListenStats](#listenstats) | yes |  |
+| `transcript` | array of [TranscriptEntry](#transcriptentry) | yes |  |
+
+### KnowledgeStatus
+
+What the selected prospect is grounded in, and whether its golden gate is open
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `prospect` | string | yes |  |
+| `display_name` | string | yes |  |
+| `kb` | object | yes |  |
+| `golden_questions` | array of [GoldenQuestion](#goldenquestion) | yes |  |
+| `last_eval` | object |  | The most recent golden run for this prospect, or null when it has never run |
+
+### IntegrationStatus
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `id` | string (`arag`, `elevenlabs`, `livekit`, `liveavatar`) | yes |  |
+| `name` | string | yes |  |
+| `configured` | boolean | yes |  |
+| `primary` | boolean |  | True for the integrations the out-of-the-box experience is built on |
+| `purpose` | string | yes | What this integration unlocks in the product |
+| `detail` | string |  | Non-secret endpoint or mode, never a credential |
+| `setup` | string |  | The environment variables that switch it on |
+| `capabilities` | array of object |  | What this deployment actually uses the integration for |
+| `config` | object |  | Non-secret settings in force (models, endpoints, ids) — never a credential |
+
+### VoiceAgentTool
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `name` | string | yes |  |
+| `method` | string | yes |  |
+| `url` | string | yes |  |
+| `timeoutMs` | integer | yes | Must exceed VOICE_TURN_TIMEOUT_MS |
+| `bodySchema` | object | yes |  |
+
+### VoiceAgentConfig
+
+Everything needed to wire an ElevenLabs Conversational AI agent to this deployment: the custom server tool it calls, and the router prompt that keeps it from answering by itself.
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `prospect` | string | yes |  |
+| `display_name` | string | yes |  |
+| `provider` | string (`elevenlabs`) | yes |  |
+| `agent_id` | string,null |  | Non-secret agent id, null when unwired |
+| `ready` | boolean |  | An agent id is set and is not the example placeholder |
+| `configured` | boolean |  | This deployment holds an ElevenLabs key |
+| `voice_id` | string,null |  |  |
+| `greeting` | string |  |  |
+| `handoff_msg` | string |  |  |
+| `tool` | [VoiceAgentTool](#voiceagenttool) | yes |  |
+| `system_prompt` | string | yes |  |
+| `docs_url` | string |  |  |
 
 ### LatencyMs
 
@@ -1054,6 +1373,7 @@ Non-secret projection of a registry entry (safe for browsers)
 | `golden_questions` | array of [GoldenQuestion](#goldenquestion) |  |  |
 | `avatar_ready` | boolean |  |  |
 | `scribe_ready` | boolean |  |  |
+| `brand` | [Branding](#branding) |  | Deployment branding with this prospect's overrides applied |
 
 ### ProspectInput
 
@@ -1070,6 +1390,7 @@ Full prospect configuration (admin only — contains KB ids)
 | `generative_model` | string |  |  |
 | `temperature` | number |  |  |
 | `brief_model` | string |  |  |
+| `brand` | object |  | White-label overrides for this prospect, layered on the deployment's branding |
 | `agent_id` | string |  |  |
 | `voice_id` | string |  |  |
 | `avatar_id` | string |  |  |
@@ -1096,6 +1417,7 @@ A stored registry entry (admin only)
 | `generative_model` | string |  |  |
 | `temperature` | number |  |  |
 | `brief_model` | string |  |  |
+| `brand` | object |  | White-label overrides for this prospect, layered on the deployment's branding |
 | `agent_id` | string |  |  |
 | `voice_id` | string |  |  |
 | `avatar_id` | string |  |  |
@@ -1179,6 +1501,24 @@ A stored registry entry (admin only)
 | `failed` | integer | yes |  |
 | `latency_ms` | object |  |  |
 | `cases` | array of [GoldenCase](#goldencase) | yes |  |
+| `startedAt` | string |  |  |
+| `finishedAt` | string |  |  |
+
+### GoldenEvalSummary
+
+A golden run without the per-question detail (fetch it by id to see the cases)
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `id` | string | yes |  |
+| `createdAt` | string |  |  |
+| `prospect` | string | yes |  |
+| `display_name` | string |  |  |
+| `ok` | boolean | yes |  |
+| `total` | integer | yes |  |
+| `passed` | integer | yes |  |
+| `failed` | integer | yes |  |
+| `latency_ms` | object |  |  |
 | `startedAt` | string |  |  |
 | `finishedAt` | string |  |  |
 

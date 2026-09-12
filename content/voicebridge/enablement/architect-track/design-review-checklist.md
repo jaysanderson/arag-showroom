@@ -92,9 +92,9 @@ customer's specific configuration" — there is no generic pass/fail for it.
       whoever owns this customer's cost model understands that distinction before relying on
       `VOICE_BRIEF_RATE_RPS` as the control for listening's ongoing spend (see
       `sizing-deployment.md`'s "Per listen-session refresh" section).
-- [ ] Confirm `VOICE_SCRIBE_RATE_RPS`/`BURST` (default 0.2 rps / burst 3) are in place if Call mode
-      is in scope — this limits how fast third-party ElevenLabs Scribe tokens can be minted per
-      caller IP.
+- [ ] Confirm `VOICE_SCRIBE_RATE_RPS`/`BURST` (default 0.2 rps / burst 3) are in place if Live's
+      microphone transcription is in scope — this limits how fast third-party ElevenLabs Scribe
+      tokens can be minted per caller IP.
 
 ## Data retention (turn log)
 
@@ -106,8 +106,14 @@ customer's specific configuration" — there is no generic pass/fail for it.
 - [ ] Confirm the customer understands guard-tripped turns are the deliberate exception: no
       question text is ever written for those (`DECISIONS.md` V-08) — this is a feature, not a
       gap, but it means the turn log is not a complete conversation transcript by design.
-- [ ] Confirm who has access to `/admin/` and therefore to this data — it is protected only by
-      `ADMIN_TOKEN`, a single shared secret, not per-operator accounts or audit-logged access.
+- [ ] Confirm who has access to this data. The operator view (`/admin/`, `GET /api/v1/admin/turns`)
+      is protected only by `ADMIN_TOKEN`, a single shared secret, not per-operator accounts or
+      audit-logged access. The Quality page reads the same records through `GET /api/v1/turns`,
+      which is never anonymous — it requires a same-origin session, an API key or the admin token
+      even when `API_KEYS` is unset — but a session is minted by anyone who can load the page, so
+      on an internet-reachable deployment with `API_KEYS` unset that is still everyone. Set
+      `API_KEYS`, or put the deployment behind your own authentication, before real conversations
+      run through it.
 
 ## Real-time listening (agent-assist)
 
@@ -142,7 +148,7 @@ customer's specific configuration" — there is no generic pass/fail for it.
       brief) it increments `stats.failures`, emits `status: "skipped"` with a reason over SSE, and
       leaves the **previous** brief exactly as it was. A viewer sees a brief that has stopped
       updating, not an error state and not a blank pane — confirm the customer's UI (if not the
-      shipped console) actually surfaces `stats.failures` or a stale `updatedAt` somewhere, since
+      shipped Live page) actually surfaces `stats.failures` or a stale `updatedAt` somewhere, since
       the API itself gives no explicit "this session is currently failing to refresh" signal beyond
       those two fields.
 - [ ] Confirm the customer's integration actually calls `DELETE /api/v1/listen/sessions/{id}` when

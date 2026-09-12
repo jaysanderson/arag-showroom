@@ -9,12 +9,16 @@ src/
   server.ts        createProduct(): wires stores, clients, jobs and every route module
   openapi.ts       the OpenAPI 3.1 document — source of truth, written before routes
   types.ts         the public request/response contract + registry shapes
-  routes/          one module per resource (voice, prospects, realtime, quality, jobs, admin)
+  routes/          one module per resource (listen, voice, prospects, realtime, quality, jobs, admin)
   services/        domain logic, no HTTP types — pipeline, handoff, voiceShape, safety, citations,
-                    brief, registry, clientPool, goldenEval, provision, metrics, seed, models,
-                    voices, scribe, liveavatar, livekit, ratelimit, voicePrompt
-public/            demo console (static, framework-free) — consumes only /api/v1
-admin/             admin panel (static) — consumes only /api/v1 (+ /api/v1/admin)
+                    brief, listen, registry, clientPool, goldenEval, provision, metrics, seed, models,
+                    voices, scribe, tts, voiceAgent, liveavatar, livekit, ratelimit, voicePrompt
+public/            the workspace (static, framework-free) — consumes only /api/v1. One directory per
+                    section (conversations/, knowledge/, prospects/, quality/, settings/) each with
+                    its own index.html + entry script under app/ (live.js, conversations.js, …);
+                    shell.js is the shared rail/nav/topbar every entry script mounts first.
+admin/             Operator (static) — same shell as public/, hash-routed — consumes only /api/v1
+                   (+ /api/v1/admin)
 vendor/arag-platform/  vendored platform (App, AragClient, Store, JobManager, …) — never edited here
 test/              unit, integration (mock ARAG), contract, e2e (Playwright)
 scripts/           eval.ts, provision.ts, smoke.ts — thin clients over the running server's API
@@ -35,7 +39,7 @@ make dev           run with --watch on :8080 (ARAG_MOCK=1 unless .env has ARAG_A
 make start         run in production mode (node src/index.ts, no --watch)
 make test          unit + integration + contract tests (node:test, mock ARAG)
 make coverage      the same tests with the 80% line-coverage gate on src/**
-make e2e           Playwright (console + admin) against a mock-backed server
+make e2e           Playwright (workspace + Operator) against a mock-backed server
 make lint          biome check
 make typecheck     tsc --noEmit
 make check         lint + typecheck + coverage — this is what CI runs
@@ -70,7 +74,7 @@ Run it standalone (e.g. to poke at it with `curl` while developing another clien
 ```bash
 make test       # node --test --test-reporter=spec 'test/*.test.ts'
 make coverage   # + --experimental-test-coverage --test-coverage-lines=80 on src/**
-make e2e        # Playwright, console + admin, PW_DISABLE_TS_ESM=1 so it runs the .ts sources directly
+make e2e        # Playwright, workspace + Operator, PW_DISABLE_TS_ESM=1 so it runs the .ts sources directly
 ```
 
 Test files (`test/*.test.ts`) cover: voice shaping, citation extraction, deterministic handoff,
@@ -80,7 +84,7 @@ injected so nothing touches the network), LiveKit JWT minting, and two whole-pro
 `integration.test.ts` (every route, in-process, against the mock ARAG server) and
 `contract.test.ts` (the OpenAPI document lints clean, every registered route appears in the spec,
 and real responses validate against their declared schemas). `test/e2e/*.spec.ts` drives the actual
-console and admin panel in a browser against a mock-backed server — golden-set run included.
+workspace and Operator views in a browser against a mock-backed server — golden-set run included.
 
 `make check` is lint + typecheck + coverage and is what CI (`.github/workflows/ci.yml`) runs on
 Node 22 and 24 for every push and PR.
