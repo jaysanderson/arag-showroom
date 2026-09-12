@@ -3,8 +3,9 @@
  * temporary, non-persisted store, driven over real HTTP. Every success response is validated
  * against the schema the OpenAPI document declares for it, so the spec cannot drift from the code.
  */
-import { readdirSync } from "node:fs";
+
 import assert from "node:assert/strict";
+import { readdirSync } from "node:fs";
 import { resolve } from "node:path";
 import { after, before, describe, test } from "node:test";
 import { openapi } from "../src/openapi.ts";
