@@ -1,7 +1,8 @@
 # Exercise 6 — Write and filter a key-value field through the Knowledge Box
 
 **Time budget:** 30 minutes.
-**Matches:** LAB.md Section 6. Needs a session cookie for the two write calls.
+**Matches:** LAB.md Section 6. Needs a writer credential for the four write calls in
+steps 7 and 8 — a session cookie is the lowest-friction one.
 
 This is the exercise for the capability the product is built around: extracted values do
 not only land in this workspace's JSON store, they are written into the Knowledge Box as

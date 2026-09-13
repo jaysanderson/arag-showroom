@@ -63,11 +63,11 @@ Other fixed facts from the running configuration:
   var alone.
 - **State: JSON files on a Fly volume**, one file per collection
   (`documents.json`, `jobs.json`, `extraction-configs.json`, and — since the real
-  API-key store and DP-52's settings layering — `settings.json`, `apikeys.json` and
-  `audit.json` too), loaded fully into memory at boot and rewritten atomically on
-  every write (`vendor/arag-platform/src/store/jsonstore.ts`). There is no external
-  database. See "Memory and CPU guidance" below for how the audit log and job store
-  grow.
+  API-key store and DP-52's settings layering — `settings.json`, `apikeys.json`,
+  `audit.json`, plus `generators.json` and `runtime.json`), loaded fully into
+  memory at boot and rewritten atomically on every write
+  (`vendor/arag-platform/src/store/jsonstore.ts`). There is no external database. See
+  "Memory and CPU guidance" below for how the audit log and job store grow.
 - **Default deployment shape** (`fly.toml`): `shared-cpu-1x`, 1 GB RAM, a 1 GB volume,
   `min_machines_running = 1`.
 
@@ -186,10 +186,13 @@ later, with no status to wait on. The sizing consequence: a filtered list screen
 (`GET /api/v1/documents?kv=…`) runs a `/find` against the Knowledge Box on **every
 page load**, in addition to the local scan an unfiltered list already does. An
 unfiltered list is a local-only read; a filtered one costs one extra Knowledge Box
-round trip every time the page loads or the filter changes. The response reports which
-was actually used — `filters.knowledgeBox` (the Knowledge-Box-side match) versus
-`filters.local` (the local list) — so this cost is visible in
-`GET /api/v1/admin/usage` rather than hidden inside a single "list" number.
+round trip every time the page loads or the filter changes. Each list response reports
+which system answered which half — `filters.knowledgeBox` (the Knowledge-Box-side
+match) versus `filters.local` (the local list) — so the cost is attributable per
+request. Note that `GET /api/v1/admin/usage` does **not** break this out: it reports one
+`aragCalls` counter across every kind of ARAG call, so a deployment whose users lean on
+key-value filters will see `aragCalls` climb without the usage payload saying why. If
+that distinction matters, it has to come from the request log.
 
 ## Memory and CPU guidance
 
@@ -229,9 +232,10 @@ was actually used — `filters.knowledgeBox` (the Knowledge-Box-side match) vers
 ## Volume sizing
 
 The Fly volume backs `DATA_DIR` (`documents.json`, `jobs.json`,
-`extraction-configs.json`, plus the smaller `settings.json`, `apikeys.json` and
-`audit.json` — see "Other fixed facts" above) — nothing else needs persistent disk
-(uploads themselves live in the ARAG Knowledge Box, not locally). `fly.toml` ships a
+`extraction-configs.json`, plus the smaller `settings.json`, `apikeys.json`,
+`audit.json`, `generators.json` and `runtime.json` — see "Other fixed facts"
+above) — nothing else needs persistent disk (uploads themselves live in the ARAG
+Knowledge Box, not locally). `fly.toml` ships a
 1 GB initial volume. `documents.json` is the collection that actually drives the sizing
 table below; the others stay small (`audit.json` is capped at 5,000 entries by
 default — see "Memory and CPU guidance").

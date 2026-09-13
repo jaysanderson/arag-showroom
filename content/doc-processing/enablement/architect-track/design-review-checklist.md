@@ -63,11 +63,11 @@ behind the key-value section below).
       silently key every request off the load balancer's own IP — a single bucket for
       all callers, not one per client.
 - [ ] **`ALLOWED_ORIGINS` is explicit for any deployment with a browser-based caller
-      other than this product's own demo/admin UIs.** Empty means same-origin only,
-      which is safe by default but will also silently break a legitimate third-party
-      browser integration rather than erroring helpfully. **Why it matters:** this is
-      the product's only CORS control (`cors()` middleware in `src/server.ts`) — there
-      is no per-route override.
+      other than this product's own workspace and operator console.** Empty means
+      same-origin only, which is safe by default but will also silently break a
+      legitimate third-party browser integration rather than erroring helpfully.
+      **Why it matters:** this is the product's only CORS control (`cors()`
+      middleware in `src/server.ts`) — there is no per-route override.
 - [ ] **The upload MIME allowlist is reviewed against actual document sources.**
       `ALLOWED_MIME` in `src/services/documents.ts` accepts pdf, png, jpeg, webp, tiff,
       txt, md, csv, docx and nothing else; anything else is `415` before it reaches
@@ -368,19 +368,31 @@ behind the key-value section below).
       correct is not the same as one that has been built and validated.
 - [ ] **Secret rotation has a known procedure.** `ARAG_API_KEY` is a 90-day
       service-account key (per this product's own `.env` provenance comment) — confirm
-      there is an actual calendar reminder or automation for rotation, and that
-      rotating `ADMIN_TOKEN`/`API_KEYS` doesn't require a deploy with downtime (it
-      doesn't — they're read from the environment at boot, so a `fly secrets set` +
-      restart is sufficient, but confirm this is understood by whoever owns rotation).
+      there is an actual calendar reminder or automation for rotation. `ADMIN_TOKEN`
+      no longer requires a deploy to rotate at all: `security.adminToken` is a DP-52
+      settings-store field — write-only, "set once, then rotate" — so
+      `PATCH /api/v1/admin/settings {"security":{"adminToken":"…"}}` rotates it live,
+      with no restart, and signs out every open admin session cookie immediately (a
+      `fly secrets set ADMIN_TOKEN=…` + restart still works too, as the env-default
+      layer, but is no longer the only or the fastest path). Confirm whoever owns
+      rotation knows which path they're actually using and that the two don't drift —
+      an env var set to one value while the store holds an override is the value that
+      loses.
 - [ ] **A KB-reset runbook exists and has been tried once.** After a KB reset or
-      migration to a new `ARAG_KB_ID`: (1) update the secret, (2) restart or wait for
-      the next deploy, (3) call `POST /api/v1/admin/provision` to re-create every
-      search configuration, (4) confirm `GET /api/v1/admin/health`'s `arag.ok` is
-      `true` and `GET /api/v1/extraction-configs` shows `provisioned: true` across the
-      board. Confirm someone has actually walked through this sequence once, in a
+      migration to a new Knowledge Box: (1) update `connection.kbId` (and `baseUrl`/
+      `apiKey` if they've changed) — via `PATCH /api/v1/admin/settings`, live, with no
+      restart, since DP-52 moved this off `ARAG_KB_ID`-at-boot-only (the ARAG client
+      is rebuilt behind a proxy on a connection change, not reconstructed at boot); a
+      `fly secrets set` + restart still works as the env-default layer, but is no
+      longer required, (2) call `POST /api/v1/admin/provision` to re-create every
+      search configuration **and** every key-value schema on the new KB (DP-46 — both
+      are re-derived from each config, not carried over), (3) confirm
+      `GET /api/v1/admin/health`'s `arag.ok` is `true` and
+      `GET /api/v1/extraction-configs` shows `provisioned: true` across the board.
+      Confirm someone has actually walked through this sequence once, in a
       non-production KB, before it's needed for real.
-- [ ] **The demo and admin UI's dependency on `/api/v1` alone is preserved.** Both
-      surfaces (`public/`, `admin/`) consume only the public/admin API — no direct
-      store or ARAG access. Confirm no deployment-specific customisation has broken
-      this boundary (e.g. a reverse proxy that serves stale cached UI assets pointing
-      at a different API base than intended).
+- [ ] **The workspace's and operator console's dependency on `/api/v1` alone is
+      preserved.** Both surfaces (`public/`, `admin/`) consume only the public/admin
+      API — no direct store or ARAG access. Confirm no deployment-specific
+      customisation has broken this boundary (e.g. a reverse proxy that serves stale
+      cached UI assets pointing at a different API base than intended).
