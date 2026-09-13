@@ -1,55 +1,31 @@
 {
   "name": "Call Analysis",
   "workingTitle": "Call Analysis (proposed; legal clearance outstanding, D-15)",
-  "oneLiner": "Call Analysis turns every recorded contact-centre call into a labelled, searchable, citable record — transcribed, classified and scored automatically the moment it lands.",
-  "elevator": "Call Analysis is a partner-accelerator reference product built entirely on Progress Agentic RAG (ARAG). Upload a recording or a transcript and ARAG transcribes it into timestamped paragraphs; two data-augmentation labeler agents classify the call at the call level and the paragraph level; a two-operation ask agent writes a narrative analysis and a flat metrics record; the app aggregates every call into a live dashboard and lets a reviewer ask any single call a question, answered only from that call's own transcript, with a citation that scrubs the recording to the exact second the answer came from. Apache-2.0, self-hostable, no per-minute meter, and evaluable with no ARAG credentials via an in-process mock.",
-  "heroMoment": "Ask a call a question — 'Was the member satisfied?' — and click the citation marker on the answer. The recording scrubs to the exact second the cited statement was made, and the source transcript line highlights in place, so 'show me where' is answered by clicking, not re-listening.",
+  "oneLiner": "Every recorded call becomes a labelled, searchable, citable record — transcribed, classified and scored the moment it lands, with every answer carrying a citation you can click to hear the second it came from. The categories it classifies against, the agents that apply them and every setting behind them are edited in the product, not in a config file.",
+  "elevator": "Call Analysis is a partner-accelerator reference product built entirely on Progress Agentic RAG (ARAG). Upload a recording or a transcript and ARAG transcribes it into timestamped paragraphs; two data-augmentation labeler agents classify the call at the call level and at the paragraph level; a two-operation ask agent writes a narrative analysis and a flat metrics record; the app aggregates every call into a live dashboard and lets a reviewer ask any single call a question, answered only from that call's own transcript, with a citation that scrubs the recording to the exact second the answer came from. The vocabulary is not fixed: labelsets are created, edited and deleted in the product, written into the Knowledge Box as they are saved, and the labeler agents' operations are derived from the current labelsets on every read, so an edit and the agent that applies it cannot drift apart. So is the rest of the deployment — connection, branding and logo, limits and retention are edited on screen by a signed-in operator, stored in the product, effective on the very next request and resettable to the values the deployment booted with; API keys are named, revocable, stored as one-way digests and shown exactly once; retention is previewed before anything is purged; and every change is written to an audit trail. All 60 API operations are listed, described and callable from an explorer inside the product, generated from the deployment's own OpenAPI document so it cannot drift from what is served. Apache-2.0, self-hostable, no per-minute meter, and evaluable with no ARAG credentials via an in-process mock.",
+  "heroMoment": "Ask a call a question — \"was the customer satisfied?\" — and the answer streams back with a confidence read and a numbered citation. Click the citation and the recording scrubs to the exact second the cited statement was made, with the source transcript line highlighted. Ask something the transcript has no basis for and the product declines — \"not enough data to answer this\" — with no confidence badge and no citations. The refusal is the feature.",
   "customer": {
     "headline": "Know what happened on every call",
-    "subheadline": "Most organisations review a tiny sample of their recorded calls and guess at the rest. This gives every call the treatment a reviewer would give one — summarised, categorised, scored and searchable — with a citation you can click to hear the moment for yourself.",
+    "subhead": "Most organisations review a tiny sample of their recorded calls and guess at the rest. This gives every call the treatment a reviewer would give one — summarised, categorised, scored and searchable — with a citation you can click to hear the moment for yourself, and with the categories, the settings and the access keys all edited by your own people rather than requested from a vendor.",
     "outcomes": [
       "Coverage goes from a sample to everything. Every recorded call is categorised and summarised automatically, so patterns are measured across the whole queue rather than inferred from the few that were listened to.",
       "Finding the moment takes seconds. Search or filter to the calls that matter, then jump straight to the labelled moment — a complaint, an escalation, a disclosure — instead of scrubbing through an hour of audio.",
       "Every claim is checkable. Ask a call a question and the answer arrives with a citation; click it and the recording moves to the second the statement was made, with the transcript line highlighted.",
+      "The categories are yours from day one. Add, rename and remove the reasons, outcomes and flags your organisation actually uses, in a screen — and the agents that apply them follow the change automatically, with no fork, no redeploy and no vendor request.",
+      "Your own people run the deployment. Connection, branding and logo, limits and retention are all edited on screen and take effect on the next request. Access keys are issued, named and revoked in the product, and every change is written to an audit trail.",
+      "You decide what is kept. Preview exactly which calls a retention window would remove before anything is deleted, then purge on demand — and any share link pointing at a purged call is revoked in the same pass.",
       "Disputes get shorter. When a decision, a complaint or a compliance question turns on what was actually said, the evidence is a click away rather than an afternoon of listening."
     ],
-    "heroMoment": "Ask a call \"did the customer accept the offer, and when?\" The answer comes back with a citation. Click it, and the recording jumps to that exact second while the transcript line lights up. No scrubbing, no taking anyone's word for it.",
-    "capabilities": [
-      {
-        "title": "Every call, categorised",
-        "body": "Reason for contact, outcome, sentiment, line of business and flags such as a complaint raised or an issue resolved first time — applied to every call as it arrives, with no one tagging anything by hand."
-      },
-      {
-        "title": "A written summary and scorecard",
-        "body": "A short executive summary, how the agent handled it, notable quotes, risks and follow-up actions — the write-up a reviewer would produce after listening to the whole call."
-      },
-      {
-        "title": "A transcript broken into moments",
-        "body": "Not one block of text, but labelled moments that line up with the recording: where the complaint started, where the escalation happened, where the required disclosure was given."
-      },
-      {
-        "title": "Questions answered from one call",
-        "body": "Ask about a specific call and get an answer drawn only from that call's own transcript, with citations — never a general-knowledge guess, and never an answer borrowed from a different conversation."
-      },
-      {
-        "title": "A view across the whole queue",
-        "body": "First-contact resolution, complaint rate, sentiment, compliance and acceptance rates, broken down by reason, outcome and line of business — and every figure drills down to the calls behind it."
-      },
-      {
-        "title": "Your categories, not ours",
-        "body": "The shipped categories are a worked example. Replace them with the vocabulary your organisation actually uses and every call is labelled against yours from then on."
-      }
-    ],
-    "howItWorks": [
-      "A recording or transcript arrives — from your recording system, your case management, or an upload.",
-      "It is transcribed into a timeline where every sentence knows the second it was said.",
-      "Categories, a summary, a scorecard and a set of measurements are produced automatically and added to the dashboard.",
-      "You search, filter, drill in, or ask a single call a question — and every answer carries a citation you can click and hear."
-    ],
+    "heroMoment": "Ask a call \"did the customer accept the offer, and when?\" The answer comes back with a confidence read and a numbered citation. Click it, and the recording jumps to that exact second while the transcript line lights up. Then ask something the call never covered, and watch it decline rather than invent an answer. No scrubbing, no taking anyone's word for it.",
     "trust": [
-      "Answers come from the call, not from a model's imagination. A question the recording genuinely does not answer gets an honest decline rather than a confident guess.",
+      "Answers come from the call, not from a model's imagination. A question the recording genuinely does not answer gets an honest decline — \"not enough data to answer this\" — with no confidence badge and no citations attached to it.",
       "Citations that play. A citation is not a footnote — it is a position in the recording, so \"show me where\" takes one click.",
       "The system flags its own weak answers. Where a response is poorly supported by the transcript, that is surfaced rather than hidden behind a confident tone.",
+      "Every screen says where its content came from. Each page carries a one-line note naming the API operations that produced what you are looking at, and an explorer in the product runs any of them against the live deployment — so \"the demo is a client of the API\" is something you can check rather than something we assert.",
+      "Changes are on the record. Who changed a setting, a category, a key or a share link, what moved and when is written to an audit trail; the service credential is reduced to a yes/no rather than logged.",
+      "Access is named and revocable. Keys are issued and withdrawn in the product, the key material is shown exactly once and stored only as a one-way digest, and a withdrawn key keeps its record so an incident review can still see what it touched and when.",
+      "Nothing is deleted behind your back. There is no background sweeper: a retention window is previewed, and calls are removed only when a person or your own scheduler asks for it.",
+      "An action the deployment would refuse is never offered. On a read-only deployment the controls are absent with the reason given, rather than failing after the click.",
       "Recordings can stay in your own environment, in your own country, or entirely offline — the usual requirement wherever calls contain personal, health or financial information.",
       "Access to content is enforced when it is retrieved, not filtered out afterwards, so material a user is not entitled to never reaches an answer.",
       "It is open source: your team can read exactly how a label, a score or a summary was produced."
@@ -65,19 +41,31 @@
       },
       {
         "q": "Will it work for our type of conversation?",
-        "a": "The categories shipped with it are an example, not a fixed list. Replace them with your own — whether your calls are about claims, accounts, deliveries, casework or renewals — and every call is labelled against yours."
+        "a": "The categories shipped with it are a worked example, not a fixed list, and replacing them is a screen rather than a project. Create, rename and delete the reasons, outcomes, sentiments, business lines and flags your organisation uses — whether your calls are about claims, accounts, deliveries, casework or renewals — and every call from then on is labelled against yours. The agents that do the labelling take their instructions from whatever the categories currently are, so there is no second place to keep in step."
       },
       {
         "q": "Can we trust the summaries?",
-        "a": "Check them. Every answer carries a citation you can click and hear, the system tells you when its own answer is weakly supported, and the whole thing is open source. Our advice is to review the first fifty summaries against the recordings before relying on any of it."
+        "a": "Check them. Every answer carries a citation you can click and hear, the system tells you when its own answer is weakly supported, it declines outright when the transcript cannot support an answer, and the whole thing is open source. Our advice is to review the first fifty summaries against the recordings before relying on any of it."
+      },
+      {
+        "q": "Who can change how it is set up, and does it need an engineer?",
+        "a": "Your own people, in the product. The Knowledge Box it points at, the branding and logo it wears, its upload and rate limits, its cache window and its retention policy are all edited on screen by a signed-in operator, take effect on the very next request without a redeploy, and can be reset to whatever the deployment started with. The service credential is write-only: you can set or rotate it, and nothing ever reads it back out. Every change is audited."
+      },
+      {
+        "q": "How is access controlled, and what happens when a key leaks?",
+        "a": "Keys are issued in the product with a name, shown exactly once, and stored only as a one-way digest — a stolen copy of the store grants nothing. Revoking one stops it working on the next request and keeps its record, including when it was last used, because that is what an incident review needs. Revoking a key never quietly opens the deployment up: once a deployment has issued keys, callers need one, and reopening it is a separate, deliberate act."
       },
       {
         "q": "What about personal or sensitive information in calls?",
-        "a": "Be direct with us about this. Automatic redaction of personal data is not built in yet, so today it is handled by where the system runs and who can reach it — usually your own environment, your own country, with access controlled in front of it. If redaction is a hard requirement, that changes the plan."
+        "a": "Be direct with us about this. Automatic redaction of personal data is not built in yet, so today it is handled by where the system runs, who can reach it and how long it is kept — usually your own environment, your own country, with access controlled in front of it and a retention window set. You can preview exactly which calls a window would remove before anything is deleted, purge on demand, and any share link pointing at a purged call is revoked in the same pass. If redaction is a hard requirement, that changes the plan."
+      },
+      {
+        "q": "Can several people work from the same queues?",
+        "a": "Yes. A filtered view of the call list — a queue — is named and saved on the server and shared, so a rota of supervisors reviewing the same work all see the same definition rather than one person's bookmark. Which columns you show and how tightly rows are packed stay your own preference, because a link someone sends should carry the question, not the recipient's furniture."
       },
       {
         "q": "Can our own software show this?",
-        "a": "Yes. Everything on the screens is available through a documented interface, so your case management or agent desktop can show the summary, the labels and the clickable citation without anyone opening a second application."
+        "a": "Yes. Everything on the screens is available through a documented interface — all 60 operations of it — so your case management or agent desktop can show the summary, the labels and the clickable citation without anyone opening a second application. The product carries an explorer that lists every operation, runs it against the live deployment and hands back the equivalent command to copy, so a developer can try the integration before writing any of it."
       },
       {
         "q": "How many calls can it handle?",
@@ -90,85 +78,106 @@
     ],
     "cta": {
       "label": "Try it on a week of your own calls",
-      "body": "Bring the queue nobody has time to review — that is where the difference shows fastest."
+      "body": "Bring the queue nobody has time to review — that is where the difference shows fastest. The launch video and the narrated walkthrough on this page show the whole path first, end to end, if you would rather watch than book."
     }
   },
   "personas": [
-    "Contact-centre operations leader — owns queue-level performance, needs trend lines (resolution, complaint, cross-sell) across the whole queue instead of a 1-2% manual sample.",
+    "Contact-centre operations leader — owns queue-level performance, needs trend lines (resolution, complaint, cross-sell) across the whole queue, over a date window they choose, instead of a 1–2 % manual sample.",
     "QA / compliance manager — needs proof a required disclosure was read and an audit trail that traces a finding to the exact moment in a call, not a re-listen from the start.",
-    "CX / insights analyst — needs consistent, comparable call-driver data across a whole queue, filterable by segment, without a manual spreadsheet-coding project.",
-    "Platform engineer / partner architect — needs a documented API surface, real auth and rate-limit behaviour, and a way to evaluate the whole product before provisioning a live Knowledge Box."
+    "CX / insights analyst — needs consistent, comparable call-driver data across a whole queue, filterable by segment and saved as a shared named queue, without a manual spreadsheet-coding project.",
+    "Platform engineer / partner architect — needs a documented API surface exercisable in the product, real auth, key management and rate-limit behaviour, and a way to evaluate the whole thing before provisioning a live Knowledge Box."
   ],
   "capabilities": [
     {
-      "title": "Automatic transcription with timestamps",
-      "body": "A recording (or a directly uploaded transcript) becomes an ARAG resource; ARAG transcribes audio into paragraphs carrying start/end seconds, so every downstream label and citation is already anchored to a moment in the recording."
+      "title": "Every call, categorised",
+      "body": "Reason for contact, outcome, sentiment, line of business and flags such as a complaint raised or an issue resolved first time — applied to every call as it arrives, with no one tagging anything by hand."
     },
     {
-      "title": "Two-level classification",
-      "body": "A resource-level labeler applies five call-level labelsets (call reason, outcome, sentiment, line of business, disposition flags); a paragraph-level labeler tags 11 call-moment labels such as Compliance Disclosure, Escalation and Complaint."
+      "title": "Your categories, edited in the product",
+      "body": "The shipped vocabulary is a worked example. Create, rename and delete labelsets and their labels on screen; each is written into the Knowledge Box as you save it, and the agents that apply them take their instructions from whatever the categories currently are — so an edit and the agent behind it can never drift apart. Deleting labels already applied to analysed calls is possible, but it is data rather than configuration, so it is always a separate, explicit choice."
     },
     {
-      "title": "Narrative analysis and flat metrics",
-      "body": "A two-operation ask agent writes a structured call_analysis field (executive summary, agent scorecard, complaint and cross-sell detail, notable quotes, action items, risk flags) and a flat call_metrics JSON object the dashboard aggregates."
+      "title": "A written summary and scorecard",
+      "body": "A short executive summary, how the agent handled it, notable quotes, risks and follow-up actions — the write-up a reviewer would produce after listening to the whole call — and the instructions behind it are editable too."
     },
     {
-      "title": "Grounded, scoped chat with a scrubbing citation",
-      "body": "POST /api/v1/calls/{id}/ask streams an NDJSON answer scoped to one call's transcript with citations enabled; each citation resolves to <rid>/f/media/<start>-<end>, a playable audio offset, so clicking it scrubs the player."
+      "title": "A transcript broken into moments",
+      "body": "Not one block of text, but labelled moments that line up with the recording: where the complaint started, where the escalation happened, where the required disclosure was given. Clicking a segment on the timeline scrubs the player and scrolls the transcript to it."
     },
     {
-      "title": "Honest confidence via REMi",
-      "body": "Once a chat answer completes, the server scores it against the retrieved context with ARAG's /predict/remi and appends the score as a quality item in the stream; a refusal is never badged as confident."
+      "title": "Questions answered from one call — or declined",
+      "body": "Ask about a specific call and get an answer drawn only from that call's own transcript, with citations — never a general-knowledge guess, and never an answer borrowed from a different conversation. Where the transcript cannot support an answer, the product says so instead of producing one."
     },
     {
-      "title": "Queue-wide dashboard",
-      "body": "GET /api/v1/dashboard aggregates every analysed call's metrics into first-call-resolution, complaint, cross-sell and escalation rates and category breakdowns, with drill-through from any chart bar into the filtered call list."
+      "title": "A view across the whole queue, over a window you choose",
+      "body": "First-contact resolution, complaint rate, sentiment, compliance and acceptance rates, broken down by reason, outcome and line of business — over the last seven days, the last year, or dates you set. Every figure drills down to the calls behind it, and the window travels with the click, so the list always agrees with the chart."
     },
     {
-      "title": "Full-text and semantic search",
-      "body": "GET /api/v1/calls?q= is backed by ARAG's /find across every call's transcript, so 'every call where a member mentioned a competitor' is a search, not a coding project."
+      "title": "Queues your team shares, furniture that stays yours",
+      "body": "A filtered list can be named and saved on the server, so everyone reviewing the same work sees the same definition of the queue. Which columns are shown and how tightly rows are packed are per-person preferences that a shared link does not carry."
     },
     {
-      "title": "White-label branding via configuration",
-      "body": "lib/branding.ts reads product name, tagline, logo, colours, a powered-by toggle and footer/docs/support links from BRAND_* environment variables and serves them at GET /api/v1/branding — ahead of the shared platform's own equivalent, targeted for arag-platform v0.1.6."
+      "title": "Your own people operate it",
+      "body": "Connection, branding and logo, limits and retention are edited on screen by a signed-in operator, stored in the product, effective on the very next request and resettable to the deployment's starting values, with the service credential set-once-and-rotate rather than readable. Access keys are named, revocable and shown exactly once. Share links are listed and revoked from one register. Background jobs can be cancelled. Every change is audited."
+    },
+    {
+      "title": "Retention you preview before you use",
+      "body": "A retention window is recorded and previewed — these calls, this many — and nothing is deleted until a person or your own scheduler asks. There is deliberately no background sweeper removing a partner's recordings unattended, and a purge revokes any share link pointing at a call it removed."
+    },
+    {
+      "title": "The whole API, callable in the product",
+      "body": "An explorer inside the product lists all 60 operations grouped by tag, with their parameters and schemas, a form that calls the live deployment and a copyable command. It is generated from the deployment's own API document rather than a hand-written list, so it cannot describe an operation the deployment does not have — or miss one it does. Every screen also carries a line naming the operations that fed it."
     }
   ],
   "howItWorks": [
-    "Ingest: a recording (MP3/MP4) or a transcript is uploaded onto an ARAG resource; ARAG transcribes audio into timestamped paragraphs.",
-    "Augment: a resource-level labeler agent and a paragraph-level labeler agent classify the call and its moments; a two-operation ask agent writes call_analysis (narrative) and call_metrics (flat JSON).",
-    "Serve: services/ turns ARAG resources into view models behind a 60-second single-flight TTL cache, so a dashboard render costs one upstream fetch per call per window.",
-    "Aggregate: the dashboard endpoint reduces every call's metrics into queue-wide rates and category breakdowns with drill-through to the filtered call list.",
-    "Ask: a per-call question calls /ask scoped with resource_filters and citations:true; each citation key maps to a transcript paragraph offset that is also a media time offset.",
-    "Score: once the answer stream ends, /predict/remi scores the answer against the retrieved context and the result is appended as a quality item — the confidence badge shown in the UI."
+    "A recording or transcript arrives — from your recording system, your case management, or an upload.",
+    "It is transcribed into a timeline where every sentence knows the second it was said.",
+    "Categories, a summary, a scorecard and a set of measurements are produced automatically, against your vocabulary, and added to the dashboard.",
+    "You search, filter, drill in, or ask a single call a question — and every answer carries a citation you can click and hear, or an honest decline.",
+    "You save the filter as a named queue your colleagues see, share one call as a revocable read-only link, or export what is on screen.",
+    "Your operator edits the categories, the connection, the branding, the limits and the retention window on screen; each takes effect on the next request and lands in the audit trail."
   ],
   "whyItWins": [
     "Citations resolve to an audio timestamp, not just a text span — unique in the market per research/call-analysis-market.md; competing ASR/CI vendors document a citation pattern, not a guaranteed contract.",
-    "REMi self-scoring is an honest confidence signal: no surveyed competitor self-assesses the confidence of its own generated call analysis.",
-    "The taxonomy is customer-authored and applied at ingest at two granularities (call and paragraph), versus Genesys's phrase-list topic spotting or AssemblyAI's fixed IAB taxonomy.",
+    "REMi self-scoring is an honest confidence signal: no surveyed competitor self-assesses the confidence of its own generated call analysis, and a refusal is never badged as confident.",
+    "The taxonomy is customer-authored, applied at ingest at two granularities (call and paragraph), and edited in the product rather than forked or requested — versus Genesys's phrase-list topic spotting or AssemblyAI's fixed IAB taxonomy. The labeler agents' operations are derived from the current labelsets on every read, so the vocabulary and the agents that apply it cannot diverge.",
+    "Operable by the partner who deploys it, not only by whoever built it: 23 configuration fields across four sections are edited in the product and effective on the next request, keys are named and revocable, retention is a preview and a purge rather than a policy document, and every change is audited.",
     "ARAG applies security.groups during retrieval itself, not as a post-filter on results (research takeaway #3) — no equivalent found among document-AI, conversation-intelligence or agent-assist vendors surveyed.",
     "Apache-2.0, self-hostable, no per-minute meter — Deepgram gates self-hosting behind an Enterprise contract; CallMiner and Observe.AI carry seat minimums and undisclosed pricing.",
-    "API-first by construction: the demo UI is a client of the same documented /api/v1 any integration would call, with nothing UI-only."
+    "API-first by construction, and checkably so: all 60 operations are exercisable from an in-product explorer generated from the served OpenAPI document, and every screen names the operations behind it."
   ],
   "useCases": [
     {
       "title": "Complaint detection and drill-down",
-      "body": "The Complaint Raised disposition flag and the Complaint paragraph moment surface every complaint call; the complaint field (present, category, severity, quote) lets a manager triage without opening every call."
+      "body": "A complaint disposition flag and a Complaint paragraph moment surface every complaint call; the complaint detail (present, category, severity, quote) lets a manager triage without opening every call, over whatever date window they are reviewing."
     },
     {
       "title": "Cross-sell coaching",
-      "body": "Cross-sell Offered/Accepted flags combine with the Cross-sell Pitch and Objection paragraph moments so a coach can pull up exactly where an offer was made and where it stalled, across a whole queue."
+      "body": "Offered/accepted flags combine with the pitch and objection paragraph moments so a coach can pull up exactly where an offer was made and where it stalled, across a whole queue."
     },
     {
       "title": "Compliance disclosure spot checks",
-      "body": "The Compliance Disclosure paragraph label marks the exact transcript block where a required script or recording notice was read (or should have been); a reviewer filters to Compliance Risk calls and jumps straight to the moment."
+      "body": "A Compliance Disclosure paragraph label marks the exact transcript block where a required script or recording notice was read (or should have been); a reviewer filters to compliance-risk calls and jumps straight to the moment."
+    },
+    {
+      "title": "A shared review queue",
+      "body": "The filter a supervisor uses every morning — negative sentiment, unresolved, this line of business — is named and saved on the server, so the whole rota works from the same definition of the queue rather than from a bookmark in one browser."
+    },
+    {
+      "title": "Adapting the vocabulary to a new vertical",
+      "body": "A partner taking the product from one customer to another edits the labelsets in the Taxonomy screen, saves, and the labeler agents pick the new vocabulary up on their next run — a form and a re-provision rather than a fork, a redeploy or a vendor request."
     },
     {
       "title": "Find every call where X was said",
-      "body": "GET /api/v1/calls?q= is backed by ARAG's /find, full-text and semantic search across every call's transcript, not a keyword match on titles or metadata."
+      "body": "Search is backed by ARAG's /find, full-text and semantic search across every call's transcript, not a keyword match on titles or metadata."
     },
     {
       "title": "Grounded Q&A with a scrubbing citation",
-      "body": "POST /api/v1/calls/{id}/ask streams an answer scoped to just that call, with citations that resolve to a transcript paragraph and its timestamp — clicking one scrubs the player to the exact second."
+      "body": "A question scoped to one call streams an answer with citations that resolve to a transcript paragraph and its timestamp — clicking one scrubs the player to the exact second, and a question the transcript cannot answer is declined rather than guessed."
+    },
+    {
+      "title": "Sharing one call outside the product",
+      "body": "A read-only, expiring link gives a legal reviewer, an ombudsman or a customer's own advocate the transcript, moments and analysis for one call without an account — and every link ever issued is listed and revocable from one register in Settings."
     },
     {
       "title": "Dashboard reporting without manual tagging",
@@ -178,24 +187,24 @@
   "partnerModels": [
     {
       "model": "White-label",
-      "body": "Deploy the accelerator as-is under the partner's brand, pointed at the partner's Knowledge Box. Call Analysis already implements branding-by-configuration (BRAND_* environment variables covering product name, tagline, logo, colours, the powered-by toggle, and footer/docs/support links, served at GET /api/v1/branding) — ahead of most partner-brief guidance, though it is a product-local implementation that will collapse into the shared platform's own branding module (targeted arag-platform v0.1.6) rather than a stable cross-product contract today."
+      "body": "Deploy the accelerator as-is under the partner's brand, pointed at the partner's Knowledge Box — the fastest path to a live use case. Branding is configuration rather than a fork: BRAND_* environment variables give a deployment its starting identity, and since the full-implementation pass the product name, tagline, logo (uploaded in Settings), colours, footer text, docs and support links and the \"Built on Progress Agentic RAG\" credit are edited in Settings, stored in the product, applied on the next request and audited, with a live preview as you type. An uploaded asset is served under its own locked-down content policy in a rule that is proven by test to survive the application's other header rules. Honest caveats: the OpenAPI document deliberately keeps its own title, because the API contract is not the brand; branding covers visual identity only and is not multi-tenancy; and Apache-2.0 attribution stays in LICENSE and the third-party notices whatever the credit toggle says."
     },
     {
       "model": "Embed from an existing application",
-      "body": "Your existing application posts a recording or transcript to POST /api/v1/calls, then reads labels, scores, metrics and cited answers back over the API and renders them in its own screens — including the citation, which resolves to a playable audio offset. The accelerator stays headless and never faces the end user. Requires an HTTP client in your stack and somewhere in your UI to render a value, its confidence and its evidence. Completion signals today are SSE and polling; webhooks are a roadmap item."
+      "body": "Your existing application posts a recording or transcript to POST /api/v1/calls, then reads labels, scores, metrics and cited answers back over the API and renders them in its own screens — including the citation, which resolves to a playable audio offset. The accelerator stays headless and never faces the end user: every screen it ships is a client of the same public API, each one naming the operations behind it, and the in-product API explorer lets an integrator exercise any of the 60 operations against a live deployment before writing any code. Requires an HTTP client in your stack and somewhere in your UI to render a value, its confidence and its evidence. Completion signals today are SSE and polling; webhooks are a roadmap item."
     },
     {
       "model": "Extend",
-      "body": "Fork or vendor the accelerator and add a vertical: new labelsets and data-augmentation agents (lib/domain/taxonomy.ts), new metrics fields, new endpoints (spec-first in lib/openapi.ts, then a handler, then a service, then tests), or transcript ingestion from an external ASR via the existing transcript upload field. Extension points are documented in docs/developer/extension-points.md."
+      "body": "Fork or vendor the accelerator and add a vertical: new labelsets and agent instructions (usually in the product rather than the source, since the taxonomy is a store seeded from lib/domain/taxonomy.ts), new metrics fields, new endpoints (spec-first in lib/openapi.ts, then a handler, then a service, then tests), or transcript ingestion from an external ASR via the existing transcript upload field. Extension points are documented in docs/developer/extension-points.md, including the settings model, the cache and the store."
     },
     {
       "model": "Build-your-own",
-      "body": "Take arag-platform (STANDARDS.md, the ARAG client, the mock ARAG server, the HTTP toolkit, the UI kit and the product template via make new-product) and build a different product on the same standards. Call Analysis is one of three worked examples of the pattern."
+      "body": "Take arag-platform (STANDARDS.md, the ARAG client, the mock ARAG server, the HTTP toolkit, the UI kit and the product template via make new-product) and build a different product on the same standards. Call Analysis is one of three worked examples of the pattern, and the one that shows a store-backed, in-product-editable taxonomy."
     }
   ],
   "enablement": {
     "developerTrack": {
-      "description": "Guided lab and knowledge check covering the API, the service layer and adding an endpoint.",
+      "description": "Guided lab and knowledge check covering the API, the service layer, the settings model and adding an endpoint.",
       "path": "call-analysis/enablement/developer-track/LAB.md"
     },
     "architectTrack": {
@@ -203,53 +212,83 @@
       "path": "call-analysis/enablement/architect-track/WORKSHOP.md"
     },
     "showcase": {
-      "description": "Recorded walkthrough script, storyboard and Playwright recording spec plus rendered PNGs and a 2:23 video.",
+      "description": "Recorded walkthrough in two halves — the analyst, then the operator signing in and changing the same screens — with script, storyboard and Playwright recording spec, 26 rendered PNGs and a 2:47 narrated recording, plus an 89-second flagship launch video.",
       "path": "call-analysis/showcase/SCRIPT.md"
     },
     "docs": {
-      "description": "Full documentation index: developer quickstart, architecture, security model, business walkthroughs, product marketing and extension points.",
+      "description": "Full documentation index: developer quickstart, API reference, architecture, security model, business walkthroughs, product marketing and extension points.",
       "path": "call-analysis/docs/README.md"
     }
   },
   "roadmap": [
     {
-      "phase": "Now (MVP, verified 2026-09-12)",
+      "phase": "Near term",
       "items": [
-        "Transcription, two-level classification, narrative analysis and flat metrics, all generated at ingest",
-        "Grounded per-call chat with citations resolving to a media timestamp, plus REMi confidence scoring",
-        "Queue-wide dashboard, full-text/semantic search, and a documented OpenAPI 3.1 /api/v1",
-        "White-label branding via BRAND_* environment variables",
-        "No-credentials demo mode (ARAG_MOCK=1) seeding a mock Knowledge Box with real call transcripts"
-      ]
-    },
-    {
-      "phase": "Near-term (closes the biggest bar gaps)",
-      "items": [
-        "Publish the citation contract as a first-class, versioned API object",
-        "QA scorecards as schema-driven DA ask operations with per-question evidence and scores",
-        "PII/PCI redaction in transcript and audio",
+        "Publish the citation contract as a first-class, versioned API object rather than only inside the chat stream",
+        "QA scorecards as schema-driven data-augmentation ask operations with per-question evidence and scores",
+        "PII/PCI redaction in transcript and audio, alongside the retention preview and purge that ship today",
         "Webhooks with signed payloads and idempotent replay",
         "A read-only MCP server over the v1 API returning citations"
       ]
     },
     {
-      "phase": "Later",
+      "phase": "GA",
       "items": [
         "Pluggable ASR ingest accepting an externally produced transcript with word timings and speakers",
-        "Talk-time, ratio, interruption and silence metrics computed from the timeline rather than LLM-guessed",
-        "Retention/deletion APIs: TTL policy, bulk purge, deletion audit log",
-        "Cross-call analytics: label/score aggregation with drill-down to cited calls"
+        "Talk-time, ratio, interruption and silence metrics computed from the timeline rather than inferred by a model",
+        "A scheduled retention sweep as an opt-in service, so \"older than 90 days\" needs no external scheduler",
+        "Cross-call analytics: label and score aggregation with drill-down to cited calls"
+      ]
+    },
+    {
+      "phase": "Post-GA",
+      "items": [
+        "Per-user authorisation and multi-tenancy, so one deployment can serve more than one customer's calls",
+        "A shared configuration and job store, so a horizontally scaled deployment applies a settings change everywhere rather than on one machine",
+        "Self-host packaging: a published container image, a compose file and a Helm chart"
       ]
     }
   ],
   "faq": [
     {
       "q": "How is a chat answer actually grounded, and can I verify it myself?",
-      "a": "Every /ask call is scoped with resource_filters to one call's transcript and citations:true. Each citation key resolves to <rid>/f/media/<start>-<end> — a transcript paragraph offset that is also a playable audio offset — so clicking a citation scrubs the recording to the exact second the cited statement was made. A REMi answer-quality score is appended once the stream ends; a refusal is never shown as confident."
+      "a": "Every /ask call is scoped with resource_filters to one call's transcript and citations:true. Each citation key resolves to <rid>/f/media/<start>-<end> — a transcript paragraph offset that is also a playable audio offset — so clicking a citation scrubs the recording to the exact second the cited statement was made. A REMi answer-quality score is appended once the stream ends; a refusal is never shown as confident, and a question the transcript cannot support is declined outright rather than answered."
+    },
+    {
+      "q": "Is every setting really editable, and what stays environment-only?",
+      "a": "Environment variables are defaults and the settings store is the authority. All 23 fields across the four sections — branding (9), connection (7, including the write-only service credential), limits (5) and retention (2) — plus a logo upload are edited at PUT /api/v1/settings/{section}, persisted to the deployment's own store, and applied by mutating the memoised runtime container in place, so every existing read path picks the new value up on the very next request with no restart (D-CA-34). DELETE restores the value the deployment booted with, from a snapshot taken at boot. What stays environment-only is what a restart defines anyway — the bind port and host, the data directory, the admin token and session secret, and whether the product runs against the in-process mock; and in mock mode connection edits are deliberately ignored, because re-pointing the sample Knowledge Box would break the sample data with no way back through the UI."
+    },
+    {
+      "q": "Is a secret ever read back, or written to disk?",
+      "a": "Read back, never: connection.apiKey is accepted by the write and returned by no read model, the UI shows \"set · rotate\", an empty submission means \"leave it alone\" rather than \"clear it\", and the audit trail reduces the value to true. An integration test asserts GET /api/v1/settings never contains an apiKey key (D-CA-35). Written to disk, yes, and recorded as a deliberate exception to the platform standard that secrets come only from environment variables: rotating the credential from inside the product is one of the things \"every setting is editable\" has to mean, and a rotation that does not survive a restart is not a rotation. The settings file is chmod'd 0600 on every write, the deployment reports which of the two sources is in force, and an operator who would rather it never touched disk simply does not rotate it in the product (D-CA-45)."
+    },
+    {
+      "q": "How do API keys work, and what happens when you revoke the last one?",
+      "a": "A real key store, not a shared environment variable: named keys stored as SHA-256 digests, with the material returned exactly once on creation, a last-used time written at most once a minute, and revocation that never deletes the row — because \"what did this key touch, and when\" is what an incident review needs. API_KEYS becomes a one-time seed, idempotent by digest, so an environment-configured deployment keeps working and gains management. Revoking the last key does not reopen the API: enforcement asks whether the deployment has ever had a key, so the exact incident-response action the feature exists for cannot turn the API open. Reopening is a separate, deliberate act — purging the key rows — and both behaviours are pinned by tests (D-CA-36, D-CA-46). SHA-256 rather than a password KDF is deliberate: the token is 192 bits of random, so there is nothing to brute-force offline and a slow hash would only make every authenticated request slower."
+    },
+    {
+      "q": "Can the taxonomy really be changed without a fork?",
+      "a": "Yes — it is a store, not a source file. lib/domain/taxonomy.ts seeds the store on first read; after that labelsets are created, edited and deleted at POST /api/v1/labelsets and GET/PUT/DELETE /api/v1/labelsets/{id}, provisioned into the Knowledge Box, and the labeler agents' operations are derived from the current labelsets on every read rather than stored, which is what stops a labelset edit and the agent that applies it drifting apart (D-CA-37). Two deliberate constraints: a labelset id is immutable after creation, because renaming it would orphan every label already applied upstream; and deleting from the Knowledge Box as well as the product destroys labels already applied to analysed calls, so it is data rather than configuration and never the default."
+    },
+    {
+      "q": "What is exercisable from the product, and how is that claim checkable?",
+      "a": "All 60 operations across 13 tags. The explorer at /api renders the deployment's own /api/v1/openapi.json at runtime rather than a hand-maintained list, so an operation added to the spec appears with no code change and one that does not exist cannot be listed; a unit test walks every operation in the real document through the explorer's indexing and form generation, so the coverage guarantee is a test rather than a promise (D-CA-41). Destructive operations need a second click, because this is a live API against the deployment's real Knowledge Box. Separately, every screen carries a one-line note naming the operations that fed it."
+    },
+    {
+      "q": "Who is allowed to change what?",
+      "a": "Settings, API-key and retention writes are operator-only; taxonomy and saved-view writes are not. An API key is a credential for using the product's data — it must not be able to re-point the deployment at a different Knowledge Box, mint itself a new key or purge the corpus, because those change the deployment for everyone. Editing a labelset changes what the product classifies with, which is the product's job rather than the operator's. A contract test asserts the split so it cannot erode, and the UI renders an honest read-only view with a route to sign in rather than a form that fails on save (D-CA-42, D-CA-33)."
+    },
+    {
+      "q": "How does retention work, and is anything deleted automatically?",
+      "a": "Nothing is deleted automatically. The policy is recorded and previewable at any time, and deletion happens only when a person or a scheduler calls the purge endpoint; days: 0 means \"no limit\", not \"delete everything\". A timer removing a partner's call recordings unattended on a Sunday night is the failure mode worth engineering away, and it is exactly what a default-valued field read destructively would produce. The preview and the purge share one code path, so they cannot disagree about scope; a purge is admin-only, irreversible, capped at 200 calls a run, and revokes share links pointing at anything it removed so no live URL resolves to nothing (D-CA-38)."
+    },
+    {
+      "q": "Were any security problems found in this pass, and what happened to them?",
+      "a": "Two, both found in the pass's own review, both fixed and both now pinned by tests. First: the sandboxing policy for uploaded branding assets was being overwritten by the application's catch-all header rule, so an uploaded SVG — a document that can carry script — executed on the product's own origin with the operator's cookie. Uploading a logo could therefore hand that logo a session, and the white-label guide was actively telling operators to upload SVG. The policy is now its own rule placed after the catch-all, and an integration test asserts the header served on a real uploaded file (D-CA-47). Second: authentication enforcement read \"are there active keys?\", so revoking a compromised key turned the API open — the exact opposite of what the action is for. It now asks whether the deployment has ever had a key, and the unit test that had asserted the old behaviour as correct was rewritten with the reasoning (D-CA-46). Separately, Next.js was moved from 16.1.6 to 16.2.12 for published advisories; none of the fixed issues was reachable in this product, so it is defence in depth rather than a live fix, and the two advisories that remain reported are waived in the audit allowlist with the reasoning (D-CA-44)."
     },
     {
       "q": "Can we run this without an ARAG account first?",
-      "a": "Yes. With no ARAG_API_KEY set, make install && make dev starts an in-process mock ARAG server, seeds it with real (synthetic) call transcripts, pre-creates the labelsets, and runs the product's own labeler and ask agents against the mock box before the first request is served — the dashboard, search, chat and admin panel are all populated on first load."
+      "a": "Yes. With no ARAG_API_KEY set, make install && make dev starts an in-process mock ARAG server, seeds it with real (synthetic) call transcripts, pre-creates the labelsets, and runs the product's own labeler and ask agents against the mock box before the first request is served — the dashboard, search, chat, taxonomy editing, settings and the operator console are all populated on first load."
     },
     {
       "q": "Can we self-host it, and does it meter usage per minute?",
@@ -257,7 +296,7 @@
     },
     {
       "q": "Is it multi-tenant?",
-      "a": "No. The MVP is single-tenant: one deployment serves one Knowledge Box, and there is no per-user authorization — any caller holding a valid API key or the admin token can read every call in that Knowledge Box. The response cache and rate limiter are per-process state."
+      "a": "No. The MVP is single-tenant: one deployment serves one Knowledge Box, and there is no per-user authorisation — any caller holding a valid API key or signed in as the operator can read every call in that Knowledge Box. Configurability is not multi-tenancy: an operator configures one deployment for one customer, and a second customer needs a second deployment. The configuration itself is per-machine too — settings, keys, the taxonomy, saved views, share links and the audit trail live in the deployment's own data volume — which is why the shipped topology is a single machine with a single volume."
     },
     {
       "q": "Does it do real-time or in-call monitoring?",
@@ -268,59 +307,64 @@
       "a": "No. Transcription is inherited entirely from ARAG; this product runs no ASR of its own, publishes no word-error-rate benchmark, and does not offer model choice for transcription. The defensible ground is verifiability of what is generated afterwards, not transcription quality."
     },
     {
-      "q": "Can we white-label it under our own brand today?",
-      "a": "Yes, further along than the general partner guidance suggests: lib/branding.ts already reads product name, tagline, logo, colours, the powered-by toggle and footer/docs links from BRAND_* environment variables and serves them at GET /api/v1/branding, unit-tested. It is a product-local implementation that will later collapse into a shared-platform branding module, so treat today's contract as product-specific rather than guaranteed identical across the three accelerators."
+      "q": "How proven is this today?",
+      "a": "After the full-implementation pass: 455 tests at 88.3 % line coverage and 114 Playwright journeys, with every write path — settings, keys, labelsets, agents, upload, share links, retention preview and deletion — exercised against the real Knowledge Box through the product's own HTTP API in 18 checks, each one removing what it created and the call count confirmed back to baseline. The API explorer's coverage guarantee is itself a test that walks every operation in the served document. The walkthrough was re-recorded for the product as it now is (2:47, 26 PNGs), and the 21 documentation screenshots were recaptured at 1440 px."
     },
     {
-      "q": "How mature is the test coverage and has it been checked against a live Knowledge Box?",
-      "a": "205/205 tests passing with 95.8% line coverage on lib/ and services/, Playwright 21/21 end-to-end, docker build and fly config validation both OK, 111 doc links resolving, and a live read-only smoke test against a real Knowledge Box returning 24 calls with 2 citations on an ask call (STATUS.md, 2026-09-12 21:00 and 21:40, platform v0.1.8)."
+      "q": "What is the product actually going to be called?",
+      "a": "In code, the repository and the running UI it is Call Analysis. Per D-15, naming does not block the MVP; it is a display string a white-labelling partner replaces anyway, and trademark counsel has not yet cleared it."
     }
   ],
   "proof": [
     {
       "label": "Unit/integration/contract tests",
-      "value": "205/205 passing",
-      "source": "STATUS.md (2026-09-12 21:00 and 21:40, platform v0.1.8)"
+      "value": "455/455 passing",
+      "source": "call-analysis, full-implementation pass (branch mvp, HEAD d5d0bb5, 2026-09-13)"
     },
     {
-      "label": "Line coverage (lib/ + services/)",
-      "value": "95.8%",
-      "source": "STATUS.md (2026-09-12 21:00 and 21:40, platform v0.1.8)"
+      "label": "Line coverage",
+      "value": "88.3 % (lib/ + services/); make check gates every run at 80 %",
+      "source": "call-analysis/coverage/coverage-summary.json (2026-09-13)"
     },
     {
-      "label": "Playwright end-to-end",
-      "value": "21/21 passing",
-      "source": "STATUS.md (2026-09-12 21:00 and 21:40, platform v0.1.8)"
-    },
-    {
-      "label": "Showcase video length",
-      "value": "2:23",
-      "source": "STATUS.md (2026-09-12 18:40)"
-    },
-    {
-      "label": "Docker build / Fly config validation",
-      "value": "both OK",
-      "source": "STATUS.md (2026-09-12 21:00 and 21:40, platform v0.1.8)"
-    },
-    {
-      "label": "Live read-only smoke test",
-      "value": "OK — 24 calls, 2 citations on ask",
-      "source": "STATUS.md (2026-09-12 21:00 and 21:40, platform v0.1.8)"
-    },
-    {
-      "label": "Doc links resolving",
-      "value": "111",
-      "source": "STATUS.md (2026-09-12 21:00 and 21:40, platform v0.1.8)"
+      "label": "Playwright end-to-end journeys",
+      "value": "114 across 8 specs, including settings, taxonomy, saved views, branding, the API explorer and a narrow-viewport sweep",
+      "source": "call-analysis/test/e2e (2026-09-13)"
     },
     {
       "label": "API surface",
-      "value": "20 paths under /api/v1: calls, dashboard, labelsets, jobs, branding, session, admin",
-      "source": "call-analysis/lib/openapi.ts (counted 2026-09-12)"
+      "value": "60 operations across 13 tags, all listed, described and callable from the in-product API explorer at /api, which is generated from the deployment's own OpenAPI document",
+      "source": "call-analysis/lib/openapi.ts; DECISIONS D-CA-41 (2026-09-13)"
+    },
+    {
+      "label": "Settings editable in the product",
+      "value": "23 fields across four sections (branding 9, connection 7, limits 5, retention 2) plus a logo upload, effective on the next request with no restart, resettable to the environment default, secrets write-only, every change audited",
+      "source": "call-analysis/docs/developer/extension-points.md; DECISIONS D-CA-34, D-CA-35, D-CA-45 (2026-09-13)"
+    },
+    {
+      "label": "Live write verification on the real Knowledge Box",
+      "value": "18 checks through the product's own HTTP API — settings write and effect, key issue/authenticate/revoke, labelset create/provision/edit/delete, agent instruction edit, call upload and read-back, ask with citations, share link create and resolve, retention preview, delete — each removing what it created, with the call count confirmed back to baseline and the 24 seeded demo calls untouched",
+      "source": "call-analysis/scripts/smoke-write.ts (make smoke-write, 2026-09-13)"
+    },
+    {
+      "label": "Security findings fixed in the pass",
+      "value": "2 — an uploaded SVG branding asset could run script on the product's origin with the operator's cookie (the sandbox policy was being overwritten by the catch-all header rule); and revoking the last API key switched authentication off. Both fixed, both pinned by tests",
+      "source": "call-analysis DECISIONS D-CA-46, D-CA-47 (2026-09-13)"
     },
     {
       "label": "Taxonomy",
-      "value": "5 call-level labelsets + 1 paragraph-level labelset, 2 labeler agents + 1 two-operation ask agent",
-      "source": "call-analysis/lib/domain/taxonomy.ts"
+      "value": "5 call-level labelsets (10 + 5 + 4 + 6 + 8 labels) and 1 paragraph-level labelset (11 call-moment labels) as the seeded default; the store they seed is edited in the product, and a labelset may hold up to 60 labels",
+      "source": "call-analysis/lib/domain/taxonomy.ts; DECISIONS D-CA-37"
+    },
+    {
+      "label": "Platform and runtime",
+      "value": "arag-platform v0.2.0 adopted (the application chrome is the kit's; 15 of 24 local UI blocks deleted); Next.js moved 16.1.6 → 16.2.12 for published advisories, with the two remaining reports waived and reasoned in the audit allowlist",
+      "source": "call-analysis/CHANGELOG.md; DECISIONS D-CA-43, D-CA-44 (2026-09-13)"
+    },
+    {
+      "label": "Documentation screenshots and showcase",
+      "value": "21 screenshots at 1440 px recaptured from the shipped screens, and a re-recorded two-part walkthrough (analyst, then operator) at 2:47 with 26 PNGs, alongside an 89-second flagship launch video",
+      "source": "call-analysis/docs/screenshots/, call-analysis/showcase/ (2026-09-13)"
     }
   ]
 }

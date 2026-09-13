@@ -181,9 +181,29 @@ every recorded call into a labelled, searchable, citable record. ARAG transcribe
 paragraphs; two data-augmentation labeler agents apply a customer-authored taxonomy at both call and
 paragraph level; an ask agent writes a narrative scorecard and a flat metrics object the dashboard
 aggregates. **Hero moment:** ask a call a question, click the citation, and the recording scrubs to
-the exact second the cited statement was made, with the source transcript line highlighted. Per
-`research/call-analysis-market.md`, citations resolving to a playable audio offset are unique in that
-market.
+the exact second the cited statement was made, with the source transcript line highlighted — then
+ask something the transcript cannot support and watch it decline, with no confidence badge and no
+citations, rather than produce an answer. Per `research/call-analysis-market.md`, citations resolving
+to a playable audio offset are unique in that market. Its full-implementation pass landed on
+13 September 2026 and made the *taxonomy itself* the headline: `lib/domain/taxonomy.ts` now only
+*seeds* a store, labelsets are created, edited, deleted and provisioned on screen, and the labeler
+agents' operations are **derived from the current labelsets on every read** rather than stored — so
+a partner moving from health insurance to utilities edits a form instead of forking a repository,
+and the vocabulary and the agent that applies it cannot drift apart (`call-analysis/DECISIONS.md`
+D-CA-37). The rest of the deployment came with it: 23 settings fields across four sections edited in
+the product with environment variables demoted to defaults and every change effective on the next
+request (D-CA-34), a real API-key store of SHA-256 digests shown once and revoked rather than
+deleted (D-CA-36), job cancellation, a dashboard date window carried into every drill-through,
+server-side shared saved views with per-browser columns and density (D-CA-39), a share register, a
+retention preview and purge with no background sweeper and share links revoked in the same pass
+(D-CA-38), an audit trail, and an API explorer at `/api` rendering the deployment's own OpenAPI
+document so all 60 operations are callable against the live service (D-CA-41). Two security findings
+from the pass's own new surface were fixed before release and are named rather than glossed: an
+uploaded SVG logo could run script on the product's origin with the operator's cookie, because
+Next's config-level headers were replacing the sandbox policy the branding route emitted (D-CA-47);
+and revoking the last API key switched authentication *off*, the exact opposite of what the action
+exists for (D-CA-46). Next.js moved 16.1.6 → 16.2.12 for published advisories, none of them reachable
+here — defence in depth, with the two remaining reports waived and reasoned (D-CA-44).
 
 **VoiceBridge** (`arag-voice`) listens to a live conversation and keeps one evolving, cited brief in front
 of whoever is handling it (D-20). Transcript chunks arrive from any source — realtime STT, a
@@ -362,14 +382,14 @@ value influenced**.
 
 | | Document Processing | Call Analysis | VoiceBridge | Platform |
 |---|---|---|---|---|
-| API operations (`/api/v1`) | 56 | 20 paths | 58 (55 driven by a screen) | — |
-| Unit/integration/contract tests | 241/241, 98.1 % lines | 205/205, 95.8 % lines | 337/337, 98.8 % lines | 44/44 |
-| Playwright e2e | 60 journeys | 21/21 | 83 journeys | template 2/2 |
-| Settings editable in the product | 29 of 29 fields, six groups | — (mid-pass) | 43 fields, six groups | — |
+| API operations (`/api/v1`) | 56 | 60 (56 driven by a screen) | 58 (55 driven by a screen) | — |
+| Unit/integration/contract tests | 241/241, 98.1 % lines | 455/455, 88.3 % lines | 337/337, 98.8 % lines | 44/44 |
+| Playwright e2e | 60 journeys | 114 journeys | 83 journeys | template 2/2 |
+| Settings editable in the product | 29 of 29 fields, six groups | 23 of 23 fields, four sections | 43 fields, six groups | — |
 | `docker build` | OK | OK | OK | — |
 | `fly config validate` | OK | OK | OK | — |
-| Live ARAG smoke | grounding score 0.92 (10 exact / 1 normalised / 0 unverified); 12 fields from a scanned invoice in ~120 s; key-value writes, filters and the generator-agent lifecycle exercised live on 13 Sep | read-only OK: 24 calls, 2 citations on ask | 3/3 at p50 2.9 s; a live listening session reached brief v3 with 12 sources; live KB writes and a live ElevenLabs agent verified on 13 Sep | 18/19 steps |
-| Showcase | narrated walkthrough (17 beats, 3:04) + 28 PNGs + a 90 s launch video | video 2:23 + 14 PNGs | narrated walkthrough + 24 PNGs + a 91 s launch video | — |
+| Live ARAG smoke | grounding score 0.92 (10 exact / 1 normalised / 0 unverified); 12 fields from a scanned invoice in ~120 s; key-value writes, filters and the generator-agent lifecycle exercised live on 13 Sep | live **writes** verified on 13 Sep in 18 checks — settings, keys, labelsets, agents, upload, ask with citations, share links, retention preview, deletion — each undone, catalog count back to baseline; earlier read-only smoke 24 calls, 2 citations on ask | 3/3 at p50 2.9 s; a live listening session reached brief v3 with 12 sources; live KB writes and a live ElevenLabs agent verified on 13 Sep | 18/19 steps |
+| Showcase | narrated walkthrough (17 beats, 3:04) + 28 PNGs + a 90 s launch video | narrated two-part walkthrough (2:47) + 26 PNGs + 21 doc screenshots + an 89 s launch video | narrated walkthrough + 24 PNGs + a 91 s launch video | — |
 
 **Document Processing and VoiceBridge alone now carry 578 passing tests** (241 and 337) after the
 full-implementation pass, plus 143 Playwright journeys between them; the platform adds 44. Sources:
