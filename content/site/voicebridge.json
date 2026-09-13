@@ -2,56 +2,29 @@
   "name": "VoiceBridge",
   "workingTitle": "VoiceBridge",
   "oneLiner": "VoiceBridge listens to a live conversation, from any source, and keeps one evolving, cited brief in front of whoever is handling it — who the caller is, what they want, and what to say next.",
-  "elevator": "VoiceBridge's hero capability is real-time listening, not voice deflection: a listen session ingests transcript chunks from any source — realtime speech-to-text, a telephony webhook, a meeting bot, or someone typing — and returns one continuously refined, structured brief grounded in a Progress Agentic RAG (ARAG) Knowledge Box, with every factual claim carrying a citation. The same grounded pipeline is also available as a follow-on: answering a caller directly when nobody is available, and handing off by a deterministic rule rather than a guess when the knowledge base cannot support an answer.",
+  "elevator": "VoiceBridge's hero capability is real-time listening, not voice deflection: a listen session ingests transcript chunks from any source — realtime speech-to-text, a telephony webhook, a meeting bot, or someone typing — and returns one continuously refined, structured brief grounded in a Progress Agentic RAG (ARAG) Knowledge Box, with every factual claim carrying a citation. Every conversation is kept afterwards with its transcript, its accumulated sources and every version the brief passed through, so any two versions can be compared side by side, and retention windows purge the record on a schedule you set. The deployment is operated from inside the product: all 43 settings are edited on screen and take effect on the next request, access keys are named and revocable, and the ElevenLabs voice agent is configured and pushed to ElevenLabs from Settings rather than hand-copied into a dashboard. The same grounded pipeline is also available as a follow-on: answering a caller directly when nobody is available, and handing off by a deterministic rule rather than a guess when the knowledge base cannot support an answer.",
   "heroMoment": "a live conversation streams in as transcript chunks and one brief on screen keeps rewriting itself — topic, who the caller is, what they want, what to say next — with every factual claim carrying a citation, and a failed refresh leaving the last good brief in place rather than blanking it.",
   "customer": {
     "headline": "The right answer, while you are still talking",
-    "subheadline": "Anyone handling a live conversation has to know what is true right now — not after the call. This listens as the conversation moves and keeps one short, evolving brief on screen: who you are speaking to, what they want, and what to say next, with a source behind every fact.",
+    "subhead": "Anyone handling a live conversation has to know what is true right now — not after the call. This listens as the conversation moves and keeps one short, evolving brief on screen: who you are speaking to, what they want, and what to say next, with a source behind every fact.",
     "outcomes": [
       "Less time on hold. The answer appears while the conversation continues, instead of the person putting the caller on hold to go and look it up.",
       "New people get useful sooner. Someone who does not yet know the knowledge base by heart reads what is suggested rather than having to know what to search for.",
       "Fewer confidently wrong answers. Suggested answers are drawn only from your approved content, and a field is left empty rather than filled with something invented.",
-      "Handovers stop starting from scratch. Whoever picks up an escalation inherits the brief and the sources gathered so far, and the session's record is there for review afterwards."
+      "Handovers stop starting from scratch. Whoever picks up an escalation inherits the brief and the sources gathered so far, and the session's record is there for review afterwards.",
+      "You can see how the conversation turned. Every version the brief passed through is kept, and any two can be put side by side — what the system understood at minute two against minute eight — which is how a supervisor reviews a call without listening to all of it.",
+      "Your own people keep it running. Connection, limits, branding, retention and the voice channel are all changed on screen by someone in your team, and take effect immediately — no redeploy, no engineer, no vendor ticket."
     ],
-    "heroMoment": "A conversation is underway. On one side of the screen, a single brief keeps rewriting itself as the conversation moves — the topic, who the other person appears to be, what they are trying to achieve, the points that matter, what to ask next and what to say — with sources listed underneath. If a refresh fails, the last good brief simply stays put rather than going blank mid-sentence.",
-    "capabilities": [
-      {
-        "title": "One brief, not a stream of alerts",
-        "body": "A single panel that is refined as the conversation develops, rather than a pile of notifications. The person reads one thing, in one place, and it stays current."
-      },
-      {
-        "title": "Grounded suggestions",
-        "body": "Suggested answers and recommendations come from your own approved content. Where your content does not cover something, the brief says nothing rather than filling the gap."
-      },
-      {
-        "title": "Sources that build up",
-        "body": "The sources drawn on during the call accumulate underneath the brief, so by the end there is a list of exactly what informed the conversation."
-      },
-      {
-        "title": "Works with the conversation you already have",
-        "body": "It takes the words of the conversation from whatever you already use — a phone system, a meeting tool, a speech service, or someone typing — rather than requiring a new platform."
-      },
-      {
-        "title": "Only the right person sees the right thing",
-        "body": "A session can be limited to what this particular customer or caller is entitled to, so restricted content never appears in the brief."
-      },
-      {
-        "title": "A record for afterwards",
-        "body": "The brief, its sources and how it developed are kept when the conversation ends — useful for a summary, a handover or a review."
-      }
-    ],
-    "howItWorks": [
-      "A conversation starts, and the words arrive as they are spoken — from your phone system, your meeting tool, a speech service, or typed by hand.",
-      "As enough new conversation accumulates, your own approved content is searched for what is relevant right now.",
-      "The brief on screen is refined rather than replaced: topic, who you are speaking to, what they want, the points that matter, what to ask, what to say.",
-      "Sources gather underneath as the conversation goes on, and everything is kept when it ends."
-    ],
+    "heroMoment": "A conversation is underway. On one side of the screen, a single brief keeps rewriting itself as the conversation moves — the topic, who the other person appears to be, what they are trying to achieve, the points that matter, what to ask next and what to say — with sources listed underneath. If a refresh fails, the last good brief simply stays put rather than going blank mid-sentence, and says plainly that it is showing the last good version.",
     "trust": [
       "It never speaks. Nothing is injected into the call — it puts information on a screen and leaves the conversation to the people having it.",
       "Facts come from your content. The brief is built from your own approved material, and is written to leave a field blank rather than invent something.",
       "Sources are always visible, so anything on screen can be checked before it is said out loud.",
-      "It fails quietly, not loudly. A slow or failed refresh leaves the previous brief in place rather than flashing an error at someone mid-conversation.",
+      "It fails quietly, not loudly. A slow or failed refresh leaves the previous brief in place, marked as the last good version, rather than flashing an error at someone mid-conversation.",
       "Each session can be limited to what that caller is entitled to see, enforced when content is retrieved rather than filtered out afterwards.",
+      "You decide how long anything is kept. Retention windows for conversations, turn logs and quality runs are yours to set, with an immediate purge when you need one.",
+      "Access is named and revocable. Keys are issued and withdrawn in the product, a withdrawal takes effect on the very next request, and the record of the key survives its own revocation so the audit trail stays intact.",
+      "Changes are on the record. Every configuration change is written to an audit log with who made it, what moved and when — never the values themselves.",
       "It can run inside your own environment, in your own country, or fully offline — and it is open source, so your team can read how every suggestion was produced."
     ],
     "faq": [
@@ -61,7 +34,11 @@
       },
       {
         "q": "Do we need a particular phone system or speech provider?",
-        "a": "No. It takes the words of the conversation from whatever you already have — a contact-centre platform, a meeting tool, a speech-to-text service, or a person typing. It does not provide telephony or transcription itself, which is deliberate: you keep the vendors you already trust."
+        "a": "No. It takes the words of the conversation from whatever you already have — a contact-centre platform, a meeting tool, a speech-to-text service, or a person typing. It does not provide telephony or transcription itself, which is deliberate: you keep the vendors you already trust. Out of the box it is wired to ElevenLabs for live transcription, the voice channel and an optional spoken cue, and it works perfectly well with none of that configured."
+      },
+      {
+        "q": "Can it answer a caller on the phone as well?",
+        "a": "It can, through a voice agent — and the agent is set up from inside this product rather than by hand. The product works out what the agent should look like, shows you the difference between that and what the voice platform actually has, and pushes the change: the prompt, the greeting, the voice, and the address and credentials it calls back on. Setting up the second customer is a form and a button, not a second trip through somebody's dashboard."
       },
       {
         "q": "Does it listen to the customer without them knowing?",
@@ -72,16 +49,20 @@
         "a": "It draws only on the content you have approved, leaves gaps empty rather than filling them, and lists its sources so the person can check before speaking. It is a prompt for a person, never an instruction, and the person remains responsible for what they say."
       },
       {
-        "q": "Can it also answer callers when nobody is available?",
-        "a": "It can, and it hands over to a person by a fixed rule whenever your content cannot support an answer. But it is honest to say that the faster, specialised voice platforms do that job better; the value here is supporting the person on the call."
+        "q": "What do we get to review afterwards?",
+        "a": "The whole conversation: the final brief, the full transcript, the sources it drew on, and every version the brief passed through with its timestamp and how long it took. Any two versions can be compared side by side, and the record exports as a document. Quality figures — response times, how often it handed off, how often a suggestion carried a citation — are kept across all conversations, not just one."
+      },
+      {
+        "q": "How long is anything kept, and who can change that?",
+        "a": "As long as you say. Separate retention windows for conversations, turn logs and quality runs are settings in the product, with an optional automatic purge and a manual one for when a customer asks. Changing them is a screen, not a support request, and the change is audited."
       },
       {
         "q": "Can it appear inside the software our people already use?",
-        "a": "Yes. It has no opinion about where the brief is displayed — your agent desktop, case system or meeting tool can render it in its own interface."
+        "a": "Yes. It has no opinion about where the brief is displayed — your agent desktop, case system or meeting tool can render it in its own interface. Everything the product's own screens do is available to a caller through the same documented API, and the product carries an explorer that lets a developer try each operation against a live deployment first."
       },
       {
         "q": "What about sensitive information in the conversation?",
-        "a": "Automatic redaction of personal data is not built in yet, so today it is managed by where the system runs and who can reach it — usually your own environment, in your own country, with access controlled around it. Say early if redaction is a hard requirement."
+        "a": "Automatic redaction of personal data is not built in yet, so today it is managed by where the system runs, who can reach it and how long it is kept — usually your own environment, in your own country, with access controlled around it and a retention window set. Say early if redaction is a hard requirement."
       },
       {
         "q": "What does it not do?",
@@ -90,7 +71,7 @@
     ],
     "cta": {
       "label": "Watch it follow one of your conversations",
-      "body": "Paste in a real transcript and see what the brief would have shown at each turn."
+      "body": "Paste in a real transcript and see what the brief would have shown at each turn. The launch video and the narrated walkthrough on this page show the whole thing first, if you would rather watch than book."
     }
   },
   "personas": [
@@ -108,52 +89,58 @@
     },
     {
       "title": "Compliance reviewer",
-      "body": "Needs to sign off a system that suggests things to a person on a live call, with evidence every factual claim traces to approved content and that the system degrades honestly when it doesn't know. Objects: \"show me a suggested answer can always be traced to a citation.\""
+      "body": "Needs to sign off a system that suggests things to a person on a live call, with evidence every factual claim traces to approved content, a retention window they control, and honest degradation when it doesn't know. Objects: \"show me a suggested answer can always be traced to a citation.\""
     }
   ],
   "capabilities": [
     {
-      "title": "Listen sessions from any transport",
-      "body": "Open a session with POST /api/v1/listen/sessions, then append transcript chunks from realtime STT, a telephony webhook, a meeting bot, or someone typing. No client is coupled to one transcription vendor."
+      "title": "One brief, not a stream of alerts",
+      "body": "A single panel that is refined as the conversation develops, rather than a pile of notifications. The person reads one thing, in one place, and it stays current — topic, who they are speaking to, what that person wants, the points that matter, what to ask and what to say."
     },
     {
-      "title": "Server-side throttling and de-duplication",
-      "body": "A refresh fires only on a genuinely new window of conversation — a minimum word count, a minimum gap since the last refresh, and a similarity check — so a chatty client cannot turn every word into an LLM call."
+      "title": "Grounded suggestions with visible sources",
+      "body": "Suggested answers and recommendations come from your own approved content, and the sources drawn on during the call accumulate underneath the brief — so by the end there is a list of exactly what informed the conversation. Where your content does not cover something, the brief says nothing rather than filling the gap."
     },
     {
-      "title": "One evolving, structured brief",
-      "body": "Every refresh receives the previous brief and the running transcript and is instructed to refine it, not restart: topic, caller_profile, their_goal, stage, summary, key_points, suggested_questions, suggested_answers, recommended_products, via ARAG's answer_json_schema."
+      "title": "Works with the conversation you already have",
+      "body": "It takes the words of the conversation from whatever you already use — a phone system, a meeting tool, a speech service, or someone typing — rather than requiring a new platform. Live transcription, the voice channel and an optional spoken cue are wired to ElevenLabs out of the box, and the product works with none of that configured."
     },
     {
-      "title": "Streamed over SSE, never blanked",
-      "body": "Clients read brief, transcript and status events over Server-Sent Events. A refresh failure never blanks the brief — the previous version stays on screen exactly as it was."
+      "title": "A record you can actually review",
+      "body": "Every conversation is kept with its transcript, its sources and every version the brief passed through; any two versions can be compared side by side to see what changed and when, and the whole record exports as a document for a handover or a review."
     },
     {
-      "title": "Citations accumulated across the call",
-      "body": "Sources seen in any refresh are deduped by title and URL and kept at their best score, capped at twelve, so the citation list reflects everything relevant said so far."
+      "title": "Only the right person sees the right thing",
+      "body": "A session can be limited to what this particular customer or caller is entitled to, enforced when content is retrieved rather than filtered out of an answer afterwards, so restricted content never appears in the brief."
     },
     {
-      "title": "Self-serve deflection (follow-on)",
-      "body": "The same grounded pipeline answers a caller directly over POST /api/v1/voice-answer when nobody is available, using a deterministic HANDOFF: sentinel and a per-prospect golden-set gate before any deployment is trusted to answer alone."
+      "title": "It answers the phone too, when nobody can",
+      "body": "The same grounded pipeline can answer a caller directly and hand over to a person by a fixed rule whenever your content cannot support an answer. The voice agent behind it is configured in this product — prompt, greeting, voice and the address it calls back on — compared against what the voice platform actually has, and pushed with one action."
+    },
+    {
+      "title": "Your own people operate it",
+      "body": "All 43 settings — connection, limits, branding and logo, integrations, retention, operations — are edited on screen by a signed-in operator, take effect on the next request with no redeploy, and are audited. Access keys are named, revocable and show when they were last used; a built-in API explorer runs any operation against the live deployment and hands back the equivalent command."
+    },
+    {
+      "title": "You choose what is kept",
+      "body": "Retention windows for conversations, turn logs and quality runs, an optional automatic purge and a manual one — so a deployment holding real customer conversations can be made to forget them on a schedule you set."
     }
   ],
   "howItWorks": [
-    "Open a listen session for a prospect: POST /api/v1/listen/sessions.",
-    "Append transcript chunks from any source via POST .../transcript — realtime STT, a telephony webhook, a meeting bot, or typed text.",
-    "The server throttles refreshes (rolling word window, minimum gap, similarity check) instead of firing on every append.",
-    "A scoped ARAG retrieval runs, filtered at retrieval time by session-scoped security.groups when entitlements apply.",
-    "One evolving structured brief comes back via answer_json_schema, refined from the previous version rather than restarted.",
-    "Clients read the brief, transcript and session status over SSE (brief | transcript | status events) or by polling.",
-    "Citations accumulate across the whole call, deduped by title and URL, capped at twelve.",
-    "For the deflection follow-on, POST /api/v1/voice-answer runs a nine-step pipeline and hands off via the deterministic HANDOFF: sentinel, gated by a per-prospect golden set."
+    "A conversation starts, and the words arrive as they are spoken — from your phone system, your meeting tool, a speech service, or typed by hand.",
+    "As enough new conversation accumulates, your own approved content is searched for what is relevant right now — filtered, where it matters, to what this caller is entitled to see.",
+    "The brief on screen is refined rather than replaced: topic, who you are speaking to, what they want, the points that matter, what to ask, what to say.",
+    "Sources gather underneath as the conversation goes on, and a refresh that fails or finds nothing leaves the last good brief in place and says so.",
+    "When the conversation ends, everything is kept — transcript, sources, and every version the brief passed through, comparable side by side and exportable.",
+    "Your retention windows decide how long that record lives, and an operator can purge it on demand."
   ],
   "whyItWins": [
     "Only Google CCAI Agent Assist exposes a documented streaming, bring-your-own-telephony assist API a non-CCaaS customer can build on — and Google's is audio-first, grounded on Google's own knowledge bases (research/voicebridge-market.md, section b2).",
     "Every other agent-assist incumbent (Cresta, Balto, Observe.AI, Amazon Q in Connect, Genesys, NICE, Talkdesk, Dialpad) is bolted to a CCaaS, a CRM, or sold as an integration project with no public developer surface.",
     "Transport-agnostic transcript ingest: any STT vendor, any telephony webhook, any meeting bot, or typed text, through one session API.",
     "Per-caller entitlement-filtered retrieval via session-scoped security.groups applied during retrieval, not as a post-filter — research takeaway #3; no agent-assist incumbent documents an equivalent.",
-    "A published citation contract, not a proprietary desktop card with no schema behind it.",
-    "Structured, schema-shaped UI-card output (answer_json_schema) instead of a prose blob a UI has to parse.",
+    "The voice channel is configured from the product and pushed to the voice platform after a field-by-field diff — a repeatable API call per customer rather than a dashboard ritual someone has to remember correctly for the tenth one.",
+    "Operable by the partner who deploys it, not only by whoever built it: 43 settings live in the product, keys are named and revocable, retention is a window rather than a policy document, and every one of the 58 API operations is reachable from a screen or the in-product explorer.",
     "Self-host on Apache-2.0 with zero runtime dependencies — no assist incumbent in the research offers this."
   ],
   "useCases": [
@@ -174,22 +161,26 @@
       "body": "Whoever picks up an escalated call inherits the session's current brief and accumulated citations instead of starting cold."
     },
     {
-      "title": "After-call summary from the session record",
-      "body": "Ending a session keeps its brief, full citation list and stats for review; every brief version ever shown, with timestamp and latency, is available afterwards in the admin panel."
+      "title": "Supervisor review after the call",
+      "body": "The saved conversation carries the final brief, the transcript, the accumulated sources and every brief version with its timestamp and latency; two versions can be compared side by side to see what the system understood at each stage, and the record exports for a handover or a quality review."
+    },
+    {
+      "title": "One deployment, several branded customers",
+      "body": "Each customer is an entry in the registry — its own Knowledge Box, greeting, voice, handoff line and brand overlay, edited in a form with the branding previewed live — so a partner can serve several of its own customers from one deployment without a fork or a redeploy."
     },
     {
       "title": "Self-serve deflection",
-      "body": "The same grounded-answer pipeline, without a human on the call, answers a caller directly over POST /api/v1/voice-answer and hands off by a deterministic rule when the knowledge base can't support an answer."
+      "body": "The same grounded-answer pipeline, without a human on the call, answers a caller directly and hands off by a deterministic rule when the knowledge base can't support an answer — with the voice agent itself configured and pushed from the product."
     }
   ],
   "partnerModels": [
     {
       "model": "White-label",
-      "body": "Deploy the accelerator as-is under the partner's brand, pointed at the partner's Knowledge Box — the fastest path to a live use case. Branding by configuration ships today (D-25), verified in source on 2026-09-12: BRAND_* environment variables (product name, tagline, logo URL, primary and accent colour, a \"Built on Progress Agentic RAG\" toggle, footer text, docs and support links) are read by arag-platform/src/config/branding.ts, served at GET /api/v1/branding, applied by the UI kit (applyBranding() / <arag-shell>), with brand assets dropped into DATA_DIR/branding/ and served from /branding/ so a rebrand needs no rebuild. Each repo ships docs/developer/white-label.md and docs/developer/build-your-own.md. Honest caveats: the OpenAPI document deliberately keeps its own title, because the API contract is not the brand; branding covers visual identity only and is not multi-tenancy; and the admin view of the effective branding that D-25 also calls for is not built yet. It is covered by the final verification runs on platform v0.1.8 (STATUS.md, 2026-09-12 20:10, 20:30, 21:00 and 21:40). VoiceBridge goes further than the other two: the per-prospect registry (greeting, voice, handoff line, Knowledge Box, model, reranker) carries per-prospect brand overlays layered on the deployment's branding, so one deployment can serve several branded targets."
+      "body": "Deploy the accelerator as-is under the partner's brand, pointed at the partner's Knowledge Box — the fastest path to a live use case. Branding is configuration rather than a fork: environment variables give a deployment its starting identity, and from the full-implementation pass the product name, tagline, logo (uploaded in the product), colours, footer text, docs and support links and the \"Built on Progress Agentic RAG\" credit are edited in Settings, stored in the product and applied on the next request. An uploaded logo is served under its own locked-down policy and an SVG carrying active content is refused at upload. VoiceBridge goes further than the other two: the per-customer registry (greeting, voice, handoff line, Knowledge Box, model, reranker) carries per-customer brand overlays, edited in a form with a live preview, so one deployment can serve several branded targets. Honest caveats: the OpenAPI document deliberately keeps its own title, because the API contract is not the brand; branding covers visual identity only and is not multi-tenancy; and Apache-2.0 attribution stays in LICENSE and THIRD_PARTY_NOTICES.md whatever the credit toggle says."
     },
     {
       "model": "Embed from an existing application",
-      "body": "Your existing application opens a listen session, streams transcript chunks from whatever it already has, subscribes to the SSE brief events, and renders the cards and their citations inside its own interface. The accelerator stays headless and never faces the end user. Requires an HTTP client in your stack and somewhere in your UI to render a value, its confidence and its evidence. Completion signals today are SSE and polling; webhooks are a roadmap item."
+      "body": "Your existing application opens a listen session, streams transcript chunks from whatever it already has, subscribes to the SSE brief events, and renders the cards and their citations inside its own interface. The accelerator stays headless and never faces the end user: every screen it ships is a client of the same public API, and the in-product API explorer lets an integrator exercise each of the 58 operations against a live deployment before writing any code. Requires an HTTP client in your stack and somewhere in your UI to render a card and its citations. Completion signals today are SSE and polling; webhooks are a roadmap item."
     },
     {
       "model": "Extend",
@@ -203,34 +194,35 @@
   "enablement": {
     "developerTrack": "Hands-on lab covering the listen-session API, throttling policy and the deflection pipeline — arag-voice/enablement/developer-track/LAB.md (plus knowledge-check.md)",
     "architectTrack": "Sizing, deployment topology, and a design-review checklist for the single-machine session store and multi-tenant registry — arag-voice/enablement/architect-track/WORKSHOP.md (plus sizing-deployment.md, design-review-checklist.md, knowledge-check.md)",
-    "showcase": "Narrated walkthrough script, storyboard and a recorded Playwright spec; 14 PNGs verified on disk plus a video, re-recorded around the Listen tab as the default view — arag-voice/showcase/SCRIPT.md, STORYBOARD.md, record.spec.ts, out/",
-    "docs": "Business overview, when-to-use guidance, console and admin walkthroughs, developer quickstart, API reference, extension points, and architecture (data flow, security model, scaling, limits) — arag-voice/docs/README.md"
+    "showcase": "Narrated walkthrough with an ElevenLabs talk track, script, storyboard and a recorded Playwright spec that now runs the golden set on camera; 24 documentation screenshots at 1440 px covering every new screen — arag-voice/showcase/SCRIPT.md, STORYBOARD.md, record.spec.ts, out/",
+    "docs": "Business overview, when-to-use guidance, console and operator walkthroughs, developer quickstart, API reference, the settings reference (43 fields, transcribed from the code), extension points, and architecture (data flow, security model, scaling, limits) — arag-voice/docs/README.md"
   },
   "roadmap": [
     {
       "phase": "Foundation (S effort)",
       "items": [
-        "Adapters and conformance tests for Vapi, Retell and LiveKit on the tool path",
+        "Adapters and conformance tests for Vapi and Retell on the tool path, alongside the ElevenLabs agent that ships configured from the product",
         "OpenTelemetry tracing plus brief.updated / handoff.signalled / session.closed webhooks",
-        "PII redaction on ingest and a documented retention contract",
+        "PII redaction on ingest, alongside the retention windows and purge that ship today",
         "Proper self-host packaging: container image, Helm chart, air-gapped configuration"
       ]
     },
     {
       "phase": "Differentiation (M effort)",
       "items": [
-        "Transport-agnostic Listen ingest hardened as a first-class supported surface, not just ElevenLabs Scribe",
+        "Transport-agnostic Listen ingest hardened as a first-class supported surface, not just the default ElevenLabs path",
         "Event-triggered incremental brief patches replacing the 1.5 s poll-and-replace loop",
         "Solve the citations-vs-answer_json_schema collision and publish the citation contract",
         "Session-scoped entitlement filtering as a documented, first-class parameter with a worked regulated-industry example",
         "A suggestion-quality evaluation harness scoring precision/recall/timeliness of live brief cards, not just golden answer/handoff checks",
-        "Replace the regex input guard and move the prospect registry to a multi-tenant store with RBAC and an audit log"
+        "Replace the regex input guard, and move the customer registry to a multi-tenant store with role-based access on top of the audit log that ships today"
       ]
     },
     {
       "phase": "Scale (L effort)",
       "items": [
-        "Attack the 3.3 s round trip: surface ARAG's NDJSON first token early, return a fast provisional card and patch it, cache per-session retrieval, pre-compute with Data Augmentation agents at ingest"
+        "Attack the 3.3 s round trip: surface ARAG's NDJSON first token early, return a fast provisional card and patch it, cache per-session retrieval, pre-compute with Data Augmentation agents at ingest",
+        "A durable, horizontally-scaled session store, so live sessions survive a restart and more than one machine"
       ]
     }
   ],
@@ -241,7 +233,19 @@
     },
     {
       "q": "Which speech-to-text or telephony platform do I need?",
-      "a": "None specifically. A listen session ingests transcript chunks from any source — a realtime STT stream, a telephony webhook, a meeting bot, or typed text — through one session API. VoiceBridge does not do speech-to-text, diarisation or telephony itself; something upstream has to produce the transcript."
+      "a": "None specifically. A listen session ingests transcript chunks from any source — a realtime STT stream, a telephony webhook, a meeting bot, or typed text — through one session API. ElevenLabs is the default implementation of every voice surface (Scribe v2 Realtime for the microphone path, Conversational AI for the voice channel, text-to-speech for the optional spoken cue) while the contract stays vendor-neutral (D-32); with no ElevenLabs key the sample, typed and webhook paths carry the whole product. VoiceBridge does not do speech-to-text, diarisation or telephony itself; something upstream has to produce the transcript."
+    },
+    {
+      "q": "How is the ElevenLabs agent set up?",
+      "a": "From Settings, not from a dashboard. GET /api/v1/admin/voice-agent diffs this deployment's desired agent and tool configuration against what ElevenLabs actually has, and POST /api/v1/admin/voice-agent/push writes the difference — the router prompt, greeting, voice, and the custom server tool's URL, X-API-Key header, timeout and body schema — merging into whatever ElevenLabs already holds so settings this product does not own survive. make agent-check verifies the integration against a throwaway agent and tool rather than a mock alone, which is how three live-API constraints were found and are now regression-tested: every request_body_schema property needs a description, a patch must not send both the deprecated inline tools array and tool_ids, and deleting a linked tool needs force (V-28)."
+    },
+    {
+      "q": "Is every setting really editable?",
+      "a": "Yes: 43 fields across six groups (branding, connection, limits, ElevenLabs, retention, operations) are edited in the product, stored in its own JSON store and effective on the very next request — environment variables are only the starting values. Secrets are write-only: set once, then reported as set with a four-character hint, and rotated the same way. A change that would break the turn-budget invariant is rejected and rolled back, connection changes drop the cached ARAG clients so the next call uses them, and every change is audited with who, what and when — never the values (V-26, V-31)."
+    },
+    {
+      "q": "How do API keys work?",
+      "a": "A real key store, not a shared environment variable: named keys with creation, revocation and last-used, where API_KEYS only seeds the store on first boot. A revocation rewrites the live key set so it bites on the next request, and the record survives its own revocation so the audit trail stays intact. Revoking the last active key reopens the API — the documented \"no keys, no gate\" behaviour, asserted by a test. Two honest notes: key secrets are stored in full in the deployment's own store, because the ElevenLabs tool push has to put a real key into the agent's header, and removing a key from the environment variable does not revoke it (the key list marks such a key) (V-27, V-33)."
     },
     {
       "q": "Can we self-host it?",
@@ -249,50 +253,60 @@
     },
     {
       "q": "What does it not do?",
-      "a": "No speech-to-text, diarisation or telephony. No coaching, scoring, sentiment or talk-time analytics, and no CRM or dialer integration — it is the brief and nothing else. It is not a Knowledge Box (retrieval quality is ARAG's job), not a durable horizontally-scaled session store today, and there is no automated quality gate for the live brief itself — only for the deflection pipeline."
+      "a": "No speech-to-text, diarisation or telephony. No coaching, scoring, sentiment or talk-time analytics, and no CRM or dialer integration — it is the brief and nothing else. It is not a Knowledge Box (retrieval quality is ARAG's job), not a durable horizontally-scaled session store today, and there is no automated quality gate for the live brief itself — only for the deflection pipeline. There is no avatar or video surface: the LiveAvatar and LiveKit routes were removed in the full-implementation pass rather than shipped half-built, because the bar is that an unimplemented capability leaves the product and the spec instead of appearing as \"coming soon\" (V-25)."
     },
     {
       "q": "How is a caller's entitlement to see certain content enforced?",
       "a": "Retrieval is filtered by session-scoped security.groups applied by ARAG during retrieval, not as a post-filter on results already returned. No agent-assist incumbent in the research documents an equivalent (research takeaway #3), which is why it is being made a documented, first-class session parameter on the roadmap."
     },
     {
-      "q": "How long does onboarding a new prospect/customer take?",
-      "a": "Registry, provisioning and a golden set are the whole ritual — an admin API call or a few clicks, no redeploy, no code change (docs/developer/extension-points.md). If a prospect ever needs a code change, that is treated as a defect in the abstraction, not a one-off to work around."
+      "q": "How long does onboarding a new customer take?",
+      "a": "A registry entry, a provision and a golden set — a form with a live branding preview, no redeploy and no code change, and the voice agent pushed from the same product. If a customer ever needs a code change, that is treated as a defect in the abstraction, not a one-off to work around."
     },
     {
       "q": "Is the product name final?",
-      "a": "No. VoiceBridge is the recommended name in docs/product-marketing/positioning.md; VoiceBridge is the working title being retired because it describes an architecture (bridging two systems) the hero feature no longer has. Per D-15, the repo, binary and Fly app keep the name arag-voice-bridge regardless of which name is chosen, and legal trademark clearance for VoiceBridge is outstanding."
+      "a": "No. VoiceBridge is the name in the repository, the binary, the Fly app and the running UI. Per D-15 naming does not block the MVP and is a display-string change whenever it is settled; legal trademark clearance is outstanding, and a white-labelling partner replaces the name anyway."
     },
     {
       "q": "How proven is this today?",
-      "a": "206/206 tests passing at 99.0% line coverage, Playwright 22/22, docker build and fly config validation both OK on platform v0.1.8 (STATUS.md, 2026-09-12 20:10 and 21:40); deflection smoke 3/3 at p50 2.9 s; and a live listening session against the real Knowledge Box in which the brief reached version 3 with 12 source chips and a last refresh of 4.7 s (2026-09-12 20:40). The showcase walkthrough has 14 PNGs verified on disk plus a recorded video."
+      "a": "After the full-implementation pass: 337 tests at 98.8 % line coverage and 83 Playwright journeys, with live writes verified against the real Knowledge Box and the ElevenLabs integration verified against a throwaway live agent. Earlier live measurements still stand: deflection smoke 3/3 at p50 2.9 s, and a live listening session in which the brief reached version 3 with 12 source chips and a last refresh of 4.7 s (STATUS.md, 2026-09-12 20:40). The walkthrough recording carries a narrated talk track and 24 screenshots cover the new screens."
     }
   ],
   "proof": [
     {
       "label": "Unit/integration/contract tests",
-      "value": "206/206 passing",
-      "source": "STATUS.md (2026-09-12 20:10 and 21:40, platform v0.1.8)"
+      "value": "337/337 passing",
+      "source": "STATUS.md (2026-09-13, full-implementation pass)"
     },
     {
       "label": "Line coverage",
-      "value": "99.0%",
-      "source": "STATUS.md (2026-09-12 20:10 and 21:40, platform v0.1.8)"
+      "value": "98.8%",
+      "source": "STATUS.md (2026-09-13, full-implementation pass)"
     },
     {
-      "label": "Playwright end-to-end",
-      "value": "22/22 passing",
-      "source": "STATUS.md (2026-09-12 20:10 and 21:40, platform v0.1.8)"
+      "label": "Playwright end-to-end journeys",
+      "value": "83",
+      "source": "STATUS.md (2026-09-13, full-implementation pass)"
     },
     {
-      "label": "Docker build / Fly config validation",
-      "value": "both OK",
-      "source": "STATUS.md (2026-09-12 20:10 and 21:40, platform v0.1.8)"
+      "label": "API surface",
+      "value": "58 operations under /api/v1, 55 of them driven by a screen and every one exercisable from the in-product API explorer; two admin routes that duplicated public ones were removed rather than kept (V-30)",
+      "source": "arag-voice/src/openapi.ts; DECISIONS V-30 (2026-09-13)"
+    },
+    {
+      "label": "Settings editable in the product",
+      "value": "43 fields across six groups, stored in the product, effective on the next request with no restart, secrets write-only, every change audited",
+      "source": "arag-voice/docs/developer/settings.md; DECISIONS V-26, V-31 (2026-09-13)"
+    },
+    {
+      "label": "ElevenLabs agent integration verified live",
+      "value": "make agent-check creates a throwaway agent and tool, pushes, reads back, pushes again and deletes — three live-API constraints found this way are now regression tests",
+      "source": "arag-voice DECISIONS V-28 (2026-09-13)"
     },
     {
       "label": "Live smoke (deflection path)",
       "value": "3/3 golden questions, p50 2.9 s",
-      "source": "STATUS.md (2026-09-12 20:10 and 21:40, platform v0.1.8)"
+      "source": "STATUS.md (2026-09-12 20:10 and 21:40)"
     },
     {
       "label": "Live listening session on the real Knowledge Box",
@@ -305,14 +319,9 @@
       "source": "arag-voice/AUDIT.md; research/voicebridge-market.md section (c3)"
     },
     {
-      "label": "API surface",
-      "value": "32 paths under /api/v1, including the listen session API",
-      "source": "arag-voice/src/openapi.ts (counted 2026-09-12)"
-    },
-    {
-      "label": "Showcase assets on disk",
-      "value": "14 PNGs plus a recorded video, verified present",
-      "source": "arag-voice/showcase/out/"
+      "label": "Documentation screenshots",
+      "value": "24 at 1440 px covering every new screen, including the brief comparison, the API explorer, the voice-agent settings and the customer form with its live branding preview",
+      "source": "arag-voice/docs/screenshots/ (2026-09-13)"
     }
   ]
 }

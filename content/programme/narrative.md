@@ -5,8 +5,11 @@ open-source reference products for Progress Agentic RAG (ARAG).
 **Secondary reader: the Progress ISV and partner network.** What the accelerators are, how to take
 them to market, and what they prove that a generic AI vendor cannot.
 
-Written 12 September 2026. Every market claim cites a file under `research/`. Every product number
-cites a repository file or `STATUS.md`. Where a number is not verifiable, this document says so.
+Written 12 September 2026; product sections and the traction table updated **13 September 2026**
+after the full-implementation pass (D-34) landed for Document Processing and VoiceBridge. Call
+Analysis is mid-pass, and every figure quoted for it here is its last verified one. Every market
+claim cites a file under `research/`. Every product number cites a repository file, a product
+`DECISIONS.md` entry or `STATUS.md`. Where a number is not verifiable, this document says so.
 
 ---
 
@@ -154,14 +157,24 @@ document that is the single source of truth for request validation and contract 
 problem responses, an admin panel, a demo app that consumes only the public API, and a mock mode
 that needs no credentials.
 
-**Document Processing** (`arag-doc-processing`) turns a document into a validated canonical record. Eleven built-in schemas plus
-unlimited custom configs, each provisioned as a stored ARAG search configuration so the model, the
-grounding strategy and the JSON schema live in the Knowledge Box rather than scattered through client
-code; typed fields with per-field confidence, named entities, a summary, deterministic validation
-issues, JSON/XML/CSV export, and grounded per-document Q&A. **Hero moment:** drop in a photographed
-invoice and watch the pipeline run to a record you could post to a ledger — live on a real Knowledge
-Box, 12 fields with entities and summary in about 120 seconds, of which ARAG visual processing was
-about 109 (`STATUS.md`, 2026-09-12 18:25).
+**Document Processing** (`arag-doc-processing`) turns a document into a validated canonical record
+and then puts that record back into the Knowledge Box. Eleven built-in schemas plus unlimited custom
+configs, each provisioned twice — as a stored ARAG search configuration, so the model, the grounding
+strategy and the JSON schema live in the Knowledge Box rather than scattered through client code, and
+as a matching **key-value schema**, so the verified record is written onto the resource itself as
+typed, validated name-value fields. Typed fields with per-field confidence and a verified evidence
+quote, named entities, a summary, deterministic validation issues, JSON/XML/CSV export, grounded Q&A
+over one document or a filtered set, and in-place field correction with an append-only history.
+**Hero moment:** drop in a photographed invoice and watch the pipeline run to a record you could post
+to a ledger — live on a real Knowledge Box, 12 fields with entities and summary in about 120 seconds,
+of which ARAG visual processing was about 109 (`STATUS.md`, 2026-09-12 18:25) — then open the next
+tab and find the same values as searchable fields on the document inside the Knowledge Box. That
+write-back is the headline capability of the full-implementation pass, and it was verified live on
+13 September 2026 along with the four limits that travel with it: key-value filtering answers with
+matches rather than counts (these fields are not facetable and a filter expression is a 422 on
+`/catalog`), indexing lags the write by well over a minute, an overwrite leaves the old value in the
+filter index, and the provisioned schema marks nothing required because a missing required key
+rejects the entire write (`arag-doc-processing/DECISIONS.md` DP-46…DP-55).
 
 **Call Analysis** (`call-analysis`) turns
 every recorded call into a labelled, searchable, citable record. ARAG transcribes into timestamped
@@ -178,7 +191,16 @@ telephony webhook, a meeting bot, or someone typing — and the server does the 
 client gets the same behaviour and cost profile. **Hero moment:** a conversation streams in and one
 brief on screen keeps rewriting itself — topic, who the caller is, what they want, what to say next —
 with citations accumulating across the call, and a failed refresh leaving the last good brief in
-place rather than blanking it mid-call.
+place rather than blanking it mid-call. The full-implementation pass made it a deployment a partner
+can actually operate: all 43 settings are edited in the product and take effect on the next request,
+API keys are named and revocable with last-used tracking, conversations are kept with every version
+the brief passed through and any two can be compared side by side, retention windows and a purge
+decide how long any of it lives, and the ElevenLabs voice agent is configured and pushed to
+ElevenLabs from Settings after a field-by-field diff — verified against a throwaway live agent, which
+is how three undocumented live-API constraints were found before they could ship broken
+(`arag-voice/DECISIONS.md` V-26…V-33). LiveAvatar and LiveKit were **removed** rather than shipped
+half-built, because the bar for the pass is that a capability which is not implemented leaves the
+product and the spec instead of appearing as "coming soon" (V-25).
 
 ## 9. Four ways to engage
 
@@ -236,8 +258,17 @@ served from `/branding/`, so a rebrand needs no rebuild. Each repo ships
 `docs/developer/white-label.md` and `docs/developer/build-your-own.md`, and VoiceBridge adds
 per-prospect brand overlays so one deployment can serve several branded targets. Two honest
 caveats: the OpenAPI document deliberately keeps its own title, because the API contract is not the
-brand; and branding covers visual identity only — it is not multi-tenancy. The admin view of the
-effective branding that D-25 also calls for is the one piece still outstanding.
+brand; and branding covers visual identity only — it is not multi-tenancy.
+
+**Since 13 September 2026, in Document Processing and VoiceBridge, branding is not only configured
+but edited.** The full-implementation pass (D-34) made every setting a screen: product name,
+tagline, logo (uploaded in the product), colours, footer text and the Progress credit are stored in
+the product, applied on the next request without a rebuild, audited, and shown with the layer each
+effective value came from — which is the admin view of effective branding that D-25 also called for.
+An uploaded asset is served under its own locked-down content policy and an SVG carrying active
+content is refused at upload, a stored-XSS path that making the logo editable would otherwise have
+opened (`arag-voice/DECISIONS.md` V-29, V-32). Call Analysis is mid-pass and still configures
+branding by environment variable.
 
 ## 10. The verifiability wedge — the partner's differentiation
 
@@ -261,6 +292,20 @@ verified quotes to retrieval paragraph offsets, and exposes
 This is **shipped in Document Processing** and measured live: a grounding score of **0.92**, with
 10 evidence quotes matching exactly, 1 after normalisation and 0 unverified (`STATUS.md`,
 2026-09-12 20:30).
+
+**Structured values that live in the Knowledge Box (13 September 2026).** Every other extraction
+product hands back a JSON blob and keeps the structured data in its own database. Document Processing
+provisions a typed key-value schema in the Knowledge Box for every extraction configuration and
+writes the verified record onto the resource itself, validated at write, so the extracted values are
+first-class Knowledge Box data that any other system on that Knowledge Box can filter and search —
+and because the schema and its field descriptions are the same artefact that guides the extraction,
+changing what you extract and changing what you can filter on are one action rather than two. It was
+built against live behaviour, and the limits are published with the claim: filtering answers with
+matches rather than counts (these fields are not facetable, and a key-value filter expression is a
+422 on `/catalog`), indexing lags the write by well over a minute, an overwrite leaves the superseded
+value in the filter index, and the provisioned schema marks nothing required because one missing key
+rejects the whole write (`arag-doc-processing/DECISIONS.md` DP-46…DP-55). For a partner, this is the
+argument that the accelerator makes the *platform* more valuable rather than sitting beside it.
 
 **Retrieval-time entitlement filtering.** ARAG applies `security.groups` **during retrieval, not as a
 post-filter**, so unauthorised content never leaves the store — the distinction that survives a
@@ -317,21 +362,40 @@ value influenced**.
 
 | | Document Processing | Call Analysis | VoiceBridge | Platform |
 |---|---|---|---|---|
-| API paths (`/api/v1`) | 20 | 20 | 32 | — |
-| Unit/integration/contract tests | 66/66, 98.6 % lines | 205/205, 95.8 % lines | 206/206, 99.0 % lines | 44/44 |
-| Playwright e2e | 10/10 | 21/21 | 22/22 | template 2/2 |
+| API operations (`/api/v1`) | 56 | 20 paths | 58 (55 driven by a screen) | — |
+| Unit/integration/contract tests | 241/241, 98.1 % lines | 205/205, 95.8 % lines | 337/337, 98.8 % lines | 44/44 |
+| Playwright e2e | 60 journeys | 21/21 | 83 journeys | template 2/2 |
+| Settings editable in the product | 29 of 29 fields, six groups | — (mid-pass) | 43 fields, six groups | — |
 | `docker build` | OK | OK | OK | — |
 | `fly config validate` | OK | OK | OK | — |
-| Live ARAG smoke | grounding score 0.92 (10 exact / 1 normalised / 0 unverified); 12 fields from a scanned invoice in ~120 s | read-only OK: 24 calls, 2 citations on ask | 3/3 at p50 2.9 s; a live listening session reached brief v3 with 12 sources | 18/19 steps |
-| Showcase | video + 12 PNGs | video 2:23 + 14 PNGs | video + 14 PNGs | — |
+| Live ARAG smoke | grounding score 0.92 (10 exact / 1 normalised / 0 unverified); 12 fields from a scanned invoice in ~120 s; key-value writes, filters and the generator-agent lifecycle exercised live on 13 Sep | read-only OK: 24 calls, 2 citations on ask | 3/3 at p50 2.9 s; a live listening session reached brief v3 with 12 sources; live KB writes and a live ElevenLabs agent verified on 13 Sep | 18/19 steps |
+| Showcase | narrated walkthrough (17 beats, 3:04) + 28 PNGs + a 90 s launch video | video 2:23 + 14 PNGs | narrated walkthrough + 24 PNGs + a 91 s launch video | — |
 
-**521 automated tests across the four repositories, all passing.** Sources: `STATUS.md` entries of
-2026-09-12 at 12:50, 18:25, 20:10, 20:30, 20:40, 21:00 and 21:40 — the final verification after
-platform v0.1.8 was synced into all three products — plus a `node --test` re-run of `arag-platform`
-on 2026-09-12 reporting 44/44.
+**Document Processing and VoiceBridge alone now carry 578 passing tests** (241 and 337) after the
+full-implementation pass, plus 143 Playwright journeys between them; the platform adds 44. Sources:
+the two products' `mvp` branches and `DECISIONS.md` entries of 2026-09-13, `STATUS.md` 2026-09-13,
+and the `STATUS.md` entries of 2026-09-12 at 12:50, 18:25, 20:10, 20:30, 20:40, 21:00 and 21:40 for
+everything that predates the pass.
 
-**Two honesty notes.** The platform's line coverage was re-measured at v0.1.8: 95.85 % lines across 44 tests. And no partner pilot has run, so every time-to-pilot figure
-in this programme is a plan, not a measurement.
+**What shipped since this document was first written.** The full-implementation pass (D-34) turned
+the two live demos into working implementations rather than guided tours: every setting editable and
+persisted in-product with environment variables demoted to defaults, a real API-key store in place of
+a shared variable, an in-product API explorer generated from each product's own OpenAPI document so
+every operation is exercisable against the live deployment, and every previously deferred item built
+— or, where it could not be verified end to end, removed from the product and the spec rather than
+shown as "coming soon" (VoiceBridge's LiveAvatar/LiveKit, V-25). Document Processing gained the
+Progress Agentic RAG **key-value field** capability as its headline: verified records written back
+onto the Knowledge Box resource as typed name-value data, a generator-agent path beside it, and
+filtering through the Knowledge Box. All five repositories are **public** under
+`github.com/jaysanderson` as of 13 September 2026 (D-35), every product page carries a flagship
+launch video (89–91 s, produced with real captured screens, ElevenLabs narration and Progress brand
+direction, D-33) and a narrated walkthrough recording, and the public site now carries suggested
+on-sell price ranges for partners instead of market sizing (D-31).
+
+**Three honesty notes.** The platform's line coverage was re-measured at v0.1.8: 95.85 % lines across
+44 tests. The Call Analysis column above is its last verified figure: its own full-implementation
+pass is still running, and these assets will be restated when it lands. And no partner pilot has run,
+so every time-to-pilot figure in this programme is a plan, not a measurement.
 
 ## 13. Roadmap to GA
 
@@ -353,16 +417,18 @@ Ordered by the ratio of consequence to effort, drawn from the four research docu
    MCP server per product, and generated TypeScript/Python SDKs from the OpenAPI documents we already
    contract-test. **No published image, compose file or Helm chart exists in any of the four repos
    today** (`research/README.md`, takeaway #10).
-6. **Verify the branding work** (D-25) — the white-label configuration landed across the platform and
-   all three products on 12 September 2026 and now needs a recorded verification pass, plus an admin
-   view of the effective branding in every product.
+6. **Finish the branding work across all three products** (D-25). Document Processing and VoiceBridge
+   now edit branding in the product — stored, applied without a rebuild, audited, and shown with the
+   layer each effective value came from, which is the admin view D-25 asked for. Call Analysis gets
+   the same treatment in its own pass; after that the remaining item is a recorded verification run
+   rather than new code.
 
 ## 14. Risks and mitigations
 
 | Risk | Mitigation |
 |---|---|
 | **Structured output and citations do not compose on ARAG** — the correctness blocker under the whole wedge | Tested live and resolved as D-24: schema-requested evidence quotes, verified by match, mapped to retrieval offsets, with a per-record grounding score. Shipping in Document Processing; documented as the recipe for the other two |
-| **White-label branding landed after the last verification run** | Confirmed in source across the platform and all three products on 2026-09-12; it needs a `make check` pass recorded in `STATUS.md` before it is quoted as verified |
+| **White-label branding landed after the last verification run** | Confirmed in source across the platform and all three products on 2026-09-12, and since 2026-09-13 branding is editable in the product in Document Processing and VoiceBridge, pinned by Playwright journeys that change a value, reload and assert the effect. Call Analysis is mid-pass |
 | **Missing integration plumbing** — webhooks, idempotency, batch, scopes, audit logs — blocks real partner integration | Build once in the platform; all three products inherit. 14 of 39 headless-API-bar rows are met, 12 partial, 13 missing (`research/HEADLESS-API-BAR.md`) — the list is short and specific |
 | **Standalone revenue is feature-sized** | Do not plan on it. Measure ARAG contract value influenced and Knowledge Boxes provisioned |
 | **We cannot win on parse accuracy, WER or first-audio latency** | Do not compete there. Parsing, transcription and speech are delegated and documented as pluggable |
