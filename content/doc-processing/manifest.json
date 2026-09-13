@@ -6,8 +6,8 @@
   "demoUrl": "https://arag-doc-processing.fly.dev",
   "adminUrl": "https://arag-doc-processing.fly.dev/admin/",
   "repo": "arag-doc-processing",
-  "commit": "5d584d64002c",
-  "syncedAt": "2026-09-13T04:35:04.934Z",
+  "commit": "e3732d311d55",
+  "syncedAt": "2026-09-13T04:49:14.515Z",
   "files": 63,
   "screenshots": [
     "showcase/out/01-welcome.png",

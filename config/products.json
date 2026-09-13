@@ -60,8 +60,8 @@
           "body": "There are no per-vendor templates to tune. Eleven common document types are built in, and anything else is a schema you describe once."
         },
         {
-          "title": "Data that lands where you need it",
-          "body": "Export the same record as JSON, XML or CSV, or ask the document a direct question and get an answer grounded in its own text."
+          "title": "Values that live where the documents are",
+          "body": "Every verified record is written back into your Progress Agentic RAG Knowledge Box as typed name-value fields, so your systems can search and filter on them there instead of copying data out into another database."
         }
       ]
     },

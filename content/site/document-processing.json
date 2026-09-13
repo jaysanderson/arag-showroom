@@ -107,6 +107,10 @@
       "body": "Invoice, receipt, purchase order, contract, résumé, medical claim, pre-authorisation, bank statement, form, report and generic are built in; POST /api/v1/extraction-configs defines an unlimited number of custom schemas, each provisioned as a stored ARAG search configuration."
     },
     {
+      "title": "Name-value extraction into the Knowledge Box",
+      "body": "Each document type provisions a typed key-value schema in the Knowledge Box (text, number, boolean, date, with ranges and lists). After extraction and verification, the record is written onto the document's own resource and validated at write, and the Documents list can filter by those values through the Knowledge Box itself. A generator agent offers a second, agent-driven extraction path per document type, compared field by field against the verified record."
+    },
+    {
       "title": "Schema-driven field extraction",
       "body": "answer_json_schema forces the model to return exactly the declared fields, grounded with full_resource (the whole document in context, not a retrieved snippet), each field carrying a confidence score and the original raw value before normalisation."
     },
