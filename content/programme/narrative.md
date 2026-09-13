@@ -6,8 +6,9 @@ open-source reference products for Progress Agentic RAG (ARAG).
 them to market, and what they prove that a generic AI vendor cannot.
 
 Written 12 September 2026; product sections and the traction table updated **13 September 2026**
-after the full-implementation pass (D-34) landed for Document Processing and VoiceBridge. Call
-Analysis is mid-pass, and every figure quoted for it here is its last verified one. Every market
+after the full-implementation pass (D-34) landed for **all three** products — Document Processing,
+VoiceBridge and, last, Call Analysis. Every figure quoted here is from the shipped branch of the
+product it describes; none is carried over from an earlier run. Every market
 claim cites a file under `research/`. Every product number cites a repository file, a product
 `DECISIONS.md` entry or `STATUS.md`. Where a number is not verifiable, this document says so.
 
@@ -287,8 +288,11 @@ the product, applied on the next request without a rebuild, audited, and shown w
 effective value came from — which is the admin view of effective branding that D-25 also called for.
 An uploaded asset is served under its own locked-down content policy and an SVG carrying active
 content is refused at upload, a stored-XSS path that making the logo editable would otherwise have
-opened (`arag-voice/DECISIONS.md` V-29, V-32). Call Analysis is mid-pass and still configures
-branding by environment variable.
+opened (`arag-voice/DECISIONS.md` V-29, V-32). Call Analysis closed the same hole on 13 September:
+its uploaded-asset sandbox policy was being silently replaced by the application's catch-all header
+rule, so an uploaded SVG ran script on the product's own origin with the operator's cookie — fixed
+by giving the policy its own rule *after* the catch-all, with an integration test asserting the
+header actually served on a real uploaded file (`call-analysis/DECISIONS.md` D-CA-47).
 
 ## 10. The verifiability wedge — the partner's differentiation
 
@@ -391,11 +395,11 @@ value influenced**.
 | Live ARAG smoke | grounding score 0.92 (10 exact / 1 normalised / 0 unverified); 12 fields from a scanned invoice in ~120 s; key-value writes, filters and the generator-agent lifecycle exercised live on 13 Sep | live **writes** verified on 13 Sep in 18 checks — settings, keys, labelsets, agents, upload, ask with citations, share links, retention preview, deletion — each undone, catalog count back to baseline; earlier read-only smoke 24 calls, 2 citations on ask | 3/3 at p50 2.9 s; a live listening session reached brief v3 with 12 sources; live KB writes and a live ElevenLabs agent verified on 13 Sep | 18/19 steps |
 | Showcase | narrated walkthrough (17 beats, 3:04) + 28 PNGs + a 90 s launch video | narrated two-part walkthrough (2:47) + 26 PNGs + 21 doc screenshots + an 89 s launch video | narrated walkthrough + 24 PNGs + a 91 s launch video | — |
 
-**Document Processing and VoiceBridge alone now carry 578 passing tests** (241 and 337) after the
-full-implementation pass, plus 143 Playwright journeys between them; the platform adds 44. Sources:
-the two products' `mvp` branches and `DECISIONS.md` entries of 2026-09-13, `STATUS.md` 2026-09-13,
-and the `STATUS.md` entries of 2026-09-12 at 12:50, 18:25, 20:10, 20:30, 20:40, 21:00 and 21:40 for
-everything that predates the pass.
+**The three products now carry 1,033 passing tests** (241, 337 and 455) after the
+full-implementation pass, plus 257 Playwright journeys between them; the platform adds 44. Sources:
+the three products' `mvp` branches and `DECISIONS.md` entries of 2026-09-13 (DP-46…DP-55,
+V-25…V-33, D-CA-31…D-CA-48), `STATUS.md` 2026-09-13, and the `STATUS.md` entries of 2026-09-12 at
+12:50, 18:25, 20:10, 20:30, 20:40, 21:00 and 21:40 for everything that predates the pass.
 
 **What shipped since this document was first written.** The full-implementation pass (D-34) turned
 the two live demos into working implementations rather than guided tours: every setting editable and
@@ -406,16 +410,23 @@ every operation is exercisable against the live deployment, and every previously
 shown as "coming soon" (VoiceBridge's LiveAvatar/LiveKit, V-25). Document Processing gained the
 Progress Agentic RAG **key-value field** capability as its headline: verified records written back
 onto the Knowledge Box resource as typed name-value data, a generator-agent path beside it, and
-filtering through the Knowledge Box. All five repositories are **public** under
+filtering through the Knowledge Box. Call Analysis' headline is the other half of the same idea: its
+**taxonomy** stopped being a source file and became a store edited in the product, with the labeler
+agents' operations derived from the current labelsets on every read, so the vocabulary a partner
+sells into a new vertical and the agents that apply it cannot drift apart (D-CA-37). All five
+repositories are **public** under
 `github.com/jaysanderson` as of 13 September 2026 (D-35), every product page carries a flagship
 launch video (89–91 s, produced with real captured screens, ElevenLabs narration and Progress brand
 direction, D-33) and a narrated walkthrough recording, and the public site now carries suggested
 on-sell price ranges for partners instead of market sizing (D-31).
 
 **Three honesty notes.** The platform's line coverage was re-measured at v0.1.8: 95.85 % lines across
-44 tests. The Call Analysis column above is its last verified figure: its own full-implementation
-pass is still running, and these assets will be restated when it lands. And no partner pilot has run,
-so every time-to-pilot figure in this programme is a plan, not a measurement.
+44 tests. The Call Analysis column above is now its own post-pass measurement rather than the
+carried-over figure it was until 13 September; its line coverage (88.3 %) is the lowest of the three
+because the pass roughly doubled the product's surface area — settings, keys, taxonomy, views,
+shares, retention, audit and an API explorer — and the gate is 80 %, not a target of 98 %. And no
+partner pilot has run, so every time-to-pilot figure in this programme is a plan, not a
+measurement.
 
 ## 13. Roadmap to GA
 
@@ -448,7 +459,7 @@ Ordered by the ratio of consequence to effort, drawn from the four research docu
 | Risk | Mitigation |
 |---|---|
 | **Structured output and citations do not compose on ARAG** — the correctness blocker under the whole wedge | Tested live and resolved as D-24: schema-requested evidence quotes, verified by match, mapped to retrieval offsets, with a per-record grounding score. Shipping in Document Processing; documented as the recipe for the other two |
-| **White-label branding landed after the last verification run** | Confirmed in source across the platform and all three products on 2026-09-12, and since 2026-09-13 branding is editable in the product in Document Processing and VoiceBridge, pinned by Playwright journeys that change a value, reload and assert the effect. Call Analysis is mid-pass |
+| **White-label branding landed after the last verification run** | Confirmed in source across the platform and all three products on 2026-09-12, and since 2026-09-13 branding is editable in the product in all three, pinned by Playwright journeys that change a value, reload and assert the effect. The stored-XSS path that making the logo editable opens was found and closed in VoiceBridge (V-29, V-32) and in Call Analysis (D-CA-47) |
 | **Missing integration plumbing** — webhooks, idempotency, batch, scopes, audit logs — blocks real partner integration | Build once in the platform; all three products inherit. 14 of 39 headless-API-bar rows are met, 12 partial, 13 missing (`research/HEADLESS-API-BAR.md`) — the list is short and specific |
 | **Standalone revenue is feature-sized** | Do not plan on it. Measure ARAG contract value influenced and Knowledge Boxes provisioned |
 | **We cannot win on parse accuracy, WER or first-audio latency** | Do not compete there. Parsing, transcription and speech are delegated and documented as pluggable |

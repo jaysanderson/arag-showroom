@@ -6,9 +6,9 @@
   "demoUrl": "https://arag-voice-bridge.fly.dev",
   "adminUrl": "https://arag-voice-bridge.fly.dev/admin/",
   "repo": "arag-voice",
-  "commit": "1ffb894f1fa5",
-  "syncedAt": "2026-09-13T07:42:52.167Z",
-  "files": 77,
+  "commit": "c0de12f527da",
+  "syncedAt": "2026-09-13T09:21:53.911Z",
+  "files": 84,
   "screenshots": [
     "showcase/out/01-live-first-run.png",
     "showcase/out/02-brief-first-citation.png",

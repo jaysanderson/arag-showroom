@@ -1,11 +1,11 @@
 {
-  "commits": 94,
+  "commits": 95,
   "endpoints": 58,
   "tests": 427,
   "testFiles": 24,
   "coverageLinesPct": 80,
   "runtimeDependencies": 0,
-  "docPages": 54,
+  "docPages": 61,
   "screenshots": 22,
   "video": true
 }
