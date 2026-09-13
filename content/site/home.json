@@ -53,7 +53,7 @@
         "body": "The engineering bar every accelerator is held to, plus `make new-product` to scaffold a new one against it — the concrete mechanism for \"build your own\"."
       }
     ],
-    "proof": "arag-platform v0.1.8: 44/44 tests passing (re-run 2026-09-12). The 95.9 % line-coverage figure on record was re-measured at v0.1.8: 95.85 % lines, 44 tests.md, 2026-09-12 11:40) and has not been re-measured since. A live platform smoke test against the sandbox Knowledge Box passed 18 of 19 steps, including upload to PROCESSED in 20 seconds, find, ask with citations, and answer_json_schema plus full_resource extraction returning exact invoice fields; one endpoint (/predict/remi) returned HTTP 500 on a short context and is documented as best-effort."
+    "proof": "arag-platform v0.2.0 (13 September 2026): 61/61 tests passing at 95.9 % lines; the kit now carries the rail shell, data table, drawer, confirm, filter bar and API-explorer components all three products run on, and a scaffolded product boots as a full workspace. A live platform smoke test against the sandbox Knowledge Box passed 18 of 19 steps (upload to processed in 20 seconds, find, ask with citations, structured extraction returning exact invoice fields); the one best-effort endpoint (/predict/remi) is documented as such."
   },
   "products": [
     {
@@ -64,7 +64,7 @@
       "heroMoment": "A scanned invoice goes in; roughly 120 seconds later a validated canonical record comes out with 12 extracted fields, each traceable to its source. The extraction itself is a live smoke-tested result, not a mockup.",
       "proof": {
         "label": "Tests, coverage and end-to-end",
-        "value": "66/66 tests at 98.6 % lines, Playwright 10/10; live grounding score 0.92",
+        "value": "242/242 tests at 98.1 % lines, Playwright 61/61; live grounding score 0.92; key-value fields verified live on the Knowledge Box",
         "source": "STATUS.md (2026-09-12 20:30, platform v0.1.8)"
       }
     },
@@ -76,7 +76,7 @@
       "heroMoment": "Click a citation on a generated answer and the audio player jumps straight to the second the underlying statement was spoken — an answer-to-audio-offset link that, per the market research, no other conversation-intelligence vendor ships as a documented product primitive.",
       "proof": {
         "label": "Tests, coverage and end-to-end",
-        "value": "205/205 tests at 95.8 % lines, Playwright 21/21",
+        "value": "455/455 tests at 88.3 % lines, Playwright 114/114; 18 live write checks on the Knowledge Box",
         "source": "STATUS.md (2026-09-12 21:00 and 21:40, platform v0.1.8)"
       }
     },
@@ -88,7 +88,7 @@
       "heroMoment": "A live conversation streams in over the Listen session API, and a single structured brief keeps rewriting itself as the conversation develops, each claim carrying a citation back to its source.",
       "proof": {
         "label": "Tests, coverage and end-to-end",
-        "value": "206/206 tests at 99.0 % lines, Playwright 22/22",
+        "value": "337/337 tests at 98.8 % lines, Playwright 83/83; live smoke 3/3, agent push verified against a throwaway ElevenLabs agent",
         "source": "STATUS.md (2026-09-12 20:10 and 21:40, platform v0.1.8)"
       }
     }
