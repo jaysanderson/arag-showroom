@@ -10,6 +10,7 @@
     "outcomes": [
       "People stop keying documents. They check the handful of values the system has flagged, instead of retyping every field of every document.",
       "Every value is traceable. Each extracted field can carry the verbatim sentence it came from, checked against the document text — so a reviewer, an auditor or a regulator can see the evidence rather than take it on trust.",
+      "The structured values live where the documents are. Every extracted record is written back into the Progress Agentic RAG Knowledge Box as typed, validated name-value fields, so your systems can filter and search on them there instead of copying data out into another database.",
       "Nothing is silently guessed. A missing required field, a total that does not match its subtotal and tax, a date that will not parse — each is raised as an issue rather than quietly filled in.",
       "New document types stop being a project. Describe the fields you want once and every future document of that type is read the same way; on a live Knowledge Box, a scanned invoice returned 12 fields with entities and a summary in about two minutes."
     ],
@@ -18,6 +19,10 @@
       {
         "title": "Reads what you actually need",
         "body": "Eleven common document types are ready to use — invoices, receipts, purchase orders, contracts, CVs, claim forms, pre-authorisations, bank statements, generic forms and reports. Anything else is a short description away: list the fields you want and it reads those."
+      },
+      {
+        "title": "Name-value extraction into the Knowledge Box",
+        "body": "Each document type provisions a typed key-value schema in the Knowledge Box (text, number, boolean, date, with ranges and lists). After extraction and verification, the record is written onto the document's own resource and validated at write, and the Documents list can filter by those values through the Knowledge Box itself. A generator agent offers a second, agent-driven extraction path per document type, compared field by field against the verified record."
       },
       {
         "title": "Checks its own work",
@@ -40,7 +45,8 @@
       "You send a document — a PDF, a photo taken on a phone, a scan — or your existing software sends it for you.",
       "It is read in full, including layout and tables, and identified: this is an invoice, this is a claim form, this is a statement.",
       "The fields for that kind of document are pulled out, normalised, arithmetically checked and scored, each with the quote from the page that supports it.",
-      "You get back a single record — fields, entities, a plain summary and any issues — plus the ability to ask the document questions."
+      "You get back a single record — fields, entities, a plain summary and any issues — plus the ability to ask the document questions.",
+      "The verified values are written back onto the document in the Knowledge Box as typed name-value fields, so they can be filtered and searched there, not only exported."
     ],
     "trust": [
       "Answers come from your document, not from the internet. The system is told to read what is in front of it, and to leave a field empty rather than invent something to fill it.",

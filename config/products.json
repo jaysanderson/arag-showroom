@@ -33,12 +33,12 @@
         }
       ],
       "availableNow": [
-        "Versioned `/api/v1` with an OpenAPI 3.1 contract (26 paths), Redoc and Swagger UI",
-        "Documents workspace: searchable queue over extracted values, filters, bulk export and delete, live job status",
-        "Document record with verified evidence: every field's quote marked inside the real extracted text, grounding score, review flags",
-        "Eleven built-in schemas plus a field builder for custom extraction configurations provisioned into ARAG",
-        "Exports in JSON, XML and CSV, grounded question answering per document, first-run onboarding with sample documents",
-        "Operator admin in the same shell: connection, configs, jobs, logs, usage, branding, security, previewed purge"
+        "Versioned `/api/v1` with an OpenAPI 3.1 contract (56 operations), Redoc, Swagger UI and an in-product API explorer with try-it",
+        "Documents workspace: searchable queue over extracted values, filters incl. Knowledge Box key-value filters, bulk export and delete, live job status",
+        "Document record with verified evidence, field correction with an audit trail, and the values as the Knowledge Box holds them",
+        "Name-value extraction into Progress Agentic RAG: a typed key-value schema per document type, verified records written onto the resource, optional generator-agent path",
+        "Eleven built-in schemas plus a field builder for custom extraction configurations, provisioned into ARAG with their key-value schema",
+        "Every setting editable in-product (branding incl. logo, connection, limits, security, retention) with a real API-key store, audit log, and previewed purge"
       ],
       "roadmap": [
         "Multi-tenant isolation — the MVP is a single Knowledge Box with one service account",
@@ -161,12 +161,12 @@
         }
       ],
       "availableNow": [
-        "Versioned `/api/v1` with an OpenAPI 3.1 contract (39 paths), Redoc and Swagger UI",
+        "Versioned `/api/v1` with an OpenAPI 3.1 contract (58 operations), Redoc, Swagger UI and an in-product API explorer with try-it",
         "Live workspace: start listening from microphone (ElevenLabs Scribe), a telephony webhook or typed text, with the grounded brief rewriting itself as the call moves",
-        "Conversations history searchable by what was said, with brief evolution, transcript, sources, latency and export",
-        "Voice-agent channel on ElevenLabs Conversational AI with a paste-ready tool definition, optional spoken whisper cue",
-        "Knowledge view with golden-set evaluation and run history; prospect registry with per-prospect branding and provisioning",
-        "Quality metrics (latency percentiles, handoff rate, citation coverage, guard trips) and an operator admin in the same shell"
+        "Conversations history searchable by what was said, with brief version comparison, transcript, sources, latency and export",
+        "Voice-agent channel on ElevenLabs Conversational AI, configured and pushed from the product's own Settings; optional spoken whisper cue",
+        "Knowledge view with golden-set evaluation and run history; prospect registry with a form editor and live branding preview",
+        "Every setting editable in-product (43 settings in six groups), real API-key store, retention and purge, quality metrics, operator console in the same shell"
       ],
       "roadmap": [
         "Self-serve voice deflection as the follow-on to agent-assist",
