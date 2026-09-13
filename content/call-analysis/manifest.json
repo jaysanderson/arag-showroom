@@ -6,9 +6,9 @@
   "demoUrl": "https://call-analysis-arag.fly.dev",
   "adminUrl": "https://call-analysis-arag.fly.dev/admin",
   "repo": "call-analysis",
-  "commit": "d5d0bb54e7ab",
-  "syncedAt": "2026-09-13T09:08:07.944Z",
-  "files": 70,
+  "commit": "1b6243ec8ff8",
+  "syncedAt": "2026-09-13T09:49:26.682Z",
+  "files": 79,
   "screenshots": [
     "showcase/out/01-welcome.png",
     "showcase/out/02-dashboard.png",
@@ -37,5 +37,5 @@
     "showcase/out/25-api-response.png",
     "showcase/out/26-audit.png"
   ],
-  "video": "showcase/out/video.webm"
+  "video": "showcase/out/video.mp4"
 }
