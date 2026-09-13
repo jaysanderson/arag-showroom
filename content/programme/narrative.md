@@ -154,8 +154,7 @@ document that is the single source of truth for request validation and contract 
 problem responses, an admin panel, a demo app that consumes only the public API, and a mock mode
 that needs no credentials.
 
-**Document Processing** (`arag-doc-processing`, working title; the positioning doc recommends
-*Fieldwork*) turns a document into a validated canonical record. Eleven built-in schemas plus
+**Document Processing** (`arag-doc-processing`) turns a document into a validated canonical record. Eleven built-in schemas plus
 unlimited custom configs, each provisioned as a stored ARAG search configuration so the model, the
 grounding strategy and the JSON schema live in the Knowledge Box rather than scattered through client
 code; typed fields with per-field confidence, named entities, a summary, deterministic validation
@@ -164,7 +163,7 @@ invoice and watch the pipeline run to a record you could post to a ledger — li
 Box, 12 fields with entities and summary in about 120 seconds, of which ARAG visual processing was
 about 109 (`STATUS.md`, 2026-09-12 18:25).
 
-**Call Analysis** (`call-analysis`, working title; the positioning doc recommends *AfterCall*) turns
+**Call Analysis** (`call-analysis`) turns
 every recorded call into a labelled, searchable, citable record. ARAG transcribes into timestamped
 paragraphs; two data-augmentation labeler agents apply a customer-authored taxonomy at both call and
 paragraph level; an ask agent writes a narrative scorecard and a flat metrics object the dashboard
@@ -173,8 +172,7 @@ the exact second the cited statement was made, with the source transcript line h
 `research/call-analysis-market.md`, citations resolving to a playable audio offset are unique in that
 market.
 
-**VoiceBridge** (`arag-voice`, working title; the positioning doc recommends retiring the name in
-favour of *GroundLine*) listens to a live conversation and keeps one evolving, cited brief in front
+**VoiceBridge** (`arag-voice`) listens to a live conversation and keeps one evolving, cited brief in front
 of whoever is handling it (D-20). Transcript chunks arrive from any source — realtime STT, a
 telephony webhook, a meeting bot, or someone typing — and the server does the throttling so every
 client gets the same behaviour and cost profile. **Hero moment:** a conversation streams in and one

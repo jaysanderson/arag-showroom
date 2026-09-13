@@ -434,7 +434,7 @@ export function registerPageRoutes(app: App, deps: Deps): void {
           brand: deps.branding,
           products: deps.catalogue.list().map((p) => ({
             slug: p.config.slug,
-            name: p.manifest?.recommendedName || p.config.workingTitle,
+            name: p.copy?.name || p.manifest?.recommendedName || p.config.workingTitle,
           })),
           values: { product: ctx.query.get("product") ?? "" },
           submitted: ctx.query.get("sent") === "1",
@@ -450,7 +450,7 @@ export function registerPageRoutes(app: App, deps: Deps): void {
       const body = form(ctx);
       const products = deps.catalogue.list().map((p) => ({
         slug: p.config.slug,
-        name: p.manifest?.recommendedName || p.config.workingTitle,
+        name: p.copy?.name || p.manifest?.recommendedName || p.config.workingTitle,
       }));
       const values = {
         name: body.get("name") ?? "",

@@ -578,13 +578,12 @@ ${
     <p class="sr-eyebrow">Proof</p>
     <h2>Answers you can check.</h2>
     <p class="sr-section-lede">Every answer is grounded in your own content and carries a citation back to the
-    source. The numbers below are measured on this product's own repository and test runs, not estimated.${
+    source, so the people using it can act on what they see instead of taking it on trust.${
       p.repoUrl
         ? ` The code is open: <a href="${esc(p.repoUrl)}" rel="noopener">${esc(p.repoUrl.replace("https://", ""))}</a>.`
         : ""
     }</p>
     ${p.trust.length ? `<ul class="sr-why sr-trust">${p.trust.map((t) => `<li>${esc(t)}</li>`).join("")}</ul>` : ""}
-    ${p.proofHtml ? `<div class="md-body sr-wide-body sr-proof-table">${p.proofHtml}</div>` : ""}
   </div>
 </section>
 

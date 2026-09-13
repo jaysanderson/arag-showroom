@@ -755,6 +755,13 @@
 .sr-prose {
   max-width: var(--sr-reader);
 }
+/* The kit's card carries no inner padding of its own; the site's form and notice cards need it. */
+.sr-form-section .arag-card {
+  padding: var(--sr-s6) var(--sr-s6) var(--sr-s5);
+}
+.sr-form-section .arag-card > h1 {
+  margin-top: var(--sr-s2);
+}
 .sr-form-section {
   padding-block: var(--sr-s8);
 }

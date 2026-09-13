@@ -6,8 +6,8 @@
   "demoUrl": "https://call-analysis-arag.fly.dev",
   "adminUrl": "https://call-analysis-arag.fly.dev/admin",
   "repo": "call-analysis",
-  "commit": "cd209922ddf8",
-  "syncedAt": "2026-09-12T07:52:56.703Z",
+  "commit": "764b98c86753",
+  "syncedAt": "2026-09-13T01:41:38.494Z",
   "files": 64,
   "screenshots": [
     "showcase/out/01-welcome.png",

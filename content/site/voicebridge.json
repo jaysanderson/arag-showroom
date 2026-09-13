@@ -1,8 +1,8 @@
 {
-  "name": "GroundLine",
+  "name": "VoiceBridge",
   "workingTitle": "VoiceBridge",
-  "oneLiner": "GroundLine listens to a live conversation, from any source, and keeps one evolving, cited brief in front of whoever is handling it — who the caller is, what they want, and what to say next.",
-  "elevator": "GroundLine's hero capability is real-time listening, not voice deflection: a listen session ingests transcript chunks from any source — realtime speech-to-text, a telephony webhook, a meeting bot, or someone typing — and returns one continuously refined, structured brief grounded in a Progress Agentic RAG (ARAG) Knowledge Box, with every factual claim carrying a citation. The same grounded pipeline is also available as a follow-on: answering a caller directly when nobody is available, and handing off by a deterministic rule rather than a guess when the knowledge base cannot support an answer.",
+  "oneLiner": "VoiceBridge listens to a live conversation, from any source, and keeps one evolving, cited brief in front of whoever is handling it — who the caller is, what they want, and what to say next.",
+  "elevator": "VoiceBridge's hero capability is real-time listening, not voice deflection: a listen session ingests transcript chunks from any source — realtime speech-to-text, a telephony webhook, a meeting bot, or someone typing — and returns one continuously refined, structured brief grounded in a Progress Agentic RAG (ARAG) Knowledge Box, with every factual claim carrying a citation. The same grounded pipeline is also available as a follow-on: answering a caller directly when nobody is available, and handing off by a deterministic rule rather than a guess when the knowledge base cannot support an answer.",
   "heroMoment": "a live conversation streams in as transcript chunks and one brief on screen keeps rewriting itself — topic, who the caller is, what they want, what to say next — with every factual claim carrying a citation, and a failed refresh leaving the last good brief in place rather than blanking it.",
   "customer": {
     "headline": "The right answer, while you are still talking",
@@ -197,7 +197,7 @@
     },
     {
       "model": "Build-your-own",
-      "body": "Take arag-platform (STANDARDS.md, the ARAG client, the mock server, the HTTP toolkit, the UI kit and the product template via make new-product) and build a different live-context product on the same standards. GroundLine is the worked example for a listen-session/evolving-brief architecture."
+      "body": "Take arag-platform (STANDARDS.md, the ARAG client, the mock server, the HTTP toolkit, the UI kit and the product template via make new-product) and build a different live-context product on the same standards. VoiceBridge is the worked example for a listen-session/evolving-brief architecture."
     }
   ],
   "enablement": {
@@ -241,11 +241,11 @@
     },
     {
       "q": "Which speech-to-text or telephony platform do I need?",
-      "a": "None specifically. A listen session ingests transcript chunks from any source — a realtime STT stream, a telephony webhook, a meeting bot, or typed text — through one session API. GroundLine does not do speech-to-text, diarisation or telephony itself; something upstream has to produce the transcript."
+      "a": "None specifically. A listen session ingests transcript chunks from any source — a realtime STT stream, a telephony webhook, a meeting bot, or typed text — through one session API. VoiceBridge does not do speech-to-text, diarisation or telephony itself; something upstream has to produce the transcript."
     },
     {
       "q": "Can we self-host it?",
-      "a": "Yes. Apache-2.0, zero runtime dependencies, Node 22.18+ runs the TypeScript sources directly with no build step, and it deploys via Docker or Fly or fully self-hosted. No agent-assist incumbent in the research offers self-host — it is one of GroundLine's strongest differentiators, though container/Helm/air-gapped packaging is still on the roadmap."
+      "a": "Yes. Apache-2.0, zero runtime dependencies, Node 22.18+ runs the TypeScript sources directly with no build step, and it deploys via Docker or Fly or fully self-hosted. No agent-assist incumbent in the research offers self-host — it is one of VoiceBridge's strongest differentiators, though container/Helm/air-gapped packaging is still on the roadmap."
     },
     {
       "q": "What does it not do?",
@@ -261,7 +261,7 @@
     },
     {
       "q": "Is the product name final?",
-      "a": "No. GroundLine is the recommended name in docs/product-marketing/positioning.md; VoiceBridge is the working title being retired because it describes an architecture (bridging two systems) the hero feature no longer has. Per D-15, the repo, binary and Fly app keep the name arag-voice-bridge regardless of which name is chosen, and legal trademark clearance for GroundLine is outstanding."
+      "a": "No. VoiceBridge is the recommended name in docs/product-marketing/positioning.md; VoiceBridge is the working title being retired because it describes an architecture (bridging two systems) the hero feature no longer has. Per D-15, the repo, binary and Fly app keep the name arag-voice-bridge regardless of which name is chosen, and legal trademark clearance for VoiceBridge is outstanding."
     },
     {
       "q": "How proven is this today?",

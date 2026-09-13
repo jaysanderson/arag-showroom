@@ -124,6 +124,14 @@ describe("the public site", () => {
     assert.match(res.text, /documented API endpoints/);
   });
 
+  test("the access request form names products the way the site does", async () => {
+    const res = await c.get("/request-access");
+    assert.equal(res.status, 200);
+    assert.match(res.text, /Document Processing/);
+    assert.match(res.text, /VoiceBridge/);
+    assert.doesNotMatch(res.text, /Fieldwork|AfterCall|GroundLine/);
+  });
+
   test("a flagship launch video takes the product hero when one exists", async () => {
     // The test boot points SHOWROOM_LAUNCH_DIR at a temp dir holding a stub for one product only.
     const withVideo = await c.get("/products/doc-processing");
@@ -142,6 +150,8 @@ describe("the public site", () => {
       assert.match(res.text, /id="capabilities"/, slug);
       assert.match(res.text, /id="how"/, slug);
       assert.match(res.text, /id="proof"/, slug);
+      // Engineering evidence (test counts, STATUS.md citations) stays in the portal, never on the customer page.
+      assert.doesNotMatch(res.text, /sr-proof-table|STATUS\.md/, slug);
       assert.match(res.text, /id="cta"/, slug);
       assert.match(res.text, /github\.com\/jaysanderson\/arag-/, slug);
       assert.match(res.text, /class="sr-icon"/, slug);

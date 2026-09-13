@@ -1,6 +1,6 @@
 {
   "name": "Document Processing",
-  "workingTitle": "Fieldwork (proposed; legal clearance outstanding, D-15)",
+  "workingTitle": "Document Processing (proposed; legal clearance outstanding, D-15)",
   "oneLiner": "Drop in a document — a PDF, a photo of a form, a scanned invoice — and get back a validated, structured record in under a minute, through one API call.",
   "elevator": "Document Processing is a partner-accelerator reference product built entirely on Progress Agentic RAG (ARAG). Upload a document and it becomes an ARAG resource; a multi-agent pipeline classifies it against eleven built-in schemas (or a custom one), extracts typed fields grounded in the whole document, surfaces entities, writes a summary, and runs deterministic validation before returning a canonical record. Every extraction schema, built-in or custom, is provisioned as a stored ARAG search configuration, so the model, the grounding strategy and the JSON schema live in the Knowledge Box rather than scattered across client code. The document stays queryable afterwards: ask it a direct question and get a grounded answer. Apache-2.0, self-hostable, zero runtime dependencies, and evaluable with no ARAG credentials via an in-process mock.",
   "heroMoment": "A scanned invoice goes in. About 120 seconds later — roughly 109 of them ARAG's own visual processing — a validated canonical record comes back: 12 extracted fields with per-field confidence, named entities, a plain-language summary, and any validation issues (a subtotal that doesn't reconcile, a missing required field) surfaced explicitly rather than hidden. That figure is a live smoke-test result against the real Knowledge Box, not a mockup (STATUS.md, 2026-09-12 18:25).",
@@ -258,7 +258,7 @@
     },
     {
       "q": "What is the product actually going to be called?",
-      "a": "In code, the repo and the running UI it is Document Processing (arag-doc-processing). Per D-15, naming doesn't block the MVP; the product-marketing recommendation is Fieldwork, a strong direction rather than a final legal clearance — trademark counsel has not yet cleared it."
+      "a": "In code, the repo and the running UI it is Document Processing (arag-doc-processing). Per D-15, naming doesn't block the MVP; the product-marketing recommendation is Document Processing, a strong direction rather than a final legal clearance — trademark counsel has not yet cleared it."
     },
     {
       "q": "Will this handle our production volume?",

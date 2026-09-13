@@ -1,6 +1,6 @@
 {
   "name": "Call Analysis",
-  "workingTitle": "AfterCall (proposed; legal clearance outstanding, D-15)",
+  "workingTitle": "Call Analysis (proposed; legal clearance outstanding, D-15)",
   "oneLiner": "Call Analysis turns every recorded contact-centre call into a labelled, searchable, citable record — transcribed, classified and scored automatically the moment it lands.",
   "elevator": "Call Analysis is a partner-accelerator reference product built entirely on Progress Agentic RAG (ARAG). Upload a recording or a transcript and ARAG transcribes it into timestamped paragraphs; two data-augmentation labeler agents classify the call at the call level and the paragraph level; a two-operation ask agent writes a narrative analysis and a flat metrics record; the app aggregates every call into a live dashboard and lets a reviewer ask any single call a question, answered only from that call's own transcript, with a citation that scrubs the recording to the exact second the answer came from. Apache-2.0, self-hostable, no per-minute meter, and evaluable with no ARAG credentials via an in-process mock.",
   "heroMoment": "Ask a call a question — 'Was the member satisfied?' — and click the citation marker on the answer. The recording scrubs to the exact second the cited statement was made, and the source transcript line highlights in place, so 'show me where' is answered by clicking, not re-listening.",
