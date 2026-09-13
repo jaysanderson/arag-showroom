@@ -2,7 +2,7 @@
   "slug": "call-analysis",
   "title": "Call Analysis",
   "recommendedName": "AfterCall",
-  "oneLiner": "Call Analysis turns every recorded contact-centre call into a labeled, searchable, and citable record — transcribed, classified, and scored automatically the moment it lands, with no analyst tagging a single call by hand.",
+  "oneLiner": "Call Analysis turns every recorded contact-centre call into a labeled, searchable, and citable record \u2014 transcribed, classified, and scored automatically the moment it lands, with no analyst tagging a single call by hand.",
   "demoUrl": "https://call-analysis-arag.fly.dev",
   "adminUrl": "https://call-analysis-arag.fly.dev/admin",
   "repo": "call-analysis",
@@ -31,5 +31,5 @@
     "showcase/out/19-admin-jobs.png",
     "showcase/out/20-api-docs.png"
   ],
-  "video": "showcase/out/video.webm"
+  "video": "showcase/out/video.mp4"
 }

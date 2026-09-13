@@ -2,7 +2,7 @@
   "slug": "voicebridge",
   "title": "VoiceBridge",
   "recommendedName": "GroundLine",
-  "oneLiner": "VoiceBridge listens to a live conversation — from any source, on any call it's connected to — and keeps one evolving, cited brief in front of whoever needs it: who the other person is, what they want, and what to say next, grounded in a Progress Agentic RAG (ARAG) Knowledge Box and updated as the conversation moves. When a human is available, they get the brief. When nobody is, the same grounding can answer the caller directly — and, either way, anything the knowledge base can't support is handed off by a deterministic rule rather than a guess.",
+  "oneLiner": "VoiceBridge listens to a live conversation \u2014 from any source, on any call it's connected to \u2014 and keeps one evolving, cited brief in front of whoever needs it: who the other person is, what they want, and what to say next, grounded in a Progress Agentic RAG (ARAG) Knowledge Box and updated as the conversation moves. When a human is available, they get the brief. When nobody is, the same grounding can answer the caller directly \u2014 and, either way, anything the knowledge base can't support is handed off by a deterministic rule rather than a guess.",
   "demoUrl": "https://arag-voice-bridge.fly.dev",
   "adminUrl": "https://arag-voice-bridge.fly.dev/admin/",
   "repo": "arag-voice",
@@ -27,5 +27,5 @@
     "showcase/out/15-settings-connection-brand.png",
     "showcase/out/16-settings-elevenlabs.png"
   ],
-  "video": "showcase/out/video.webm"
+  "video": "showcase/out/video.mp4"
 }

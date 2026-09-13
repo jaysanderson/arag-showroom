@@ -461,7 +461,7 @@ ${productNav(p, `/p/${p.slug}/showcase`)}
 ${
   p.video
     ? card(`<video class="sr-video" controls preload="metadata"${p.thumbnail ? ` poster="/api/v1/products/${esc(p.slug)}/assets/${esc(p.thumbnail)}"` : ""}>
-  <source src="/api/v1/products/${esc(p.slug)}/assets/${esc(p.video)}" type="video/webm">
+  <source src="/api/v1/products/${esc(p.slug)}/assets/${esc(p.video)}" type="${p.video.endsWith(".mp4") ? "video/mp4" : "video/webm"}">
   Your browser cannot play this recording. <a href="/api/v1/products/${esc(p.slug)}/assets/${esc(p.video)}">Download it instead.</a>
 </video>`)
     : alert("info", "No recording has been synced for this product yet.")

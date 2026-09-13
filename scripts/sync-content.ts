@@ -220,9 +220,11 @@ function copyTree(from: string, to: string, filter: (rel: string) => boolean, re
 function copyShowcaseOut(repo: string, dest: string): { screenshots: string[]; video: string | null } {
   const out = join(repo, "showcase", "out");
   const screenshots: string[] = [];
-  let video: string | null = null;
-  if (!existsSync(out) || !statSync(out).isDirectory()) return { screenshots, video };
+  if (!existsSync(out) || !statSync(out).isDirectory()) return { screenshots, video: null };
   const seen = new Set<string>();
+  // The narrated MP4 (talk track muxed onto the recording) wins over the silent screencast.
+  let narrated: string | null = null;
+  let silent: string | null = null;
   const walk = (dir: string) => {
     for (const entry of readdirSync(dir, { withFileTypes: true })) {
       if (entry.name.startsWith(".")) continue;
@@ -240,16 +242,23 @@ function copyShowcaseOut(repo: string, dest: string): { screenshots: string[]; v
         mkdirSync(dirname(join(dest, rel)), { recursive: true });
         cpSync(src, join(dest, rel));
         screenshots.push(rel);
-      } else if (lower === "video.webm" && !video) {
-        const rel = "showcase/out/video.webm";
-        mkdirSync(dirname(join(dest, rel)), { recursive: true });
-        cpSync(src, join(dest, rel));
-        video = rel;
+      } else if (lower === "video-narrated.mp4") {
+        narrated ??= src;
+      } else if (lower === "video.webm") {
+        silent ??= src;
       }
     }
   };
   walk(out);
   screenshots.sort((a, b) => a.localeCompare(b));
+  let video: string | null = null;
+  const chosen = narrated ?? silent;
+  if (chosen) {
+    const rel = narrated ? "showcase/out/video.mp4" : "showcase/out/video.webm";
+    mkdirSync(dirname(join(dest, rel)), { recursive: true });
+    cpSync(chosen, join(dest, rel));
+    video = rel;
+  }
   return { screenshots, video };
 }
 

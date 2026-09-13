@@ -498,7 +498,8 @@ describe("the gated portal", () => {
     const res = await c.get("/p/doc-processing/showcase", as(viewerCookie));
     assert.equal(res.status, 200);
     assert.match(res.text, /<video/);
-    assert.match(res.text, /assets\/showcase\/out\/video\.webm/);
+    // The narrated MP4 replaces the silent screencast once a talk track has been produced.
+    assert.match(res.text, /assets\/showcase\/out\/video\.(mp4|webm)/);
     assert.match(res.text, /Screenshots/);
   });
 

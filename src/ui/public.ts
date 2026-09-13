@@ -592,11 +592,11 @@ ${
     ? `<section class="sr-section" id="showcase">
   <div class="sr-shell">
     <p class="sr-eyebrow">See it running</p>
-    <h2>A recorded walkthrough.</h2>
+    <h2>A narrated walkthrough.</h2>
     ${
       p.video
         ? `<video class="sr-video" controls preload="metadata"${heroShot ? ` poster="${heroShot}"` : ""}>
-      <source src="${assetUrl(p.slug, p.video)}" type="video/webm">
+      <source src="${assetUrl(p.slug, p.video)}" type="${p.video.endsWith(".mp4") ? "video/mp4" : "video/webm"}">
       Your browser cannot play this recording.
     </video>`
         : ""
